@@ -10,6 +10,7 @@ export default function Navbar() {
           <Link href="/" className="hover:text-blue-600">Home</Link>
           <Link href="/about" className="hover:text-blue-600">About Us</Link>
           <Link href="/contact" className="hover:text-blue-600">Contact</Link>
+          <Link href="/gallay" className="hover:text-blue-600">Gallay</Link>
         </div>
       </div>
     </nav>
