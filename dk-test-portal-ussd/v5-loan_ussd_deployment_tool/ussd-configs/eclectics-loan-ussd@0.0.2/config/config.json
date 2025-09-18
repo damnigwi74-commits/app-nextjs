@@ -1,0 +1,111 @@
+{
+	"api-name": "ussd-api",
+	"api-environment": "development",
+	"api-user-profile-route": "profile",
+	"do-not-load-profile": false,
+	"app-name": "eclectics-loan-ussd",
+	"authenticate": true,
+	"authenticate-use-page": false,
+	"authenticate-transactions": false,
+	"internal-authentication": true,
+	"language": "english",
+	"blocked-account-check": "is-blocked",
+	"first-login-check": "first-login",
+	"page-switch-check": {
+		"name": "account-type",
+		"options": {
+			"client": {
+				"page": "client-page",
+				"enabled": true
+			}
+		},
+		"enabled": true
+	},
+	"pin-trials-max": 3,
+	"register": false,
+	"registration-check": "is-registered",
+	"imsi-check": "is-imsi",
+	"require-access-token": true,
+	"access-token-param": "access_token",
+	"ussd-response-format": "safaricom",
+	"meta-data": {
+		"app-contact-name": "Eclectics Human Resource ",
+		"app-client": "Eclectics Human Resource ",
+		"app-description": "Eclectics Human Resource ",
+		"app-contact-number": "+254 700 449050",
+		"app-email": "talktous@eclectics.io",
+		"app-name": "eclectics-loan-ussd@0.0.2",
+		"app-shortcode": "*871*1*200#",
+		"app-terms-url": "https://eclectics.io/our-team/",
+		"app-whatsapp": "+254 700 449050",
+		"app-twitter": "https://twitter.com/eclecticsio",
+		"app-facebook": "https://www.facebook.com/eclecticsio/",
+		"app-location": "Utumishi Co-op House,Mamlaka Road Nairobi, Kenya",
+		"app-currency-code": "KES",
+		"merchantName": "Juma Chukwa"
+	},
+	"global-constants": {
+		"funds-transfer-minimum-KES": 100,
+		"funds-transfer-minimum-GBP": 1,
+		"funds-transfer-minimum-EUR": 1,
+		"funds-transfer-minimum-USD": 1,
+		"pesalink-limit": 100,
+		"lock-savings-minimum-amount": 100,
+		"school-fees-minimum-amount": 100,
+		"billpayment-amount-minimum": 100,
+		"minimum-billpayment-amount": 100,
+		"buy-airtime-minimum": 10,
+		"lock-savings-min-deposit-amount": 0,
+		"enter-amount-to-borrow": [
+			{
+				"label": "Enter new Amount",
+				"jump-to": "loan-limit-amount"
+			}
+		],
+		"language-options": [
+			{
+				"label": "english-label",
+				"value": "english"
+			},
+			{
+				"label": "swahili-label",
+				"value": "swahili"
+			}
+		],
+		"yes-no-options": [
+			{
+				"label": "yes-label",
+				"value": "1"
+			},
+			{
+				"label": "no-label",
+				"value": "2"
+			}
+		],
+		"confirm-options": [
+			{
+				"label": "confirm-label",
+				"value": "1"
+			},
+			{
+				"label": "cancel-label",
+				"value": "2"
+			}
+		],
+		"savings-accounts": [
+			{
+				"label": "000xxxxxxxx0045",
+				"value": "000375190000045"
+			},
+			{
+				"label": "0003xxxxxxx0048",
+				"value": "000374770000048"
+			},
+			{
+				"label": "0003xxxxxxx8328",
+				"value": "000320010038328"
+			}
+		],
+		"pesalink-lookup-result": []
+	}
+}

@@ -1,0 +1,203 @@
+{
+    "flexi-pay-merchants": [
+        "flexi-pay-merchants",
+        "flexi-pay-merchants-code",
+        "flexi-pay-merchants-narration",
+        "flexi-pay-merchants-amount",
+        "flexi-pay-merchants-confirm",
+        "flexi-pay-merchants-confirm"
+    ],
+    "api-success": [
+        "api-success"
+    ],
+    "pin-change": [
+        "pin-change-old-pin",
+        "pin-change-new-pin",
+        "pin-change-confirm",
+        "pin-change-error-alert",
+        "pin-change-confirm",
+        "pin-change-confirm"
+    ],
+    "language-change": [
+        "language-change",
+        "language-confirm"
+    ],
+    "terms": [
+        "terms"
+    ],
+    "disabled": [
+        "disabled"
+    ],
+    "api-acc-search-error": [
+        "api-acc-search-error"
+    ],
+    "flexi-t-c": [
+        "flexi-t-c"
+    ],
+    "flexi-merchant-main-menu": [
+        "flexi-merchant-main-menu",
+        "flexi-merchant-enq",
+        "flexi-merchant-enq-bal-account",
+        "flexi-merchant-enq-bal-confirm",
+        "flexi-merchant-enq-mini",
+        "flexi-merchant-enq-mini-confirm",
+        "flexi-merchant-enq-mini-confirm",
+        "flexi-merchant-enq-mini-confirm",
+        "flexi-merchant-enq-full",
+        "flexi-merchant-enq-full",
+        "flexi-merchant-enq-mini",
+        "flexi-merchant-enq-full-account",
+        "flexi-merchant-enq-full-confirm",
+        "flexi-merchant-enq-full-success",
+        "flexi-merchant-enq",
+        "flexi-merchant-enq",
+        "flexi-merchant-ft",
+        "flexi-merchant-ft-fund-wallet",
+        "flexi-merchant-ft-amount",
+        "flexi-merchant-ft-narration",
+        "flexi-merchant-ft-confirm",
+        "flexi-merchant-ft-fund-wallet",
+        "flexi-merchant-ft",
+        "flexi-merchant-ft-confirm",
+        "flexi-merchant-ft-success",
+        "flexi-merchant-ft-transfer",
+        "flexi-merchant-ft-transfer-dest",
+        "flexi-merchant-main-menu"
+    ],
+    "login": [
+        "login"
+    ],
+    "flexi-financial-save": [
+        "flexi-financial-save",
+        "flexi-financial-save-everyday",
+        "flexi-financial-save-everyday-amount",
+        "flexi-financial-save-confirm",
+        "flexi-financial-save-scheduled",
+        "flexi-financial-save-cancel",
+        "flexi-financial-save-activate",
+        "flexi-financial-save-activate-stop",
+        "flexi-financial-save-activate-amount",
+        "flexi-financial-save-activate-confirm"
+    ],
+    "flexi-payments": [
+        "flexi-payments",
+        "flexi-payments-services",
+        "flexi-payments-credit-acc",
+        "flexi-payments-amount",
+        "flexi-payments-confirm",
+        "flexi-payments-confirm",
+        "flexi-payments-utilities",
+        "flexi-payments-utilities-location",
+        "flexi-payments-services",
+        "flexi-payments-amount",
+        "flexi-payments",
+        "flexi-payments",
+        "flexi-payments-services",
+        "flexi-payments-utilities",
+        "flexi-payments-utilities-location"
+    ],
+    "flexi-send-money": [
+        "flexi-send-money",
+        "flexi-send-money-debit",
+        "flexi-send-money-dest",
+        "flexi-send-money-wallet-mm-amount",
+        "flexi-send-money-success",
+        "flexi-send-money-success",
+        "flexi-send-money-debit",
+        "flexi-send-money-debit",
+        "flexi-send-money-bank-option",
+        "flexi-send-money",
+        "flexi-send-money-bank-option",
+        "flexi-send-money-bank-dest",
+        "flexi-send-money-bank-option",
+        "flexi-send-money-bank-list",
+        "flexi-send-money-bank-list",
+        "flexi-send-money-bank-narration",
+        "flexi-send-money-bank-option",
+        "flexi-send-money-bank-dest",
+        "flexi-send-money-bank-list",
+        "flexi-send-money",
+        "flexi-send-money-success",
+        "flexi-send-money",
+        "flexi-send-money-debit",
+        "flexi-send-money",
+        "flexi-send-money"
+    ],
+    "flexi-fund-wallet": [
+        "flexi-fund-wallet",
+        "flexi-fund-wallet",
+        "flexi-fund-wallet-amount",
+        "flexi-fund-wallet-confirm",
+        "flexi-fund-wallet-success",
+        "flexi-fund-wallet-success",
+        "flexi-fund-wallet-confirm",
+        "flexi-fund-wallet",
+        "flexi-fund-wallet-confirm"
+    ],
+    "technical-error": [
+        "technical-error"
+    ],
+    "flexi-financial-loan": [
+        "flexi-financial-loan",
+        "flexi-financial-loan-repay",
+        "flexi-financial-loan-debit",
+        "flexi-financial-loan-repay-amount",
+        "flexi-financial-loan-repay-confirm",
+        "flexi-financial-loan-repay",
+        "flexi-financial-loan-enq",
+        "flexi-financial-loan-enq-bal",
+        "flexi-financial-loan-enq-stat",
+        "flexi-financial-loan-enq-limit",
+        "flexi-financial-loan",
+        "flexi-financial-loan-appl",
+        "flexi-financial-loan-appl-credit",
+        "flexi-financial-loan-appl-amount",
+        "flexi-financial-loan-appl-confirm",
+        "flexi-financial-loan-optout"
+    ],
+    "logout": [
+        "logout"
+    ],
+    "flexi-financial": [
+        "flexi-financial"
+    ],
+    "empty-options-error": [
+        "empty-options-error"
+    ],
+    "maintenance": [
+        "maintenance"
+    ],
+    "flexi-airtime-data": [
+        "flexi-airtime-data",
+        "flexi-airtime-data-debit",
+        "flexi-airtime-data-credit",
+        "flexi-airtime-data-amount",
+        "flexi-airtime-data",
+        "flexi-airtime-data-success",
+        "flexi-airtime-data-success",
+        "flexi-airtime-data-debit",
+        "flexi-airtime-data",
+        "flexi-airtime-data"
+    ],
+    "flexi-lookup": [
+        "flexi-lookup",
+        "flexi-lookup",
+        "flexi-login",
+        "flexi-login",
+        "flexi-login",
+        "flexi-main-menu",
+        "flexi-main-menu",
+        "flexi-main-menu",
+        "flexi-lookup",
+        "flexi-login-merchant",
+        "flexi-login-merchant-pin",
+        "flexi-lookup"
+    ],
+    "api-error": [
+        "api-error"
+    ],
+    "account-blocked": [
+        "account-blocked"
+    ],
+    "flexi-sms-success": []
+}

@@ -1,0 +1,12 @@
+[
+    {
+        "type": "select",
+		"name": "bank-loan-repayment-account-type",
+		"save-as" : "bankAccount",
+        "options": "savings-accounts",
+        "error": "bank-loan-repayment-account-type-error",
+        "previous": "loan-repayment-accounts",
+        "next": "loan-repayment-confirm"
+	}
+    
+]

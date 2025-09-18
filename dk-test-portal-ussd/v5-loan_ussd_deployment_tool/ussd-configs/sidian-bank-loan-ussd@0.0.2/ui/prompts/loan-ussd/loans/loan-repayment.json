@@ -1,0 +1,177 @@
+[
+  {
+    "type": "select",
+    "name": "loan-repayment-product-type",
+    "save-as": "loanProduct",
+    "options": "loans-accounts",
+    "next": "loan-repayment-partial-or-full",
+    "error": "loan-repayment-product-type-error",
+    "previous": "client-page"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-partial-or-full",
+    "save-as": "repaymentMethod",
+    "save-as-label": "repaymentMethod",
+    "options": [
+      {
+        "label": "Partial Payment",
+        "value": "Partial Payment",
+        "jump-to": "loan-repayment-amount"
+      },
+      {
+        "label": "Full Payment",
+        "value": "Full Payment",
+        "jump-to": "loan-repayment-payment-method"
+      }
+    ],
+    "next": "loan-repayment-amount",
+    "error": "loan-repayment-partial-or-full-error",
+    "previous": "loan-repayment-payment-method"
+  },
+  {
+    "type": "input",
+    "name": "loan-repayment-amount",
+    "save-as": "repaymentAmount",
+    "validation": [
+      {
+        "name": "isAmount",
+        "type": "joi",
+        "arguments": "min=1"
+      }
+    ],
+    "error": "loan-repayment-amount-error",
+    "previous": "loan-repayment-partial-or-full",
+    "next": "loan-repayment-payment-method"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-payment-method",
+    "save-as": "repaymentMethod",
+    "save-as-label": "repaymentMethod",
+    "options": [
+      {
+        "label": "Mobile Money",
+        "value": "Mobile Money",
+         "jump-to": "loan-repayment-provider"
+      },
+      {
+        "label": "Bank account",
+        "value": "Bank account",
+        "jump-to":"loan-repayment-bank-account-account"
+      }
+    ],
+    "next": "loan-repayment-confirm",
+    "error": "loan-repayment-payment-method-error",
+    "previous": "loan-repayment-partial-or-full"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-provider",
+    "save-as": "airtimeProvider",
+    "options": [
+      {
+        "label": "MPESA",
+        "value": "MPESA"
+      },
+      {
+        "label": "Airtel Money",
+        "value": "AIRTEL"
+      },
+      {
+        "label": "T-kash",
+        "value": "T-kash"
+      }
+    ],
+    "error": "loan-repayment-provider-error",
+    "next": "loan-repayment-account-type",
+    "previous": "loan-repayment-payment-method"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-account-type",
+    "save-as": "airtimeCreditAccount",
+    "options": [
+      {
+        "label": "My Phone",
+        "value": "__walletAccount",
+        "jump-to": "loan-repayment-confirm"
+      },
+      {
+        "label": "Other Phone",
+        "jump-to": "loan-repayment-credit-account"
+      }
+    ],
+    "error": "loan-repayment-account-type-error",
+    "previous": "loan-repayment-provider"
+  },
+  {
+    "type": "input",
+    "name": "loan-repayment-credit-account",
+    "save-as": "airtimeCreditAccount",
+    "format-as": "international-mobile-number",
+    "validation": [
+      {
+        "name": "matchesLength",
+        "type": "joi",
+        "arguments": "length=10"
+      },
+      {
+        "name": "isNumber",
+        "type": "joi"
+      }
+    ],
+    "errors": [
+      "loan-repayment-credit-account-error",
+      "loan-repayment-credit-account-error"
+    ],
+    "previous": "loan-repayment-account-type",
+    "next": "loan-repayment-confirm"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-bank-account-account",
+    "save-as": "bankAccount",
+    "options": "savings-accounts",
+    "error": "loan-repayment-bank-account-account-error",
+    "previous": "loan-repayment-payment-method",
+    "next": "loan-repayment-bybank-confirm"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-confirm",
+    "options": "confirm-options",
+    "error": "loan-repayment-confirm-error",
+    "action": "transact",
+    "external-fetch": {
+      "route": "loan-repayment",
+      "success": "api-success",
+      "error": "api-success"
+    },
+    "on-cancel": "client-page",
+    "previous": "loan-repayment-partial-or-full"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-bybank-confirm",
+    "options": "confirm-options",
+    "error": "loan-repayment-bybank-confirm-error",
+    "action": "transact",
+    "external-fetch": {
+      "route": "loan-repayment",
+      "success": "api-success",
+      "error": "api-success"
+    },
+    "on-cancel": "client-page",
+    "previous": "loan-repayment-partial-or-full"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-account-options-error",
+    "options": "yes-no-options",
+    "error": "loan-repayment-account-options-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  }
+]

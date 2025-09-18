@@ -1,0 +1,129 @@
+{
+    "meta-data": {
+        "app-contact-name": "Stanbic FlexiPay Service",
+        "app-contact-number": "+254 701 646 100",
+        "contact-number": "+254 709 646 000",
+        "app-description": "Stanbic FlexiPay",
+        "app-email": "talktous@stanbic.io",
+        "app-name": "flexi-demo-ussd@0.0.1",
+        "app-client": "Stanbic FlexiPay",
+        "app-shortcode": "*605*202#",
+        "shortcode ": "*605*202#",
+        "app-terms-url": "https://stanbic.io/privacy-policy/",
+        "app-whatsapp": "+254 709 646 000",
+        "app-twitter": "talktous@stanbic.io",
+        "app-facebook": "talktous@stanbic.io",
+        "app-location": "Utumishi Co-op House,Mamlaka Road Nairobi, Kenya",
+        "app-currency-code": "KES.",
+        "currency-code": "KES.",
+        "loan-limit": "20000",
+        "loan-balance": "10000"
+    },
+    "dormant-account-check": "is-dormant",
+    "ussd-response-format": "safaricom",
+    "page-switch-check": {
+        "name": "account-type",
+        "options": {
+            "client": {
+                "page": "flexi-lookup",
+                "enabled": true
+            }
+        },
+        "enabled": true
+    },
+    "language": "english",
+    "api-name": "mb-api",
+    "authenticate-transactions": false,
+    "enable-whitelist": false,
+    "registration-check": "is-registered",
+    "global-constants": {
+        "amount-minimum": 10,
+        "cheque-books-minimum": 1,
+        "funds-transfer-minimum-KES": 10,
+        "funds-transfer-minimum": 10,
+        "funds-transfer-minimum-GBP": 1,
+        "funds-transfer-minimum-EUR": 1,
+        "funds-transfer-minimum-USD": 1,
+        "core-account-minimum": 100,
+        "request-bankers-cheque-amount-minimum": 10,
+        "pesalink-limit": 999999,
+        "lock-savings-minimum-amount": 5000,
+        "personal-account-minimum-amount": 20,
+        "school-fees-minimum-amount": 10,
+        "billpayment-amount-minimum": 20,
+        "minimum-billpayment-amount": 20,
+        "buy-airtime-minimum": 10,
+        "lock-savings-min-deposit-amount": 10,
+        "language-options": [
+            {
+                "label": "english-label",
+                "value": "english"
+            },
+            {
+                "label": "swahili-label",
+                "value": "swahili"
+            }
+        ],
+        "yes-no-options": [
+            {
+                "label": "yes-label",
+                "value": "1"
+            },
+            {
+                "label": "no-label",
+                "value": "2"
+            }
+        ],
+        "confirm-options": [
+            {
+                "label": "confirm-label",
+                "value": ""
+            },
+            {
+                "label": "cancel-label",
+                "value": ""
+            }
+        ],
+        "bank-options": [
+            {
+                "label": "Standard Chartered Bank Kenya",
+                "value": "TA2459012000004"
+            },
+            {
+                "label": "Cooperative Bank of Kenya",
+                "value": "TA2459012000004"
+            },
+            {
+                "label": "KCB Bank",
+                "value": "TA2459012000004"
+            },
+            {
+                "label": "DTB Kenya",
+                "value": "TA2459012000004"
+            },
+            {
+                "label": "National Bank of Kenya",
+                "value": "TA2459012000004"
+            },
+            {
+                "label": "Stanbic Bank",
+                "value": "TA2459012000004"
+            }
+        ],
+        "pesalink-lookup-result": []
+    },
+    "register": true,
+    "internal-authentication": false,
+    "api-environment": "development",
+    "pin-trials-max": 3,
+    "api-user-profile-route": "account-look-up",
+    "app-name": "flexi-demo-ussd",
+    "authenticate-use-page": false,
+    "require-access-token": false,
+    "do-not-load-profile": true,
+    "access-token-param": "access_token",
+    "authenticate": false,
+    "first-login-check": "first-login",
+    "imsi-check": "is-imsi",
+    "blocked-account-check": "is-blocked"
+}

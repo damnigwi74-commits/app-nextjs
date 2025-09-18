@@ -1,0 +1,94 @@
+[	
+    {
+        "type"             : "input",        
+        "name"             : "pesalink-to-bank-search",        
+        "action"           : "search",
+        "search-options"   : {
+            "limit"        : 5,
+            "dataset"      : "bank-options",
+            "saveTo"       : "pesalink-bank-letters"
+        },        
+        "errors"           : [ "pesalink-to-bank-search-error", "branch-result-limit-exceeded-error" ],
+        "previous"         : "client-page",
+        "next"             : "pesalink-to-bank-bank-account"
+    },
+    {
+        "type"         : "select",
+		"name"         : "pesalink-to-bank-bank-account",
+        "options"      : "pesalink-bank-letters",
+        "error"        : "pesalink-to-bank-bank-account-error",
+		"previous"     : "pesalink-to-bank-search",
+         "next"          : "pesalink-to-bank-credit-account"
+	},
+    {
+        "type"           : "input",
+        "name"           : "pesalink-to-bank-credit-account",
+        "save-as"        : "pesalinkCreditAccount",
+        "validation"     : [
+            {
+                "name"   : "isNumber",
+                "type"   : "joi"
+            }
+        ],
+        "error"          :"pesalink-to-bank-credit-account-error",
+        "previous"       : "pesalink-to-bank-bank-account",
+		"next"           : "pesalink-to-bank-amount"
+	},
+	{
+        "type"           : "input",
+        "name"           : "pesalink-to-bank-amount",
+        "save-as"        : "pesalinkAmount",
+        "validation"     : [
+            {
+                "name"   : "isAmount",
+				"type"   : "joi",
+				"arguments":"min=1"
+            }
+        ],
+        "error"          : "pesalink-to-bank-amount-error",
+        "previous"       : "pesalink-to-bank-credit-account",
+		"next"           : "pesalink-to-bank-reason"
+	},
+
+	{
+        "type"           : "input",
+        "name"           : "pesalink-to-bank-reason",
+		"save-as"        : "pesalinkReason",
+		"format-as"        : "createSpaces",
+        "validation"     : [
+            {
+                "name"   : "isStatement",
+                "type"   : "custom"
+            }
+        ],
+        "error"          : "pesalink-to-bank-reason-error",
+        "previous"       : "pesalink-to-bank-amount",
+		"next"           : "pesalink-to-bank-confirm"
+	},
+
+    {
+        "type"           : "select",
+        "name"           : "pesalink-to-bank-confirm",
+		"options"        : "confirm-options",
+		"charges"         : false,
+        "error"          : "pesalink-to-bank-confirm-error",
+        "action"         : "transact",
+        "external-fetch" : {
+            "route"      : "pesalink-to-bank",
+            "success"    : "api-success",
+            "error"      : "api-success"
+        },
+        "on-cancel"      : "client-page",
+        "previous"       : "pesalink-to-bank-reason"
+    },
+	{
+		"type"      : "select",
+		"name"      : "pesalink-to-bank-debit-account-options-error",
+		"options"   : "yes-no-options",
+		"error"     : "pesalink-to-bank-debit-account-options-error-error",
+		"action"    : "navigate",
+		"on-accept" : "client-page",
+		"on-cancel" : "logout",
+		"previous"  : "pesalink-page"
+	}
+]

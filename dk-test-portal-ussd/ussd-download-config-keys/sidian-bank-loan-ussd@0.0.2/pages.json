@@ -1,0 +1,404 @@
+{
+    "client-page": {
+        "type": "select",
+        "name": "client-page",
+        "options": [
+            {
+                "name": "loan-limit",
+                "label": "loan-limit-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-application",
+                "label": "loan-application-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-balance",
+                "label": "loan-balance-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-ministatement",
+                "label": "loan-ministatement-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-repayment",
+                "label": "loan-repayment-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "wallet-service-page",
+                "label": "wallet-service-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "merchant-payment",
+                "label": "merchant-payment-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "settings-page",
+                "label": "settings-page-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "client-page-error"
+    },
+    "bill-payment-page": {
+        "type": "select",
+        "name": "bill-payment-page",
+        "options": [
+            {
+                "name": "tv-bill-payment-page",
+                "label": "tv-bill-payment-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pay-internet-bill-page",
+                "label": "pay-internet-bill-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pay-water",
+                "label": "pay-water-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "electricity-bill-payment-page",
+                "label": "electricity-bill-payment-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "school-fees",
+                "label": "school-fees-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "bill-payment-page-error",
+        "previous": "client-page"
+    },
+    "pesalink-page": {
+        "type": "select",
+        "name": "pesalink-page",
+        "options": [
+            {
+                "name": "pesalink-to-phone",
+                "label": "pesalink-to-phone-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-to-bank",
+                "label": "pesalink-to-bank-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-to-card",
+                "label": "pesalink-to-card-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-to-ecitizen",
+                "label": "pesalink-to-ecitizen-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-link-account",
+                "label": "pesalink-link-account-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-link-primary",
+                "label": "pesalink-link-primary-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "pesalink-page-error",
+        "previous": "funds-transfer-page"
+    },
+    "login-page": {
+        "type": "select",
+        "name": "login-page",
+        "options": [
+            {
+                "name": "login",
+                "label": "login-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "login-pin-change",
+                "label": "login-pin-change-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "login-page-error"
+    },
+    "tv-bill-payment-page": {
+        "type": "select",
+        "name": "tv-bill-payment-page",
+        "options": [
+            {
+                "name": "gotv",
+                "label": "gotv-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "dstv",
+                "label": "dstv-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "zuku-tv",
+                "label": "zuku-tv-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "star-times",
+                "label": "star-times-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "tv-bill-payment-page-error",
+        "previous": "client-page"
+    },
+    "funds-transfer-other-accounts-page": {
+        "type": "select",
+        "name": "funds-transfer-other-accounts-page",
+        "options": [
+            {
+                "name": "funds-transfer-savings-to-savings",
+                "label": "funds-transfer-savings-to-savings-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-savings-to-wallet",
+                "label": "funds-transfer-savings-to-wallet-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-wallet-to-mno",
+                "label": "funds-transfer-wallet-to-mno-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "funds-transfer-other-accounts-page-error",
+        "previous": "funds-transfer-page"
+    },
+    "registration-page": {
+        "type": "select",
+        "name": "registration-page",
+        "options": [
+            {
+                "name": "terms",
+                "label": "terms-label",
+                "enabled": true
+            },
+            {
+                "name": "registration",
+                "label": "registration-label",
+                "enabled": true
+            }
+        ],
+        "error": "registration-page-error"
+    },
+    "wallet-service-page": {
+        "type": "select",
+        "name": "wallet-service-page",
+        "options": [
+            {
+                "name": "buy-airtime",
+                "label": "buy-airtime-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "bill-payment-page",
+                "label": "bill-payment-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-page",
+                "label": "funds-transfer-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "ministatement",
+                "label": "ministatement-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "wallet-service-page-error",
+        "previous": "client-page"
+    },
+    "settings-page": {
+        "type": "select",
+        "name": "settings-page",
+        "previous": "client-page",
+        "options": [
+            {
+                "name": "language-change",
+                "label": "language-change-label",
+                "enabled": false
+            },
+            {
+                "name": "pin-change",
+                "label": "pin-change-label",
+                "enabled": true
+            },
+            {
+                "name": "email-change",
+                "label": "email-change-label",
+                "enabled": false
+            },
+            {
+                "name": "contact-us",
+                "label": "contact-us-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "tell-a-friend",
+                "label": "tell-a-friend-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "settings-page-error"
+    },
+    "funds-transfer-page": {
+        "type": "select",
+        "name": "funds-transfer-page",
+        "options": [
+            {
+                "name": "funds-transfer-own-accounts",
+                "label": "funds-transfer-own-accounts-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-wallet-to-savings",
+                "label": "funds-transfer-wallet-to-savings-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-page",
+                "label": "pesalink-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-wallet-to-wallet",
+                "label": "funds-transfer-wallet-to-wallet-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "funds-transfer-page-error",
+        "previous": "client-page"
+    },
+    "pay-internet-bill-page": {
+        "type": "select",
+        "name": "pay-internet-bill-page",
+        "options": [
+            {
+                "name": "zuku-internet",
+                "label": "zuku-internet-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "jamii-telkom",
+                "label": "jamii-telkom-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "access-kenya",
+                "label": "access-kenya-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "pay-internet-bill-page-error",
+        "previous": "bill-payment-page"
+    },
+    "electricity-bill-payment-page": {
+        "type": "select",
+        "name": "electricity-bill-payment-page",
+        "options": [
+            {
+                "name": "electricity-prepaid",
+                "label": "electricity-prepaid-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "electricity-postpaid",
+                "label": "electricity-postpaid-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "electricity-bill-payment-page-error",
+        "previous": "client-page"
+    },
+    "account-enquiries-page": {
+        "type": "select",
+        "name": "account-enquiries-page",
+        "options": [
+            {
+                "name": "loan-balance",
+                "label": "loan-balance-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "wallet-balance",
+                "label": "wallet-balance-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "ministatement",
+                "label": "ministatement-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "account-enquiries-page-error",
+        "previous": "client-page"
+    }
+}

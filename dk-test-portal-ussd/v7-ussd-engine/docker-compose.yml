@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+
+  v7-corporate-engine-ussd-app:
+    # image: image-corporate-engine-ussd
+    container_name: v7-corporate-engine-ussd
+    build:
+      context: ./
+    # depends_on:
+    #   - corporate-ussd-redis
+    # env_file:
+    #   - corporate.env
+    ports:
+      - '4000:4000'
+    # environment:
+    #   - ENGINE_PORT
+    deploy:
+      restart_policy:
+        condition: always
+      resources:
+        limits:
+          memory: 128m
+
+
+volumes:
+  cache:
+    driver: local

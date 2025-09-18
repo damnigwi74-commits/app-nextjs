@@ -1,0 +1,49 @@
+{
+      "type": "select",
+      "name": "client-page",
+      "options": [
+            {
+                  "name": "loan-limit",
+                  "label": "loan-limit-label",
+                  "enabled": true,
+                  "authenticate": false
+            },
+            {
+                  "name": "loan-application",
+                  "label": "loan-application-label",
+                  "enabled": true,
+                  "authenticate": false
+            },
+            {
+                  "name": "loan-balance",
+                  "label": "loan-balance-label",
+                  "enabled": true,
+                  "authenticate": false
+            },
+            {
+                  "name": "wallet-balance",
+                  "label": "wallet-balance-label",
+                  "enabled": true,
+                  "authenticate": false
+            },
+            {
+                  "name": "channels-loan-cash-out",
+                  "label": "channels-loan-cash-out-provider-label",
+                  "enabled": true,
+                  "authenticate": false
+            },
+            {
+                  "name": "wallet-service-page",
+                  "label": "wallet-service-page-label",
+                  "enabled": true,
+                  "authenticate": false
+            },
+            {
+                  "name": "settings-page",
+                  "label": "settings-page-label",
+                  "enabled": true,
+                  "authenticate": false
+            }
+      ],
+      "error": "client-page-error"
+}

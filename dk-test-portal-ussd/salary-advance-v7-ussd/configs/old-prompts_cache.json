@@ -1,0 +1,889 @@
+{
+    "calculator": [
+        "calculator-type",
+        "investment-amount",
+        "investment-interest",
+        "investment-confirm",
+        "loan-amount",
+        "loan-period",
+        "loan-confirm"
+    ],
+    "funds-transfer-own-accounts": [
+        "ft-own-accounts-debit-account",
+        "ft-own-accounts-credit-account",
+        "ft-own-accounts-amount",
+        "ft-own-accounts-confirm",
+        "ft-own-accounts-debit-account-options-error",
+        "ft-own-accounts-credit-account-options-error",
+        "ft-same-account-error"
+    ],
+    "pesalink-to-phone": [
+        "pesalink-to-phone-debit-account",
+        "pesalink-to-phone-credit-account",
+        "pesalink-to-phone-lookup-banks",
+        "pesalink-to-phone-amount",
+        "pesalink-to-phone-reason",
+        "pesalink-to-phone-confirm",
+        "pesalink-to-phone-debit-account-options-error",
+        "pesalink-to-phone-lookup-error",
+        "pesalink-to-phone-lookup-banks-options-error"
+    ],
+    "card-linking": [
+        "card-linking-account",
+        "card-linking-id",
+        "card-linking-confirm",
+        "card-linking-success"
+    ],
+    "add-beneficiary": [
+        "add-beneficiary-name",
+        "add-beneficiary-number",
+        "add-beneficiary-confirm"
+    ],
+    "api-success": [
+        "api-success"
+    ],
+    "account-linking": [
+        "account-linking-id",
+        "account-linking-accounts",
+        "account-linking-confirm",
+        "account-linking-options-error"
+    ],
+    "view-accounts": [
+        "view-accounts"
+    ],
+    "eft": [
+        "eft-to-bank-debit-account",
+        "eft-bank-search",
+        "eft-bank-result",
+        "eft-branch-search",
+        "eft-branch-result",
+        "eft-to-bank-credit-account",
+        "eft-to-bank-credit-account-name",
+        "eft-to-bank-amount",
+        "eft-to-bank-reason",
+        "eft-to-bank-confirm",
+        "eft-to-bank-debit-account-options-error"
+    ],
+    "mpesa-c2b": [
+        "deposit-mpesa-debit-account",
+        "deposit-mpesa-amount",
+        "deposit-mpesa-confirm"
+    ],
+    "registration-error": [
+        "registration-error"
+    ],
+    "lock-savings-ministatement": [
+        "lock-savings-ministatement"
+    ],
+    "lock-savings-unlock": [
+        "lock-savings-unlock-confirm"
+    ],
+    "check-order-status": [
+        "check-order-enter-number",
+        "check-order-success"
+    ],
+    "access-kenya": [
+        "access-kenya-credit-account",
+        "access-kenya-debit-account",
+        "access-kenya-amount",
+        "access-kenya-confirm",
+        "access-kenya-debit-account-options-error"
+    ],
+    "coming-soon": [
+        "coming-soon"
+    ],
+    "funds-transfer-savings-to-wallet": [
+        "ft-savings-to-wallet-debit-account",
+        "ft-savings-to-wallet-credit-account",
+        "ft-savings-to-wallet-amount",
+        "ft-savings-to-wallet-confirm",
+        "ft-savings-to-wallet-debit-account-options-error"
+    ],
+    "pesalink-to-card": [
+        "pesalink-to-card-debit-account",
+        "pesalink-to-card-credit-account",
+        "pesalink-to-card-amount",
+        "pesalink-to-card-reason",
+        "pesalink-to-card-confirm",
+        "pesalink-to-card-debit-account-options-error"
+    ],
+    "loan-balance": [
+        "loan-balance-product",
+        "loan-balance-confirm",
+        "loan-balance-success",
+        "loan-balance-error"
+    ],
+    "funds-transfer-wallet-to-wallet": [
+        "ft-wallet-to-wallet-credit-account",
+        "ft-wallet-to-wallet-amount",
+        "ft-wallet-to-wallet-confirm"
+    ],
+    "kplc-postpaid": [
+        "fetch-kplc-postpaid-accounts",
+        "kplc-postpaid-debit-account",
+        "kplc-postpaid-credit-account",
+        "kplc-postpaid-amount",
+        "kplc-postpaid-confirm",
+        "kplc-postpaid-debit-account-options-error",
+        "kplc-postpaid-presentment-error",
+        "kplc-postpaid-presentment-amount-error",
+        "kplc-postpaid-presentment-amount-error"
+    ],
+    "account-blocked": [
+        "account-blocked"
+    ],
+    "via-agent": [
+        "via-agent-credit-account",
+        "via-agent-debit-account",
+        "via-agent-amount",
+        "via-agent-confirm",
+        "fetch-agent-details-error"
+    ],
+    "parking": [
+        "parking-debit-account",
+        "parking-credit-account",
+        "parking-amount",
+        "parking-confirm",
+        "parking-debit-account-options-error",
+        "parking-member-types-options-error",
+        "nhif-presentment-error",
+        "nhif-presentment-amount-error"
+    ],
+    "tell-a-friend": [
+        "tell-a-friend-number",
+        "tell-a-friend-confirm",
+        "tell-a-friend-success",
+        "tell-a-friend-error"
+    ],
+    "set-atm-limits": [
+        "fetch-interswitch-cards",
+        "set-card-limit-card",
+        "set-card-limit-transaction",
+        "pos-amount",
+        "atm-amount",
+        "online-amount",
+        "pos-count",
+        "atm-count",
+        "online-count",
+        "pos-confirm",
+        "atm-confirm",
+        "online-confirm",
+        "card-lookup-error"
+    ],
+    "loan-statement": [
+        "loan-statement-account",
+        "loanstatement-email-error",
+        "loan-statement-period",
+        "loan-statement-confirm",
+        "loan-statement-success",
+        "loan-statement-error",
+        "loan-statement-account-options-error"
+    ],
+    "loan-application": [
+        "loan-application-type",
+        "wallet-loan-amount",
+        "loan-application-account",
+        "loan-application-amount",
+        "salary-application-amount",
+        "salary-loan-application-confirm",
+        "wallet-loan-application-confirm",
+        "loan-application-confirm",
+        "wallet-application-success",
+        "mwallet-account-options-error",
+        "loan-application-type-options-error",
+        "loan-application-scoring-error"
+    ],
+    "mpesa-c2b-success": [
+        "mpesa-c2b-success"
+    ],
+    "core-account-opening": [
+        "core-account-type",
+        "cbu-dream-account",
+        "personal-current-account",
+        "my-saver-account",
+        "core-account-opening-search",
+        "core-account-opening-result",
+        "core-account-currency",
+        "core-account-debit-account",
+        "core-account-confirm",
+        "core-account-type-options-error",
+        "core-account-debit-account-options-error"
+    ],
+    "ministatement": [
+        "ministatement-account",
+        "ministatement-confirm",
+        "ministatement-account-savings-options-error"
+    ],
+    "pin-change-success": [
+        "pin-change-success"
+    ],
+    "transaction-login": [
+        "transaction-login"
+    ],
+    "motor-insurance": [
+        "customer-first-name",
+        "customer-second-name",
+        "branch-select",
+        "bancassurance-confirm"
+    ],
+    "fullstatement": [
+        "fullstatement-account-savings",
+        "fullstatement-provide-email",
+        "fullstatement-provide-email-account",
+        "fullstatement-period",
+        "fullstatement-confirm",
+        "fullstatement-account-savings-options-error"
+    ],
+    "mpesa-b2b": [
+        "b2b-debit-account",
+        "b2b-type",
+        "b2b-till",
+        "b2b-pay-bill",
+        "b2b-account",
+        "b2b-till-amount",
+        "b2b-pay-bill-amount",
+        "b2b-till-confirm",
+        "b2b-pay-bill-confirm",
+        "b2b-debit-account-options-error",
+        "hakikisha-till-presentment-error",
+        "hakikisha-paybill-presentment-error"
+    ],
+    "standing-orders-external": [
+        "so-b2o-debit-account",
+        "so-bank-search",
+        "so-bank-result",
+        "so-b2o-credit-account",
+        "so-b2o-amount",
+        "so-b2o-start-date",
+        "so-b2o-end-date",
+        "so-b2o-frequency",
+        "so-b2o-beneficiary-name",
+        "so-b2o-member-number",
+        "so-b2o-instruction",
+        "so-b2o-confirm",
+        "so-b2o-debit-account-options-error"
+    ],
+    "digital-account-opening": [
+        "digital-account-confirm"
+    ],
+    "email-change": [
+        "email-change-current-email",
+        "email-change-new-email",
+        "email-change-confirm"
+    ],
+    "invoice-payment-mode": [
+        "invoice-payment-mode-select"
+    ],
+    "zuku-internet": [
+        "zuku-internet-debit-account",
+        "zuku-internet-credit-account",
+        "zuku-internet-amount",
+        "zuku-internet-confirm",
+        "zuku-internet-debit-account-options-error",
+        "zuku-internet-presentment-error"
+    ],
+    "gotv": [
+        "gotv-debit-account",
+        "gotv-credit-account",
+        "gotv-amount",
+        "gotv-confirm",
+        "gotv-debit-account-options-error",
+        "gotv-presentment-error",
+        "gotv-presentment-amount-error"
+    ],
+    "loan-repayment": [
+        "loan-repayment-product",
+        "loan-repayment-accounts-options",
+        "mpesa-repayment-amount",
+        "mpesa-repayment-confirm",
+        "mpesa-loan-repayment-success",
+        "loan-repayment-amount",
+        "loan-repayment-type-account",
+        "loan-repayment-confirm",
+        "loan-repayment-success",
+        "loan-repayment-account-options-error"
+    ],
+    "jamii-telkom": [
+        "jamii-telkom-credit-account",
+        "jamii-telkom-debit-account",
+        "jamii-telkom-amount",
+        "jamii-telkom-confirm",
+        "jamii-telkom-debit-account-options-error"
+    ],
+    "last-expense": [
+        "customer-first-name",
+        "customer-second-name",
+        "branch-select",
+        "bancassurance-confirm"
+    ],
+    "pesalink-link-primary": [
+        "pesalink-link-default-account",
+        "pesalink-link-default-confirm",
+        "pesalink-link-account-options-error"
+    ],
+    "account-dormant": [
+        "account-dormant"
+    ],
+    "donations": [
+        "donations-credit-account",
+        "donations-debit-account",
+        "donations-amount",
+        "donations-confirm",
+        "donations-debit-account-options-error"
+    ],
+    "confirm-cheque": [
+        "confirm-cheque-account",
+        "confirm-cheque-number",
+        "confirm-cheque-amount",
+        "confirm-cheque-name",
+        "confirm-cheque-confirm",
+        "confirm-cheque-account-options-error"
+    ],
+    "otp-expired": [
+        "otp-expired"
+    ],
+    "via-atm": [
+        "via-atm-debit-account",
+        "via-atm-amount",
+        "via-atm-confirm"
+    ],
+    "card-balance": [
+        "card-balance-number",
+        "card-balance-confirm"
+    ],
+    "request-atm": [
+        "fetch-interswitch-cards",
+        "request-atm-account",
+        "request-atm-account-types",
+        "request-atm-confirm",
+        "request-atm-account-options-error",
+        "fetch-interswitch-cards-error"
+    ],
+    "hospitals": [
+        "hospital-debit-account",
+        "hospital-account-number",
+        "hospital-narration",
+        "hospital-amount",
+        "hospital-confirm",
+        "hospital-account-error",
+        "hospital-debit-account-options-error",
+        "hospital-list-accounts-error"
+    ],
+    "loan-limit": [
+        "loan-limit-product",
+        "loan-limit-account",
+        "loan-limit-confirm",
+        "loan-limit-success",
+        "loan-scoring-error"
+    ],
+    "pin-change-error": [
+        "pin-change-error"
+    ],
+    "api-message-error": [
+        "api-message-error"
+    ],
+    "pesalink-to-ecitizen": [
+        "ecitizen-paybill-number",
+        "pesalink-to-ecitizen-debit-account",
+        "pesalink-to-ecitizen-lookup-banks",
+        "pesalink-to-ecitizen-amount",
+        "ecitizen-reference-number",
+        "pesalink-to-ecitizen-confirm",
+        "pesalink-to-ecitizen-success",
+        "pesalink-to-ecitizen-debit-account-options-error",
+        "pesalink-to-ecitizen-lookup-error",
+        "pesalink-to-ecitizen-reference-error",
+        "pesalink-to-ecitizen-lookup-banks-options-error"
+    ],
+    "inapp-login": [
+        "inapp-login"
+    ],
+    "dstv": [
+        "dstv-debit-account",
+        "dstv-credit-account",
+        "dstv-amount",
+        "dstv-confirm",
+        "dstv-debit-account-options-error",
+        "dstv-presentment-error",
+        "dstv-presentment-amount-error"
+    ],
+    "standing-orders-cancel": [
+        "so-cancel-debit-account",
+        "standing-orders-lookup",
+        "so-cancel-id",
+        "so-cancel-confirm",
+        "so-cancel-debit-account-options-error",
+        "standing-orders-lookup-error",
+        "standing-orders-options-error"
+    ],
+    "itax": [
+        "itax-debit-account",
+        "itax-eslip",
+        "itax-amount",
+        "itax-confirm",
+        "itax-debit-account-options-error",
+        "itax-presentment-error",
+        "itax-presentment-amount-error"
+    ],
+    "school-fees": [
+        "school-fees-debit-account",
+        "school-fees-account-number",
+        "school-fees-child-name",
+        "school-fees-amount",
+        "school-fees-confirm",
+        "school-fees-account-error",
+        "school-fees-debit-account-options-error",
+        "school-list-accounts-error"
+    ],
+    "county-government": [
+        "county-government-fetch-counties",
+        "county-government-county",
+        "county-government-debit-account",
+        "county-government-amount",
+        "county-government-credit-account",
+        "county-government-confirm",
+        "county-government-debit-account-options-error",
+        "county-government-presentment-error",
+        "county-government-county-options-error"
+    ],
+    "personal-accident": [
+        "customer-first-name",
+        "customer-second-name",
+        "branch-select",
+        "bancassurance-confirm"
+    ],
+    "block-atm": [
+        "fetch-interswitch-cards",
+        "block-atm-account",
+        "block-atm-confirm",
+        "block-atm-account-options-error"
+    ],
+    "withdrawal-airtel-b2c": [
+        "withdrawal-airtel-debit-account",
+        "withdrawal-airtel-account-type",
+        "withdrawal-airtel-credit-account",
+        "withdrawal-airtel-amount",
+        "withdrawal-airtel-confirm",
+        "withdrawal-airtel-debit-account-options-error"
+    ],
+    "wallet-account-opening": [
+        "wallet-account-opening"
+    ],
+    "rtgs": [
+        "rtgs-to-bank-debit-account",
+        "rtgs-bank-search",
+        "rtgs-bank-result",
+        "branch-search",
+        "branch-result",
+        "rtgs-to-bank-credit-account",
+        "rtgs-to-bank-credit-account-name",
+        "rtgs-to-bank-amount",
+        "rtgs-to-bank-reason",
+        "rtgs-to-bank-confirm",
+        "rtgs-to-bank-debit-account-options-error",
+        "fetch-banks-error",
+        "rtgs-branch-lookup-error"
+    ],
+    "stop-cheque": [
+        "stop-cheque-account",
+        "stop-cheque-number",
+        "stop-cheque-confirm",
+        "stop-cheque-account-options-error"
+    ],
+    "pin-change": [
+        "pin-change-old-pin",
+        "pin-change-new-pin",
+        "pin-change-new-pin-reenter",
+        "pin-change-confirm"
+    ],
+    "account-mandates": [
+        "account-mandates-debit-account",
+        "account-mandates-id",
+        "account-mandates-type",
+        "account-mandates-confirm",
+        "account-mandates-reject-confirm",
+        "account-mandates-account-options-error",
+        "account-mandates-lookup-error"
+    ],
+    "first-login": [
+        "first-login-system-pin",
+        "first-login-new-pin",
+        "first-login-new-pin-reenter",
+        "first-login-confirm"
+    ],
+    "registration-success": [
+        "registration-success"
+    ],
+    "balance": [
+        "balance-account",
+        "balance-confirm",
+        "balance-account-savings-options-error"
+    ],
+    "contact-us": [
+        "contact-us"
+    ],
+    "pesalink-link-account": [
+        "pesalink-link-account",
+        "pesalink-link-confirm",
+        "pesalink-link-account-options-error"
+    ],
+    "investment-life": [
+        "customer-first-name",
+        "customer-second-name",
+        "branch-select",
+        "bancassurance-confirm"
+    ],
+    "standing-orders-amend": [
+        "so-amend-debit-account",
+        "so-amend-id",
+        "so-amend-amount",
+        "so-amend-frequency",
+        "so-amend-end-date",
+        "so-amend-instruction",
+        "so-amend-confirm",
+        "so-amend-debit-account-options-error",
+        "standing-orders-lookup-error",
+        "standing-orders-options-error"
+    ],
+    "kplc-prepaid": [
+        "kplc-prepaid-credit-account",
+        "kplc-prepaid-debit-account",
+        "kplc-prepaid-amount",
+        "kplc-prepaid-confirm",
+        "kplc-prepaid-debit-account-options-error"
+    ],
+    "api-error": [
+        "api-error"
+    ],
+    "logout": [
+        "logout"
+    ],
+    "unblock-atm": [
+        "fetch-interswitch-cards",
+        "unblock-atm-account",
+        "unblock-atm-confirm",
+        "unblock-atm-account-options-error"
+    ],
+    "login-pin-change": [
+        "login-pin-change-old-pin",
+        "login-pin-change-new-pin",
+        "login-pin-change-new-pin-reenter",
+        "login-pin-change-confirm"
+    ],
+    "fixed-deposits": [
+        "fetch-fixed-deposit-minimum",
+        "fixed-deposits-views",
+        "fetch-fixed-deposit-accounts",
+        "customer-fixed-deposits-accounts",
+        "fixed-deposits-amount",
+        "fixed-deposits-periods",
+        "fixed-deposits-account",
+        "fixed-deposits-confirm",
+        "fetch-account-products-error",
+        "fetch-fixed-deposit-accounts-error"
+    ],
+    "lock-savings-open-account": [
+        "lock-savings-open-debit-account",
+        "lock-savings-open-amount",
+        "lock-savings-open-period",
+        "lock-savings-open-deposit",
+        "lock-savings-open-confirm",
+        "lock-savings-open-debit-account-options-error"
+    ],
+    "nhif": [
+        "nhif-debit-account",
+        "nhif-member-type",
+        "nhif-credit-account",
+        "nhif-amount",
+        "nhif-confirm",
+        "nhif-debit-account-options-error",
+        "nhif-member-types-options-error",
+        "nhif-presentment-error",
+        "nhif-presentment-amount-error"
+    ],
+    "funds-transfer-wallet-to-savings": [
+        "ft-wallet-to-savings-credit-account",
+        "ft-wallet-to-savings-amount",
+        "ft-wallet-to-savings-confirm"
+    ],
+    "loan-application-success": [
+        "loan-application-success"
+    ],
+    "topup-prepaid-card": [
+        "topup-prepaid-card-accounts-type",
+        "topup-prepaid-card-debit-account",
+        "topup-prepaid-card-credit-account",
+        "topup-prepaid-card-amount",
+        "topup-prepaid-card-confirm"
+    ],
+    "request-cheque-book": [
+        "request-cheque-book-account",
+        "request-cheque-book-leaves",
+        "request-cheque-book-quantity",
+        "request-cheque-book-confirm",
+        "request-cheque-book-account-options-error"
+    ],
+    "check-overdraft-balance": [
+        "fetch-overdraft-balance-accounts",
+        "check-overdraft-balance-core-account",
+        "check-overdraft-balance-balance"
+    ],
+    "balance-success": [
+        "balance-success"
+    ],
+    "replace-atm": [
+        "fetch-interswitch-cards",
+        "replace-atm-account",
+        "request-atm-account-types",
+        "replace-atm-confirm",
+        "replace-atm-account-options-error"
+    ],
+    "registration-cancel": [
+        "registration-cancel"
+    ],
+    "wrong-login": [
+        "wrong-login"
+    ],
+    "lock-savings-save": [
+        "lock-savings-save-debit-account",
+        "lock-savings-save-amount",
+        "lock-savings-save-confirm",
+        "lock-savings-save-debit-account-options-error"
+    ],
+    "mpesa-float": [
+        "float-debit-account",
+        "float-paybill",
+        "float-store-number",
+        "float-amount",
+        "float-confirm",
+        "hakikisha-float-presentment-error"
+    ],
+    "login": [
+        "login"
+    ],
+    "pesalink-to-bank": [
+        "pesalink-to-bank-debit-account",
+        "pesalink-bank-search",
+        "pesalink-bank-result",
+        "pesalink-to-bank-credit-account",
+        "pesalink-to-bank-amount",
+        "pesalink-to-bank-reason",
+        "pesalink-to-bank-confirm",
+        "pesalink-to-bank-debit-account-options-error"
+    ],
+    "call-deposits": [
+        "fetch-call-deposit-minimum",
+        "call-deposits-views",
+        "fetch-call-deposit-accounts",
+        "customer-call-deposits-accounts",
+        "call-deposits-amount",
+        "call-deposits-account",
+        "call-deposits-confirm",
+        "fetch-account-products-error",
+        "fetch-call-deposit-accounts-error"
+    ],
+    "terms": [
+        "terms"
+    ],
+    "star-times": [
+        "start-times-credit-account",
+        "start-times-debit-account",
+        "start-times-amount",
+        "start-times-confirm",
+        "start-times-debit-account-options-error"
+    ],
+    "domestic-package": [
+        "customer-first-name",
+        "customer-second-name",
+        "branch-select",
+        "bancassurance-confirm"
+    ],
+    "delete-beneficiary": [
+        "view-benefciary-confirm",
+        "delete-beneficiary-account",
+        "delete-beneficiary-confirm",
+        "delete-beneficiary-error",
+        "delete-beneficiary-options-error"
+    ],
+    "loyalty-points": [
+        "loyalty-points-options",
+        "fetch-loyalty-balance",
+        "loyalty-balance-success",
+        "redeem-points-amount",
+        "redeem-points-debit-account",
+        "redeem-points-confirm"
+    ],
+    "nairobiwater": [
+        "nairobiwater-debit-account",
+        "nairobiwater-credit-account",
+        "nairobiwater-amount",
+        "nairobiwater-confirm",
+        "nairobiwater-debit-account-options-error"
+    ],
+    "registration-alert": [
+        "registration-alert"
+    ],
+    "zuku-tv": [
+        "zuku-tv-debit-account",
+        "zuku-tv-credit-account",
+        "zuku-tv-amount",
+        "zuku-tv-confirm",
+        "zuku-tv-debit-account-options-error",
+        "zuku-tv-presentment-error"
+    ],
+    "disabled": [
+        "disabled"
+    ],
+    "withdrawal-mpesa-b2c": [
+        "withdrawal-mpesa-debit-account",
+        "withdrawal-mpesa-account-type",
+        "withdrawal-mpesa-credit-account",
+        "withdrawal-mpesa-amount",
+        "withdrawal-mpesa-confirm",
+        "withdrawal-mpesa-debit-account-options-error"
+    ],
+    "language-change": [
+        "language-change",
+        "language-confirm"
+    ],
+    "landrates": [
+        "landrates-debit-account",
+        "landrates-credit-account",
+        "landrates-amount",
+        "landrates-confirm",
+        "landrates-debit-account-options-error",
+        "landrates-presentment-error",
+        "landrates-presentment-amount-error"
+    ],
+    "bankers-cheque-request": [
+        "bankers-cheque-credit-account",
+        "request-bankers-cheque-payable-to",
+        "bankers-cheque-description",
+        "bankers-cheque-collection-date",
+        "request-bankers-cheque-amount",
+        "bankers-cheque-branch-search",
+        "bankers-cheque-branch-result",
+        "request-bankers-cheque-confirm"
+    ],
+    "standing-orders-internal": [
+        "so-b2b-debit-account",
+        "so-b2b-credit-account",
+        "so-b2b-amount",
+        "so-b2b-start-date",
+        "so-b2b-end-date",
+        "so-b2b-frequency",
+        "so-b2b-beneficiary-name",
+        "so-b2b-member-number",
+        "so-b2b-instruction",
+        "so-b2b-confirm",
+        "so-b2b-debit-account-options-error"
+    ],
+    "sacco-linking": [
+        "sacco-linking-account",
+        "sacco-linking-id",
+        "sacco-linking-confirm"
+    ],
+    "forex": [
+        "forex-confirm",
+        "forex-details",
+        "forex-error"
+    ],
+    "imsi-check-failed": [
+        "imsi-check-failed"
+    ],
+    "request-invoice-discount": [
+        "request-invoice-discount-select-client",
+        "request-invoice-discount-available-invoice",
+        "request-invoice-discount-request-amount",
+        "request-invoice-discount-confirm"
+    ],
+    "funds-transfer-savings-to-savings": [
+        "ft-savings-to-savings-debit-account",
+        "ft-savings-to-savings-credit-account",
+        "ft-savings-to-savings-amount",
+        "ft-savings-to-savings-confirm",
+        "ft-same-account-error",
+        "ft-savings-to-savings-debit-account-options-error"
+    ],
+    "supplier-view-account-balance": [
+        "supplier-view-account-balance"
+    ],
+    "wiba": [
+        "customer-first-name",
+        "customer-second-name",
+        "branch-select",
+        "bancassurance-confirm"
+    ],
+    "churches": [
+        "church-debit-account",
+        "church-account-number",
+        "church-narration",
+        "church-amount",
+        "church-confirm",
+        "church-account-error",
+        "church-debit-account-options-error",
+        "church-list-accounts-error"
+    ],
+    "account-activation": [
+        "fetch-dormant-accounts",
+        "account-activation-options",
+        "account-activation-type",
+        "account-activation-ft-debit-account",
+        "account-activation-confirm-ft",
+        "account-activation-confirm-mpesa",
+        "account-activation-options-options-error",
+        "fetch-dormant-accounts-error"
+    ],
+    "buy-airtime": [
+        "buy-airtime-provider",
+        "buy-airtime-account-type",
+        "buy-airtime-credit-account",
+        "buy-airtime-debit-account",
+        "buy-airtime-amount",
+        "buy-airtime-confirm",
+        "buy-airtime-debit-account-options-error"
+    ],
+    "registration": [
+        "registration",
+        "registration-id",
+        "fetch-linked-sidian-account-registration",
+        "registration-core-account",
+        "registration-module",
+        "registration-new-pin",
+        "registration-new-pin-reenter",
+        "registration-confirm",
+        "self-registration-error"
+    ],
+    "opt-in-overdraft": [
+        "fetch_linked_sidian_account",
+        "opt-in-od-core-account",
+        "fetch-confirm-od-limit",
+        "opt-in-od-details",
+        "opt-in-od-success",
+        "new-overdraft-limit.",
+        "change-overdraft-limit-success"
+    ],
+    "funds-transfer-wallet-to-mno": [
+        "ft-wallet-to-mno-credit-account",
+        "ft-wallet-to-mno-amount",
+        "ft-wallet-to-mno-confirm"
+    ],
+    "apply-overdraft": [
+        "fetch-linked-account-apply-overdraft",
+        "linked-account-apply-overdraft",
+        "apply-overdraft-amount",
+        "apply-overdraft-confirm",
+        "apply-overdraft-odActive"
+    ],
+    "check-od-limit": [
+        "fetch-od-limit-accounts",
+        "check-od-limit-od-core-account",
+        "check-od-limit-balance"
+    ],
+    "repay-overdraft": [
+        "repay-overdraft-amount",
+        "repay-overdraft-payment-options",
+        "repay-overdraft-payment-options",
+        "repay-overdraft-confirm-confirm"
+    ]
+}

@@ -1,0 +1,20 @@
+{
+    "type"                : "select",
+    "name"                : "electricity-bill-payment-page",
+    "options"             : [
+        {
+            "name"        : "electricity-prepaid",
+            "label"       : "electricity-prepaid-label",
+            "enabled"     : true,
+            "authenticate": false
+        },
+        {
+            "name"        : "electricity-postpaid",
+            "label"       : "electricity-postpaid-label",
+            "enabled"     : true,
+            "authenticate": false
+        }
+    ],
+    "error"               : "electricity-bill-payment-page-error",
+    "previous"            : "client-page"
+}

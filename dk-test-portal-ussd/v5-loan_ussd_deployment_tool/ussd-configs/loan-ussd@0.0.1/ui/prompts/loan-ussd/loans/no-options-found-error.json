@@ -1,0 +1,9 @@
+{
+    "type"      : "select",
+    "name"      : "no-options-found-error",
+    "options"   : "yes-no-options",
+    "error"     : "no-options-found-error-error",
+    "action"    : "navigate",
+    "on-accept" : "client-page",
+    "on-cancel" : "logout"    
+}

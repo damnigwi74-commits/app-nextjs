@@ -1,0 +1,790 @@
+{
+    "login-page": {
+        "english": {
+            "login-page": "welcome to @app-corporate-description service. Please select an option below:",
+            "login-page-error": "Invalid selection! Please select an option below:",
+            "login-label": "Login",
+            "login-pin-change-label": "Change PIN"
+        }
+    },
+    "client-page": {
+        "english": {
+            "client-page": "Welcome to @app-corporate-description :",
+            "client-page-error": "Invalid selection ! select an option below:",
+            "loan-application-label": "Take advance",
+            "loan-balance-label": "Check Loan Balance",
+            "loan-limit-label": "Check Limit",
+            "account-enquiries-page-label": "Account Enquiries",
+            "wallet-service-page-label": "Wallet Services",
+            "channels-loan-cash-out-provider-label": "Cash out",
+            "settings-page-label": "Settings"
+        }
+    },
+    "registration-page": {
+        "english": {
+            "registration-page": "Welcome to @app-corporate-description service. Please select an option below:",
+            "registration-page-error": "Invalid selection! Please select an option below:",
+            "terms-label": "Read Terms and conditions",
+            "registration-label": "Self Register"
+        }
+    },
+    "settings-page": {
+        "english": {
+            "settings-page": "Please select an option below:",
+            "settings-page-error": "Invalid selection! Please select an option below:",
+            "language-change-label": "Change Language",
+            "pin-change-label": "Change Pin",
+            "email-change-label": "Change Email",
+            "contact-us-label": "Contact Us",
+            "tell-a-friend-label": "Invite a friend"
+        }
+    },
+    "bill-payment-page": {
+        "english": {
+            "bill-payment-page": "Please select an option below",
+            "bill-payment-page-error": "Invalid selection ! select an option below",
+            "tv-bill-payment-page-label": "Tv Bills",
+            "electricity-bill-payment-page-label": "Electricity Bills",
+            "pay-water-label": "Pay Water",
+            "school-fees-label": "School Fees"
+        }
+    },
+    "tv-bill-payment-page": {
+        "english": {
+            "tv-bill-payment-page": "Please select an option below",
+            "tv-bill-payment-page-error": "Invalid selection ! select an option below",
+            "gotv-label": "Go Tv",
+            "dstv-label": "DSTv",
+            "zuku-tv-label": "Zuku Tv",
+            "star-times-label": "Star Times"
+        }
+    },
+    "electricity-bill-payment-page": {
+        "english": {
+            "electricity-bill-payment-page": "Please select an option below",
+            "electricity-bill-payment-page-error": "Invalid selection ! select an option below",
+            "electricity-prepaid-label": "Electricity Pre-Paid",
+            "electricity-postpaid-label": "Electricity Post-Paid"
+        }
+    },
+    "account-enquiries-page": {
+        "english": {
+            "account-enquiries-page": "Please select an option below",
+            "account-enquiries-page-error": "Invalid selection ! select an option below",
+            "loan-balance-label": "Loan Balance",
+            "wallet-balance-label": "Wallet Balance",
+            "ministatement-label": "Ministatement"
+        },
+        "swahili": {
+            "account-enquiries-page": "",
+            "account-enquiries-page-error": "Invalid Input !",
+            "loan-balance-label": "",
+            "wallet-balance-label": "",
+            "ministatement-label": ""
+        },
+        "french": {
+            "account-enquiries-page": "",
+            "account-enquiries-page-error": "Invalid Input !",
+            "loan-balance-label": "",
+            "wallet-balance-label": "",
+            "ministatement-label": ""
+        }
+    },
+    "wallet-service-page": {
+        "english": {
+            "wallet-service-page": "Please select an option below",
+            "wallet-service-page-error": "Invalid selection ! select an option below",
+            "buy-airtime-label": "Airtime top up",
+            "loan-cash-out-label": "Fund Transfer",
+            "bill-payment-page-label": "Bill Payment"
+        }
+    },
+    "api-error": {
+        "english": {
+            "api-error": " @errMessage . Do you need another service?",
+            "api-error-error": "Invalid selection!  @errMessage . Do you need another service?"
+        }
+    },
+    "global": {
+        "english": {
+            "previous": "Previous menu",
+            "home": "Home",
+            "confirm-label": "Confirm",
+            "cancel-label": "Cancel",
+            "yes-label": "Yes",
+            "no-label": "No",
+            "english-label": "English",
+            "french-label": "French",
+            "swahili-label": "Kiswahili",
+            "account-options-template": "@option Account",
+            "tx-charge-narration": ". Charge: @app-currency-code. @txcharge Duty: @app-currency-code. @txduty"
+        }
+    },
+    "api-success": {
+        "english": {
+            "api-success": "Your request has been recieved and is being processed. You will receive an SMS response shortly. Do you need another service?",
+            "api-success-error": "Invalid selection!"
+        }
+    },
+    "account-blocked": {
+        "english": {
+            "account-blocked": "Dear customer, your account is currently blocked. Kindly contact @app-contact-name on @app-contact-number for assistance.",
+            "account-blocked-error": "Invalid selection! Dear customer, your account is currently blocked. Kindly contact @app-contact-name on @app-contact-number for assistance.",
+            "account-blocked-pin": "Please enter your National ID Number",
+            "account-blocked-pin-error": "Invalid ID Number! Please enter your National ID Number",
+            "reset-change-new-pin": "Enter your new PIN",
+            "reset-change-new-pin-reenter": "Confirm you new PIN",
+            "reset-change-new-pin-reenter-error": "Invalid entry! PINs do not match",
+            "account-blocked-confirm": "Confirm to reset your account PIN",
+            "account-blocked-confirm-error": "Invalid selection! Confirm to reset your account PIN"
+        }
+    },
+    "first-login": {
+        "english": {
+            "first-login": "Welcome to @app-corporate-description . Please enter your One Time PIN to proceed.",
+            "first-login-error": "Invalid Input!",
+            "terms-conditions": "Ensure you read the terms and conditions as per your organization. Continue?",
+            "terms-conditions-error": "Invalid selection! Ensure you read the terms and conditions as per your organization. Continue?",
+            "first-login-change-pin": "Welcome to @app-corporate-description . Please enter your One Time PIN to proceed.",
+            "invalid-system-pin-error": "Invalid PIN format! Enter a valid 4 digit PIN to proceed.",
+            "wrong-system-pin-error": "Wrong One Time PIN! Enter your One Time PIN to proceed.",
+            "first-login-new-pin": "Please enter a new 4 digit PIN.",
+            "first-login-new-pin-reenter": "Please re-enter your 4 digit PIN.",
+            "first-login-new-pin-reenter-error": "PINS do not match! Re-enter your 4 digit PIN.",
+            "first-login-new-pin-error": "Invalid PIN! Enter a new 4 digit PIN ( hint: avoid an easy pin e.g 1234, 2222, 4321).",
+            "first-login-confirm": "Having read the terms and conditions, do you accept to set your PIN?",
+            "first-login-confirm-error": "Invalid selection! Having read the terms and conditions, do you accept to set your PIN?"
+        }
+    },
+    "inapp-login": {
+        "english": {
+            "inapp-login": "Please enter your 4 digit PIN to access",
+            "invalid-inapp-pin-error": "Invalid PIN Format! Enter a valid PIN to access",
+            "wrong-inapp-pin-error": "Wrong PIN! @pin-trials-remaining remaining. Enter your PIN to access"
+        }
+    },
+    "first-login-failed-error": {
+        "english": {
+            "first-login-failed-error": "Your One Time PIN is wrong. Kindly visit your nearest @app-corporate-description branch for assistance."
+        }
+    },
+    "login": {
+        "english": {
+            "login": "Welcome to @app-corporate-description .Please enter your 4 digit PIN to proceed.",
+            "invalid-pin-error": "Invalid PIN Format! Enter a valid PIN to proceed.",
+            "wrong-pin-error": "Wrong PIN! @pin-trials-remaining remaining. Enter your PIN to proceed.",
+            "invalid-pin-length-error": "Invalid PIN length! Enter your 4 Digit PIN to proceed."
+        }
+    },
+    "imsi-check-failed": {
+        "english": {
+            "imsi-check-failed": "END Dear customer, the SIM card you are using is currently not in our database. Kindly visit your nearest branch to update your details."
+        },
+        "swahili": {
+            "imsi-check-failed": ""
+        }
+    },
+    "logout": {
+        "english": {
+            "logout": "END Dear @firstname, thank you for accessing the @app-corporate-description . Good bye."
+        }
+    },
+    "wrong-login": {
+        "english": {
+            "wrong-login": "Wrong PIN! @pin-trials-remaining trials left! Enter your 4 digit PIN to proceed.",
+            "invalid-wrong-login-error": "Invalid PIN format! Enter a valid 4 digit PIN to proceed.",
+            "incorrect-wrong-login-error": "Wrong PIN! @pin-trials-remaining trials left! Enter your 4 digit PIN to proceed."
+        }
+    },
+    "transaction-login": {
+        "english": {
+            "transaction-login": " Enter your 4 digit PIN to complete the transaction ( @transaction-pin-trials-remaining trials left ).",
+            "invalid-pin-error": "Invalid PIN! Enter your 4 digit PIN to complete the transaction ( @transaction-pin-trials-remaining trials left! )."
+        }
+    },
+    "registration-cancel": {
+        "english": {
+            "registration-cancel": "Dear customer, thank you for visiting the @app-corporate-description service."
+        }
+    },
+    "registration-error": {
+        "english": {
+            "registration-error": "Your request failed. Kindly visit your nearest branch for assistance."
+        }
+    },
+    "registration-success": {
+        "english": {
+            "registration-success": "Your self registration request was successful. Kindly dial @app-shortcode to login."
+        }
+    },
+    "registration": {
+        "english": {
+            "not-registered": "END To register for the @app-corporate-description kindly contact @app-contact-name on @app-contact-number .",
+            "registration-surname": "Please enter your surname.",
+            "registration-surname-error": "Invalid surname! Enter your surname",
+            "registration-firstname": "Please enter your first name",
+            "registration-firstname-error": "Invalid first name! Enter your first name",
+            "registration-othername": "Please enter your other name( enter s to skip )",
+            "registration-othername-error": "Invalid other name! Enter your other name ( enter s to skip )",
+            "registration-id": "Please enter your national ID number",
+            "registration-id-error": "Invalid national ID number ! Enter your national ID number",
+            "registration-has-core-account": "Do you have an existing Account with Credit Bank ?",
+            "registration-has-core-account-error": "Invalid selection! Do you have an existing Account with Credit Bank ?",
+            "registration-core-account": "Please enter your Credit Bank Account Number",
+            "registration-core-account-error": "Invalid Account Number! Enter your Credit Bank Account Number",
+            "registration-dob": "Please enter your date of birth in the format DD-MM-YYYY",
+            "registration-dob-error": "Invalid national Date of birth ! Enter your date of birth in the format DD-MM-YYYY",
+            "registration-email": "Please enter a valid email address ( enter s to skip )",
+            "registration-email-error": "Invalid email address! Enter a valid email( enter s to skip )",
+            "registration-confirm": "Having read the terms and conditions, do you accept to perform a self registration.",
+            "registration-confirm-error": "Invalid selection! Having read the terms and conditions, do you accept to perform a self registration.",
+            "registration-language-change": "Please select your preferred language",
+            "registration-language-change-error": "Invalid selection! Please select your preferred language",
+            "registration-language-confirm": "change your current language",
+            "registration-language_confirm-error": "invalid selection! change your current language"
+        }
+    },
+    "terms": {
+        "english": {
+            "terms": "You can read our terms and conditions by visiting @app-terms-url. Do you want to perform another transaction ?",
+            "terms-error": "Invalid selection! You can read our terms and conditions by visiting @app-terms-url. Do you want to perform another transaction ?"
+        }
+    },
+    "email-change": {
+        "english": {
+            "email-change-current-email": "Please enter your current email",
+            "email-change-invalid-email-error": "Invalid email format! enter a valid email",
+            "email-change-wrong-email-error": "Incorrect email! Please enter your current email",
+            "email-change-new-email": "Please enter your new email",
+            "email-change-invalid-new-email-error": "Invalid email format! enter a valid email",
+            "email-change-confirm": "set @new_email as your current email",
+            "email-change-confirm-error": "Invalid selection! set @new_email as your current email"
+        }
+    },
+    "language-change": {
+        "english": {
+            "language-change": "Please select your preferred language",
+            "language-change-error": "Invalid selection! Please select your preferred language",
+            "language-confirm": "change your current language",
+            "language_confirm-error": "invalid selection! change your current language"
+        }
+    },
+    "pin-change-error": {
+        "english": {
+            "pin-change-error": "END Your PIN change request failed. Kindly dial @app-shortcode to retry."
+        }
+    },
+    "login-pin-change": {
+        "english": {
+            "login-pin-change-old-pin": "Please enter your old PIN to proceed",
+            "login-pin-change-invalid-old-pin-error": "Invalid PIN format! Enter a valid 4 digit PIN to proceed",
+            "login-pin-change-wrong-old-pin-error": "Wrong PIN! Enter your old PIN to proceed",
+            "login-pin-change-new-pin": "Please enter a new 4 digit PIN",
+            "login-pin-change-new-pin-error": "Invalid PIN format! Enter a new 4 digit PIN",
+            "login-pin-change-new-pin-not-last-entry-error": "Your cannot set your old PIN as the new PIN! Enter a new 4 Digit PIN",
+            "login-pin-change-new-pin-reenter": "Please re-enter your 4 digit PIN",
+            "login-pin-change-new-pin-reenter-error": "PINS do not match! Re-enter your 4 digit PIN",
+            "login-pin-change-confirm": "Change PIN",
+            "login-pin-change-confirm-error": "Invalid selection! Change PIN",
+            "login-pin-change-success": "END Your account authentication request was successful. Kindly dial @app-shortcode to login.",
+            "login-pin-change-error": "Your PIN change request failed.Kindly contact @app-contact-name on @app-contact-number for assistance.",
+            "login-pin-change-error-error": "Invalid selection! Your PIN change request failed.Kindly contact @app-contact-name on @app-contact-number for assistance."
+        }
+    },
+    "pin-change-success": {
+        "english": {
+            "pin-change-success": "END Your PIN change was successful. Kindly dial @app-shortcode to login."
+        }
+    },
+    "pin-change": {
+        "english": {
+            "pin-change-old-pin": "Please enter your old PIN to proceed",
+            "pin-change-invalid-old-pin-error": "Invalid PIN format! Enter a valid 4 digit PIN to proceed",
+            "pin-change-wrong-old-pin-error": "Wrong PIN! Enter your old PIN to proceed",
+            "pin-change-new-pin": "Please enter a new 4 digit PIN",
+            "pin-change-new-pin-error": "Invalid PIN format! Enter a new 4 digit PIN",
+            "pin-change-new-pin-not-last-entry-error": "Your cannot set your old PIN as the new PIN! Enter a new 4 Digit PIN",
+            "pin-change-new-pin-reenter": "Please re-enter your 4 digit PIN",
+            "pin-change-new-pin-reenter-error": "PINS do not match! Re-enter your 4 digit PIN",
+            "pin-change-confirm": "change your PIN",
+            "pin-change-confirm-error": "Invalid selection! change your PIN",
+            "pin-change-success": "END Your PIN change request was successful. Kindly dial @app-shortcode to login.",
+            "pin-change-error": "Your PIN change request failed.Kindly contact @app-contact-name on @app-contact-number for assistance.",
+            "pin-change-error-error": "Invalid selection! Your PIN change request failed.Kindly contact @app-contact-name on @app-contact-number for assistance."
+        }
+    },
+    "coming-soon": {
+        "english": {
+            "coming-soon": ""
+        }
+    },
+    "disabled": {
+        "english": {
+            "disabled": "END The @current_step menu you have tried to access is currently disabled"
+        }
+    },
+    "maintenance": {
+        "english": {
+            "system-maintenance": ""
+        }
+    },
+    "technical-error": {
+        "english": {
+            "technical-error": "Invalid !"
+        }
+    },
+    "buy-airtime": {
+        "english": {
+            "buy-airtime-provider": "Please select an airtime provider",
+            "buy-airtime-provider-error": "Invalid selection! Select an airtime provider",
+            "buy-airtime-account-type": "Please select the account to buy airtime for",
+            "buy-airtime-account-type-error": "Invalid selection! Please select the account to buy airtime for",
+            "buy-airtime-credit-account": "Please enter the @airtimeProvider phone number in the format 07xxxxxxxx",
+            "buy-airtime-credit-account-error": "Invalid phone Number! Enter a valid @airtimeProvider phone number in the format 07xxxxxxxx",
+            "buy-airtime-debit-account": "Please select the account to debit",
+            "buy-airtime-debit-account-error": "Invalid selection! Select the account to debit",
+            "buy-airtime-amount": "Please enter the amount of airtime to purchase ( minimum @app-currency-code  @buy-airtime-minimum )",
+            "buy-airtime-amount-error": "Invalid amount! Enter a valid amount of airtime to purchase ( minimum @app-currency-code  @buy-airtime-minimum )",
+            "buy-airtime-confirm": "Buy @airtimeProvider airtime worth @app-currency-code  @airtimeAmount for @airtimeCreditAccount from @airtimeDebitAccount .",
+            "buy-airtime-confirm-error": "Invalid selection! buy @airtimeProvider airtime worth @app-currency-code  @airtimeAmount for @airtimeCreditAccount from @airtimeDebitAccount ",
+            "buy-airtime-debit-account-options-error": "You currently do not have any linked accounts.Continue",
+            "buy-airtime-debit-account-options-error-error": "Invalid selection ! You currently do not have any linked accounts.Continue"
+        }
+    },
+    "registration-alert": {
+        "english": {
+            "registration-alert": "END To register for Salary Advance kindly contact @app-contact-name on @app-contact-number ."
+        }
+    },
+    "ministatement-success": {
+        "english": {
+            "ministatement-success": ""
+        },
+        "swahili": {
+            "ministatement-success": ""
+        },
+        "french": {
+            "ministatement-success": ""
+        }
+    },
+    "ministatement": {
+        "english": {
+            "ministatement-account": "",
+            "ministatement-account-savings-error": "Invalid Input !",
+            "ministatement-confirm": "",
+            "ministatement-account-savings-options-error": "Invalid Input !"
+        },
+        "swahili": {
+            "ministatement-account": "",
+            "ministatement-account-savings-error": "Invalid Input !",
+            "ministatement-confirm": "",
+            "ministatement-account-savings-options-error": "Invalid Input !"
+        },
+        "french": {
+            "ministatement-account": "",
+            "ministatement-account-savings-error": "Invalid Input !",
+            "ministatement-confirm": "",
+            "ministatement-account-savings-options-error": "Invalid Input !"
+        }
+    },
+    "channels-loan-cash-out": {
+        "english": {
+            "channels-loan-cash-out-provider": "Please select an option below:",
+            "channels-loan-cash-out-provider-error": "Invalid Input !",
+            "channels-loan-cash-out-amount": "Enter amount (min kes: 100 max kes: @walletBalance ):",
+            "channels-loan-cash-out-amount-error": "Invalid Input !",
+            "channels-loan-cash-out-confirm": "Confirm to withdraw amount @loanAmount :",
+            "channels-loan-cash-out-api-success": "@cashOutSuccess \nDo you need another service?",
+            "channels-loan-cash-out-api-success-error": "Invalid selection! \nDo you need another service?"
+        },
+        "swahili": {
+            "channels-loan-cash-out-provider": "",
+            "channels-loan-cash-out-provider-error": "Invalid Input !",
+            "channels-loan-cash-out-amount": "",
+            "channels-loan-cash-out-amount-error": "Invalid Input !",
+            "channels-loan-cash-out-confirm": "",
+            "channels-loan-cash-out-api-success": ""
+        },
+        "french": {
+            "channels-loan-cash-out-provider": "",
+            "channels-loan-cash-out-provider-error": "Invalid Input !",
+            "channels-loan-cash-out-amount": "",
+            "channels-loan-cash-out-amount-error": "Invalid Input !",
+            "channels-loan-cash-out-confirm": "",
+            "channels-loan-cash-out-api-success": ""
+        }
+    },
+    "wallet-balance": {
+        "english": {
+            "wallet-balance-error": "We are currently unable to process your wallet balance. Do you need another service?",
+            "wallet-balance-error-error": "Invalid selection! ",
+            "wallet-balance-sucess": "Your Wallet Balance is @app-currency-code @walletBalance . Do you need another service?",
+            "wallet-balance-sucess-error": "Invalid selection! "
+        }
+    },
+    "wallet-balance-error": {
+        "english": {
+            "wallet-balance-error": "We are currently unable to process your wallet balance. Do you need another service?",
+            "wallet-balance-error-error": "Invalid selection! "
+        }
+    },
+    "contact-us": {
+        "english": {
+            "contact-us": "Contact us on: \nPhone: @app-contact-number \nEmail: @app-email \nWhatsapp: @app-whatsapp \nLocation: @app-location \nDo you need another service?"
+        }
+    },
+    "tell-a-friend": {
+        "english": {
+            "tell-a-friend-number": "Please enter your friends Phone Number in the format 07xxxxxxxx",
+            "tell-a-friend-number-error": "Invalid Phone Number! Enter your friends Phone Number in the format 07xxxxxxxx",
+            "tell-a-friend-confirm": "invite @friendPhoneNumber to use the @app-corporate-description",
+            "tell-a-friend-confirm-error": "Invalid selection! invite @friendPhoneNumber to use the @app-corporate-description"
+        }
+    },
+    "savings": {
+        "english": {
+            "savings": "Your current savings balance is: @app-currency-code. @contribution. Do you wish to do another transaction?",
+            "savings-error": "Invalid selection! Your current savings balance is: @app-currency-code. @contribution. Do you wish to do another transaction?"
+        }
+    },
+    "pay-water": {
+        "english": {
+            "pay-water-credit-account": "Please enter the Water Meter number",
+            "pay-water-credit-account-error": "Invalid account! Enter the Water number",
+            "pay-water-debit-account": "Please select the account to be debited",
+            "pay-water-debit-account-error": "Invalid selection! Select the account to be debited",
+            "pay-water-amount": "Please enter the amount to pay",
+            "pay-water-amount-error": "Invalid entry! Please enter the amount to pay ",
+            "pay-water-confirm": "Pay  @app-currency-code  @billPaymentAmount to Water for @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "pay-water-confirm-error": "Invalid selection! pay  @app-currency-code  @billPaymentAmount to Water for @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "pay-water-debit-account-options-error": "You currently do not have any linked accounts.Continue",
+            "pay-water-debit-account-options-error-error": "Invalid selection ! You currently do not have any linked accounts.Continue"
+        }
+    },
+    "school-fees": {
+        "english": {
+            "school-fees-debit-account": "Please select the Account to pay from",
+            "school-fees-debit-account-error": "Invalid selection!",
+            "school-fees-credit-account": "Please enter the school account to pay to",
+            "school-fees-credit-account-error": "Invalid Selection! ",
+            "school-fees-child-name": "Please enter the students name e.g John Doe",
+            "school-fees-child-name-error": "Invalid name!",
+            "school-fees-child-reg": "Please enter the students registration number e.g 123456",
+            "school-fees-child-reg-error": "Invalid number! ",
+            "school-fees-amount": "Please enter the Amount you would like to pay ( min @app-currency-code 500 )",
+            "school-fees-amount-error": "Invalid amount! ",
+            "school-fees-confirm": "Pay @app-currency-code @schoolFeesAmount from  @schoolFeesDebitAccount to  @schoolFeesCreditAccount. Name: @schoolFeesChildName, RegId: @schoolFeesChildReg",
+            "school-fees-confirm-error": "Invalid selection!",
+            "school-search": "Please enter the schools first name in order to conduct a search",
+            "school-result": "Please select a school below",
+            "no-results-error": "There are no schools Matching '@search_item'. Please enter the schools first name in order to conduct a search",
+            "result-limit-exceeded-error": "Too many results. Please enter the full name of the school separated by a dot ( . ) to narrow the results",
+            "schools-error": "Invalid Selection! "
+        }
+    },
+    "dstv": {
+        "english": {
+            "dstv-presentment-error": "We are currently unable to fetch the DSTV bill for Account @billPaymentCreditAccount . Continue ? ",
+            "dstv-presentment-error-error": "Invalid selection! We are currently unable to fetch the DSTV bill for Account @billPaymentCreditAccount. Continue ? ",
+            "dstv-credit-account": "Please enter the DSTV Account number",
+            "dstv-credit-account-error": "Invalid entry! Please enter the DSTV Account number",
+            "dstv-debit-account": "Please select the account to be debited",
+            "dstv-debit-account-error": "Invalid selection! Select the account to be debited",
+            "dstv-amount": "Please enter the amount to pay ",
+            "dstv-amount-error": "Invalid entry! Please enter the amount to pay ",
+            "dstv-confirm": "Pay @app-currency-code  @billPaymentAmount to DSTV account   @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "dstv-confirm-error": "Invalid selection! Pay @app-currency-code  @billPaymentAmount to DSTV account   @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "dstv-debit-account-options-error": "You currently do not have any linked accounts.Continue",
+            "dstv-debit-account-options-error-error": "Invalid selection ! You currently do not have any linked accounts.Continue",
+            "dstv-presentment-amount-error": "You currently do not have a DSTV bill to pay. Do you need another service?",
+            "dstv-presentment-amount-error-error": "Invalid selection! You currently do not have a DSTV bill to pay. Do you need another service?"
+        }
+    },
+    "gotv": {
+        "english": {
+            "gotv-presentment-error": "We are currently unable to fetch the GoTv bill for Account @billPaymentCreditAccount. Continue ? ",
+            "gotv-presentment-error-error": "Invalid selection! We are currently unable to fetch the GoTv bill for Account @billPaymentCreditAccount. Continue ? ",
+            "gotv-credit-account": "Please enter the GoTv Account number",
+            "gotv-credit-account-error": "Invalid entry! Please enter the GoTv Account number",
+            "gotv-debit-account": "Please select the account to be debited",
+            "gotv-debit-account-error": "Invalid selection! Select the account to be debited",
+            "gotv-amount": "Please enter the amount to pay ",
+            "gotv-amount-error": "Invalid entry! Please enter the amount to pay ",
+            "gotv-confirm": "Pay @app-currency-code  @billPaymentAmount to GoTv account   @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "gotv-confirm-error": "Invalid selection! Pay @app-currency-code  @billPaymentAmount to GoTv account   @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "gotv-debit-account-options-error": "You currently do not have any linked accounts.Continue",
+            "gotv-debit-account-options-error-error": "Invalid selection! You currently do not have any linked accounts.Continue",
+            "gotv-presentment-amount-error": "You currently do not have a GoTv bill to pay. Do you need another service?",
+            "gotv-presentment-amount-error-error": "Invalid selection! You currently do not have a GoTv bill to pay. Do you need another service?"
+        }
+    },
+    "zuku-tv": {
+        "english": {
+            "zuku-tv-presentment-error": "We are currently unable to fetch the ZukuTv bill for Account @billPaymentCreditAccount . Continue ? ",
+            "zuku-tv-presentment-error-error": "Invalid selection! We are currently unable to fetch the ZukuTv bill for Account @billPaymentCreditAccount. Continue ? ",
+            "zuku-tv-credit-account": "Please enter the ZukuTv Account number",
+            "zuku-tv-credit-account-error": "Invalid entry! Please enter the ZukuTv Account number",
+            "zuku-tv-debit-account": "Please select the account to be debited",
+            "zuku-tv-debit-account-error": "Invalid selection! Select the account to be debited",
+            "zuku-tv-amount": "Please enter the amount to pay ",
+            "zuku-tv-amount-error": "Invalid entry! Please enter the amount to pay",
+            "zuku-tv-confirm": "Pay  @app-currency-code  @billPaymentAmount to ZukuTv for @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "zuku-tv-confirm-error": "Invalid selection! pay  @app-currency-code  @billPaymentAmount to ZukuTv account @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "zuku-tv-debit-account-options-error": "You currently do not have any linked accounts.Continue",
+            "zuku-tv-debit-account-options-error-error": "Invalid selection ! You currently do not have any linked accounts.Continue"
+        }
+    },
+    "star-times": {
+        "english": {
+            "star-times-credit-account": "Please enter the Startimes Account Number:",
+            "star-times-credit-account-error": "Invalid account! Please enter the Startimes Account Number:",
+            "star-times-debit-account": "Please select the account to be debited",
+            "star-times-debit-account-error": "Invalid selection! Select the account to be debited",
+            "star-times-amount": "Please enter the amount to pay",
+            "star-times-amount-error": "Invalid entry! Please enter the amount to pay ",
+            "star-times-confirm": "Pay @app-currency-code  @billPaymentAmount to STARTIMES account @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "star-times-confirm-error": "Invalid selection! Pay @app-currency-code  @billPaymentAmount to STARTIMES account @billPaymentCreditAccount from @billPaymentDebitAccount ",
+            "star-times-debit-account-options-error": "Dear @firstname, you do not have any linked accounts. Do you need another service?",
+            "star-times-debit-account-options-error-error": "Invalid selection! You do not have any linked accounts. Do you need another service?"
+        }
+    },
+    "electricity-postpaid": {
+        "english": {
+            "electricity-postpaid-presentment-error": "We are currently unable to fetch the Electricity Postpaid bill for Account @billPaymentCreditAccount . Continue ? ",
+            "electricity-postpaid-presentment-error-error": "Invalid selection! We are currently unable to fetch the Electricity Postpaid bill for Account @billPaymentCreditAccount. Continue ? ",
+            "electricity-postpaid-credit-account": "Please enter the Electricity Post Paid Meter number",
+            "electricity-postpaid-credit-account-error": "Invalid account! Enter the Electricity Post Paid Meter number",
+            "electricity-postpaid-debit-account": "Please select the account to be debited",
+            "electricity-postpaid-debit-account-error": "Invalid selection! Select the account to be debited",
+            "electricity-postpaid-amount": "Please enter the amount to pay ( min Ksh. @minimum-billpayment-amount ) ",
+            "electricity-postpaid-amount-error": "Invalid entry! Please enter the amount to pay ( min Ksh. @minimum-billpayment-amount ) ",
+            "electricity-postpaid-confirm": "Pay Ksh. @billPaymentAmount to Electricity Account @billPaymentCreditAccount from @billPaymentDebitAccount",
+            "electricity-postpaid-confirm-error": "Invalid selection! Pay Ksh. @billPaymentAmount to Electricity Account @billPaymentCreditAccount from @billPaymentDebitAccount",
+            "electricity-postpaid-debit-account-options-error": "You currently do not have any linked accounts.Continue",
+            "electricity-postpaid-debit-account-options-error-error": "Invalid selection! You currently do not have any linked accounts.Continue",
+            "electricity-postpaid-presentment-amount-error": "You currently do not have a Electricity post paid bill to pay. Do you need another service?",
+            "electricity-postpaid-presentment-amount-error-error": "Invalid selection! You currently do not have a Electricity post paid bill to pay. Do you need another service?"
+        },
+        "swahili": {
+            "electricity-postpaid-presentment-error": "Invalid Input !",
+            "electricity-postpaid-presentment-error-error": "Invalid Input !",
+            "electricity-postpaid-credit-account": "",
+            "electricity-postpaid-credit-account-error": "Invalid Input !",
+            "electricity-postpaid-debit-account": "",
+            "electricity-postpaid-debit-account-error": "Invalid Input !",
+            "electricity-postpaid-amount": "",
+            "electricity-postpaid-amount-error": "Invalid Input !",
+            "electricity-postpaid-confirm": "",
+            "electricity-postpaid-confirm-error": "Invalid Input !",
+            "electricity-postpaid-debit-account-options-error": "Invalid Input !",
+            "electricity-postpaid-debit-account-options-error-error": "Invalid Input !",
+            "electricity-postpaid-presentment-amount-error": "Invalid Input !",
+            "electricity-postpaid-presentment-amount-error-error": "Invalid Input !"
+        }
+    },
+    "electricity-prepaid": {
+        "english": {
+            "electricity-prepaid-credit-account": "Please enter electricity pre paid meter number",
+            "electricity-prepaid-credit-account-error": "Invalid account!",
+            "electricity-prepaid-debit-account": "Please select the account to be debited",
+            "electricity-prepaid-debit-account-error": "Invalid selection! Select the account to be debited",
+            "electricity-prepaid-amount": "Please enter the amount to pay ( min @app-currency-code @minimum-billpayment-amount ) ",
+            "electricity-prepaid-amount-error": "Invalid entry! Please enter the amount to pay ( min @app-currency-code @minimum-billpayment-amount ) ",
+            "electricity-prepaid-confirm": "Dear @firstname, you are about to pay  @app-currency-code @billPaymentAmount to Power for @billPaymentCreditAccount from @billPaymentDebitAccount",
+            "electricity-prepaid-confirm-error": "Invalid selection! You are about to pay  @app-currency-code @billPaymentAmount to Power for @billPaymentCreditAccount from @billPaymentDebitAccount",
+            "electricity-prepaid-debit-account-options-error": "Dear @firstname, you currently do not have any linked Savings accounts.Do you want to do another transaction",
+            "electricity-prepaid-debit-account-options-error-error": "Invalid selection ! You currently do not have any linked Savings accounts.Do you want to do another transaction"
+        }
+    },
+    "loan-balance": {
+        "english": {
+            "loan-balance-error": "We are currently unable to process your loan balance. Do you need another service?",
+            "loan-balance-error-error": "Invalid selection! ",
+            "loan-balance-sucess": "Your Salary Advance Loan Balance is @app-currency-code @loanAmount . Do you need another service?",
+            "loan-balance-sucess-error": "Invalid selection! "
+        }
+    },
+    "loan-application": {
+        "english": {
+            "loan-application-type-options": "Your Salary Advance Limit is @limit .\nSelect the amount to borrow:(Minimum @app-currency-code. 100 ) ",
+            "loan-application-type-options-error": "Invalid amount!",
+            "loan-application-amount": "Your Salary Advance Limit is @limit .\nEnter the amount to borrow:(min @app-currency-code @minLoanAmount ,max @app-currency-code @limit) ",
+            "loan-application-amount-error": "Invalid amount! (Minimum @app-currency-code @minLoanAmount ,max @app-currency-code @limit)",
+            "loan-application-confirm": "Apply for a loan worth  @app-currency-code @borrowAmount .",
+            "loan-application-confirm-error": "Invalid selection!",
+            "loan-application-error": "Dear @firstname, @errMessage",
+            "loan-application-options-error": "Servive is currently unavailable. Please try again later. Do you need another service?",
+            "loan-application-options-error-error": "Invalid selection! "
+        }
+    },
+    "loan-limit-error": {
+        "english": {
+            "loan-limit-error": "We are currently unable to process your loan limit request. Do you need another service?",
+            "loan-limit-error-error": "Invalid selection! "
+        },
+        "swahili": {
+            "loan-limit-error": "We are currently unable to process your loan limit request. Do you need another service?",
+            "loan-limit-error-error": "Invalid selection! "
+        },
+        "french": {
+            "loan-limit-error": "We are currently unable to process your loan limit request. Do you need another service?",
+            "loan-limit-error-error": "Invalid selection! "
+        }
+    },
+    "loan-limit": {
+        "english": {
+            "loan-limit-sucess": "Your Salary Advance Loan Limit is @limit . \nDo you need another service?",
+            "loan-limit-sucess-error": "Invalid selection! "
+        }
+    },
+    "loan-repayment-success": {
+        "english": {
+            "loan-repayment-success": "Your request has been recieved and is being processed. You will receive an SMS response shortly. Do you need another service?",
+            "loan-repayment-success-error": "Invalid selection!"
+        }
+    },
+    "loan-repayment": {
+        "english": {
+            "loan-repayment-accounts": "Please select the loan account",
+            "loan-repayment-accounts-error": "Invalid selection! Select the loan account",
+            "loan-repayment-amount": "Please enter the amount to repay (Balance: @loanBalance )",
+            "loan-repayment-amount-error": "Invalid amount! Please enter the amount to repay (Balance: @loanBalance )",
+            "loan-repayment-confirm": "Confirm to pay @app-currency-code. @repaymentAmount from MPESA to service your Loan",
+            "loan-repayment-confirm-error": "Invalid selection! Confirm to pay @app-currency-code. @repaymentAmount from MPESA to service your Loan",
+            "loan-repayment-account-options-error": "You currently do not have an active loan. Do you need another service?",
+            "loan-repayment-account-options-error-error": "Invalid selection! You currently do not have an active loan. Do you need another service?"
+        }
+    },
+    "no-options-found-error": {
+        "english": {
+            "no-options-found-error": "You currently don't have any select options.Continue?",
+            "no-options-found-error-error": "Invalid input!"
+        },
+        "swahili": {
+            "no-options-found-error": "Invalid input!"
+        },
+        "french": {
+            "no-options-found-error": "Invalid input!"
+        }
+    },
+    "mpesa-loan-repayment-success": {
+        "english": {
+            "mpesa-loan-repayment-success": "END Please input your MPESA PIN on the popup that appears"
+        }
+    },
+    "loan-cash-out": {
+        "english": {
+            "loan-cash-out-provider": "Please select an option below:",
+            "loan-cash-out-provider-error": "Invalid !",
+            "loan-cash-out-account-type": "Please select an option below:",
+            "loan-cash-out-account-type-error": "Invalid !",
+            "loan-cash-out-credit-account": "Enter Account Number:",
+            "loan-cash-out-credit-account-error": "Invalid !",
+            "loan-cash-out-amount": "Enter amount (min kes: 100):",
+            "loan-cash-out-amount-error": "Invalid !",
+            "loan-cash-out-confirm": "Confirm to withdraw loan:",
+            "loan-cash-out-amount-options-error": "Invalid !"
+        },
+        "swahili": {
+            "loan-cash-out-provider": "",
+            "loan-cash-out-provider-error": "Invalid !",
+            "loan-cash-out-account-type": "",
+            "loan-cash-out-account-type-error": "Invalid !",
+            "loan-cash-out-credit-account": "",
+            "loan-cash-out-credit-account-error": "Invalid !",
+            "loan-cash-out-amount": "",
+            "loan-cash-out-amount-error": "Invalid !",
+            "loan-cash-out-confirm": "",
+            "loan-cash-out-amount-options-error": "Invalid !"
+        },
+        "french": {
+            "loan-cash-out-provider": "",
+            "loan-cash-out-provider-error": "Invalid !",
+            "loan-cash-out-account-type": "",
+            "loan-cash-out-account-type-error": "Invalid !",
+            "loan-cash-out-credit-account": "",
+            "loan-cash-out-credit-account-error": "Invalid !",
+            "loan-cash-out-amount": "",
+            "loan-cash-out-amount-error": "Invalid !",
+            "loan-cash-out-confirm": "",
+            "loan-cash-out-amount-options-error": "Invalid !"
+        }
+    },
+    "to-bank-account": {
+        "english": {
+            "to-bank-account-account-type": "Select an option below:",
+            "to-bank-account-account-type-error": "Invalid !",
+            "to-bank-account-credit-account": "Enter account Number:",
+            "to-bank-account-credit-account-error": "Invalid !",
+            "to-bank-account-amount": "Enter amount (min kes: 100):",
+            "to-bank-account-amount-error": "Invalid !",
+            "to-bank-account-confirm": "Confirm loan cash out to bank:"
+        },
+        "swahili": {
+            "to-bank-account-account-type": "",
+            "to-bank-account-account-type-error": "Invalid !",
+            "to-bank-account-credit-account": "",
+            "to-bank-account-credit-account-error": "Invalid !",
+            "to-bank-account-amount": "",
+            "to-bank-account-amount-error": "Invalid !",
+            "to-bank-account-confirm": ""
+        },
+        "french": {
+            "to-bank-account-account-type": "",
+            "to-bank-account-account-type-error": "Invalid !",
+            "to-bank-account-credit-account": "",
+            "to-bank-account-credit-account-error": "Invalid !",
+            "to-bank-account-amount": "",
+            "to-bank-account-amount-error": "Invalid !",
+            "to-bank-account-confirm": ""
+        }
+    },
+    "to-mobile-money": {
+        "english": {
+            "to-mobile-money-provider": "Select an option below:",
+            "to-mobile-money-provider-error": "Invalid !",
+            "to-mobile-money-account-type": "Select an option below:",
+            "to-mobile-money-account-type-error": "Invalid !",
+            "to-mobile-money-credit-account": "Enter phone number (format 07XXXXXXXX)",
+            "to-mobile-money-credit-account-error": "Invalid !",
+            "to-mobile-money-amount": "Enter amount (min kes: 100)",
+            "to-mobile-money-amount-error": "Invalid !",
+            "to-mobile-money-confirm": "Confirm cashout to @telcoProvider Mobile money ,Amount @loanAmount . ",
+            "to-mobile-money-confirm-error": "Invalid Imput!",
+            "to-mobile-money-api-success": "@cashOutSuccess \nDo you need another service?",
+            "to-mobile-money-api-success-error": "Invalid selection! \nDo you need another service?"
+        },
+        "swahili": {
+            "to-mobile-money-provider": "",
+            "to-mobile-money-provider-error": "Invalid !",
+            "to-mobile-money-account-type": "",
+            "to-mobile-money-account-type-error": "Invalid !",
+            "to-mobile-money-credit-account": "",
+            "to-mobile-money-credit-account-error": "Invalid !",
+            "to-mobile-money-amount": "",
+            "to-mobile-money-amount-error": "Invalid !",
+            "to-mobile-money-confirm": ""
+        },
+        "french": {
+            "to-mobile-money-provider": "",
+            "to-mobile-money-provider-error": "Invalid !",
+            "to-mobile-money-account-type": "",
+            "to-mobile-money-account-type-error": "Invalid !",
+            "to-mobile-money-credit-account": "",
+            "to-mobile-money-credit-account-error": "Invalid !",
+            "to-mobile-money-amount": "",
+            "to-mobile-money-amount-error": "Invalid !",
+            "to-mobile-money-confirm": ""
+        }
+    },
+    "system-error": {
+        "english": {
+            "system-error": "Invalid !"
+        }
+    },
+    "error": {
+        "english": {
+            "error": "The @app-corporate-description service is currently experiencing technical challenges. We apologize for the inconvenience. Kindly try again later."
+        }
+    }
+}

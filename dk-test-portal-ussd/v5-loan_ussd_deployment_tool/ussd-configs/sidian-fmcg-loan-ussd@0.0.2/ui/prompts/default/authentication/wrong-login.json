@@ -1,0 +1,45 @@
+{
+  "type": "input",
+  "name": "wrong-login",
+  "next": "client-page",
+  "save-as": "pin",
+  "save-to-account-details": "pin",
+  "validation": [
+    {
+      "name": "isValidPin",
+      "type": "custom"
+    }
+  ],
+  "errors": [
+    "invalid-pin-error",
+    "wrong-login"
+  ],
+  "action": "update-parameters",
+  "external-fetch": {
+    "route": "login",
+    "success": "client-page",
+    "success-handler": {
+      "handler": "reset_pin_trials",
+      "argument": "pin-trials-remaining",
+      "save-as": "pin-trials-remaining"
+    },
+    "error": "wrong-login",
+    "error-handler": {
+      "handler": "decrement_pin_trials",
+      "argument": "pin-trials-remaining",
+      "save-as": "pin-trials-remaining",
+      "threshold": 0,
+      "redirect-on-threshold": "account-blocked",
+      "threshold-handler": "block-account"
+    },
+    "cache": true,
+    "cache-path": "account-details",
+    "cache-parameters": [
+      {
+        "path": "access_token",
+        "save-as": "access_token"
+      }
+      ]
+  },
+  "on-cancel": "logout"
+}

@@ -1,0 +1,191 @@
+[
+  {
+    "type": "skip",
+    "name": "fetch-loan-application-cycle",
+    "action": "update-parameters",
+    "external-fetch": {
+      "route": "fetch-loan-limit",
+      "success": "loan-application-type-options",
+      "error": "api-error",
+      "cache": true,
+      "cache-path": "account-details",
+      "cache-parameters": [
+        {
+          "path": "data.cycleOpen",
+          "save-as": "cycleOpen",
+          "default": false
+        },
+        {
+          "path": "data.limit",
+          "save-as": "limit",
+          "default": "0"
+        },
+        {
+          "path": "data.limit",
+          "save-as": "loan-amount-options",
+          "format-as": "formatLoanLimitAccount"
+        }
+      ],
+      "parameter-checks": {
+        "cycleOpen": {
+          "is-equal-to": true,
+          "redirect-to": "loan-application-cycle-error"
+        }
+      }
+    }
+  },
+  {
+    "type": "select",
+    "name": "loan-application-products-options",
+    "save-as": "loanProductType",
+    "options": [
+      {
+          "label": "Business Loan",
+          "value": "Business Loan"
+      },
+      {
+          "label": "MPESA Float Loan",
+          "value": "MPESA Float Loan",
+          "jump-to":"m-loan-application-type-options",
+          "meta": [
+              {
+                  "save-as": "limit",
+                  "cache-path": "global-request-details",
+                  "value": "25000"
+              },
+              {
+                "save-as": "loan-amount-options",
+                "cache-path": "global-request-details",
+                "value": "25000",
+                "format-as": "formatLoanLimitAccount"
+              }
+            ]
+      }
+  ],
+    "options-error": "loan-application-options-error",
+    "error": "loan-application-products-options-error",
+    "previous": "client-page",
+    "next": "loan-application-type-options"
+  },  
+  {
+    "type": "select",
+    "name": "loan-application-type-options",
+    "save-as": "borrowAmount",
+    "format-as": "formatLoanLimitMinimumAmount",
+    "options": [
+      {
+				"label": " Take Full Credit Limit",
+				"value": " Take Full Credit Limit",
+        "jump-to":"loan-application-confirm",
+        "meta": [
+            {
+                "save-as": "borrowAmount",
+                "cache-path": "global-request-details",
+                "value": "%@limit"
+            }
+          ]
+			},
+			{
+				"label": " Enter Amount to Pay",
+				"value": " Enter Amount to Pay",
+        "jump-to":"loan-application-amount"
+      }
+		],
+    "options-error": "loan-application-options-error",
+    "error": "loan-application-type-options-error",
+    "previous": "client-page",
+    "next": "loan-application-confirm"
+  },
+  {
+    "type": "input",
+    "name": "loan-application-amount",
+    "save-as": "borrowAmount",
+    "validation": [
+      {
+        "name": "isWithinLoanLimit",
+        "type": "custom",
+        "arguments": "min=%@minimumLoanApplication, max=%@limit"
+      }
+    ],
+    "error": "loan-application-amount-error",
+    "previous": "loan-application-type-options",
+    "next": "loan-application-confirm"
+  },
+  {
+    "type": "select",
+    "name": "loan-application-duration-options",
+    "save-as": "loanProductDuration",
+    "options": [
+      {
+				"label": " 7 DAYS",
+				"value": " 7 DAYS"
+			},
+			{
+				"label": " 14 DAYS",
+				"value": " 14 DAYS"
+			},
+			{
+				"label": " 30 DAYS",
+				"value": " 30 DAYS"
+			},
+			{
+				"label": " 90 DAYS",
+				"value": " 90 DAYS"
+			}
+		],
+    "options-error": "loan-application-options-error",
+    "error": "loan-application-duration-options-error",
+    "previous": "loan-application-type-options",
+    "next": "loan-application-confirm"
+  },
+  {
+    "type": "select",
+    "name": "loan-application-confirm",
+    "options": "confirm-options",
+    "error": "loan-application-confirm-error",
+    "action": "transact",
+    "external-fetch": {
+      "route": "loan-application",
+      "success": "api-success",
+      "error": "api-success"
+    },
+    "on-cancel": "client-page",
+    "previous": "loan-application-type-options"
+  },
+  {
+    "type": "select",
+    "name": "loan-application-error",
+    "options": "yes-no-options",
+    "error": "loan-application-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  },
+  {
+    "type": "select",
+    "name": "loan-application-limit-zero-error",
+    "options": "yes-no-options",
+    "error": "loan-application-limit-zero-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  },
+  {
+    "type": "select",
+    "name": "loan-application-options-error",
+    "options": "yes-no-options",
+    "error": "loan-application-options-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  },
+  {
+    "type": "select",
+    "name": "loan-application-cycle-error",
+    "options": "yes-no-options",
+    "error": "loan-application-cycle-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  }
+]

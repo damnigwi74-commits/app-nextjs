@@ -1,0 +1,76 @@
+[
+  {
+    "type": "skip",
+    "name": "loan-balance",
+    "action": "update-parameters",
+    "external-fetch": {
+      "route": "loan-balance",
+      "success": "loan-balance-sucess",
+      "error": "loan-balance-error",
+      "cache": true,
+      "cache-path": "global-request-details",
+      "cache-parameters": [
+        {
+          "path": "data.loan",
+          "save-as": "loanBalance",
+          "format-as": "balance-timestamp",
+          "default": "0"
+        },
+        {
+          "path": "data.loan",
+          "save-as": "loanAmount",
+          "format-as": "balance-timestamp",
+          "default": "0"
+        }
+      ]
+    },
+    "on-cancel": "client-page",
+    "previous": "loans-page"
+  },
+  {
+    "error": "loan-balance-products-options-error",
+    "name": "loan-balance-products-options",
+    "next": "loan-balance-sucess",
+    "options": [
+        {
+            "label": "Business Loan",
+            "value": "Business Loan",
+            "jump-to":"loan-balance-sucess"
+        },
+        {
+            "label": "MPESA Float Loan",
+            "value": "MPESA Float Loan",
+            "jump-to":"loan-balance-sucess",
+            "meta": [
+                {
+                    "save-as": "loanAmount",
+                    "cache-path": "global-request-details",
+                    "value": "25000"
+                }
+              ]
+        }
+    ],
+    "options-error": "error-for-option-error",
+    "previous": "client-page",
+    "save-as": "loanProductType",
+    "type": "select"
+},
+  {
+    "type": "select",
+    "name": "loan-balance-sucess",
+    "options": "yes-no-options",
+    "error": "loan-balance-sucess-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  },
+  {
+    "type": "select",
+    "name": "loan-balance-error",
+    "options": "yes-no-options",
+    "error": "loan-balance-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  }
+]

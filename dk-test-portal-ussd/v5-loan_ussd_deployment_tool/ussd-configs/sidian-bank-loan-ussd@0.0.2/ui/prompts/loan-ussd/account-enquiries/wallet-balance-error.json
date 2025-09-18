@@ -1,0 +1,9 @@
+{
+    "type"      : "select",
+    "name"      : "wallet-balance-error",
+    "options"   : "yes-no-options",
+    "error"     : "wallet-balance-error-error",
+    "action"    : "navigate",
+    "on-accept" : "client-page",
+    "on-cancel" : "logout"
+}
