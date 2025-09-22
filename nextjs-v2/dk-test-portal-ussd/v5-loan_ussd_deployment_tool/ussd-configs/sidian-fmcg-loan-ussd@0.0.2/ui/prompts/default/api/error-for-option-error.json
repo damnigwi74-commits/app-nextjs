@@ -1,9 +1,0 @@
-{
-    "type"      : "select",
-    "name"      : "error-for-option-error",
-    "options"   : "yes-no-options",
-    "error"     : "error-for-option-error-error",
-    "action"    : "navigate",
-    "on-accept" : "client-page",
-    "on-cancel" : "logout"    
-}
