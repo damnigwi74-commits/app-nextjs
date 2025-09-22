@@ -1,0 +1,82 @@
+{
+    "meta-data": {
+        "appName": "FAULU MFB",
+        "currency": "KES",
+        "country-code": "KE",
+        "channel": "USSD",
+        "payload-format": "JSON"
+    },
+    "data-sources": {
+        "default": "post http://127.0.0.1:4000/ESBServlet/ESBServlet",
+        "production": "POST http://127.0.0.1:4000/wallet/ussd/api/v1.0"
+    },
+    "request-settings": {
+        "headers": {
+            "default": {
+                "content-type": "text/html"
+            },
+            "json": {
+                "content-type": "application/json"
+            }
+        },
+        "template": {
+            "field0": "0200",
+            "field7": "create;timeStamp=MMDDHHmmss",
+            "field11": "create;stan",
+            "field12": "create;timeStamp=HHmmss",
+            "field13": "create;timeStamp=MMDD",
+            "field15": "create;timeStamp=MMDD",
+            "field32": "get;channel",
+            "field33": "IUBRUXExOTA1",
+            "field37": "create;transactionId",
+            "field40": "000",
+            "field41": "FID00001",
+            "field42": "",
+            "field43": "get;appName",
+            "field46": "en",
+            "field49": "get;currency",
+            "field56": "bcac5bdc-32fb-42df-8ddb-ce8f705ba8c5",
+            "field60": "get;country-code",
+            "field123": "get;channel",
+            "USSDMNO": "SAFARICOM"
+        },
+        "endpoints": {
+            "profile": {
+                "request": {
+                    "field2": "__walletAccount",
+                    "field3": "110000",
+                    "field4": "0",
+                    "field32": "USSD",
+                    "field24": "MM",
+                    "field61": "",
+                    "field64": "",
+                    "field100": "LOGIN_REQUEST",
+                    "field68": "%@USSDMNO USSD - Login Request for account %@field2",
+                    "field74": "__imsi",
+                    "field77": "",
+                    "field102": "%@field2",
+                    "field120": "__walletAccount",
+                    "USSD_IMSI": "__imsi"
+                },
+                "response": {
+                    "status": {
+                        "field": "field39",
+                        "matches": [
+                            "00",
+                            "03"
+                        ],
+                        "error": {
+                            "message": "field48"
+                        }
+                    },
+                    "adapter": "get-profile"
+                }
+            }
+        }
+    },
+    "permissions": {
+        "base64": true,
+        "encrypt": false,
+        "hash-pin": true
+    }
+}

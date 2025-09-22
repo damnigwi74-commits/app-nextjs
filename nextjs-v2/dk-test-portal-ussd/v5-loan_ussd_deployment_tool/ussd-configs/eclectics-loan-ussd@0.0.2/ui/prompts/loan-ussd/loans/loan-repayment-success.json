@@ -1,0 +1,9 @@
+{
+    "type"      : "select",
+    "name"      : "loan-repayment-success",
+    "options"   : "yes-no-options",
+    "error"     : "loan-repayment-success-error",
+    "action"    : "navigate",
+    "on-accept" : "client-page",
+    "on-cancel" : "logout"    
+}

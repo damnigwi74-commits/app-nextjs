@@ -1,0 +1,10 @@
+{
+    "user-type": {
+        "AGENT": [
+            {
+                "name": "agent-registration",
+                "enabled": true
+            }
+        ]
+    }
+}

@@ -1,0 +1,1639 @@
+{
+    "mb-api": {
+        "data-sources": {
+            "development": {
+                "host": "10.20.2.19",
+                "port": "7407",
+                "protocol": "http",
+                "method": "post",
+                "path": ""
+            },
+            "sidian-dev": {
+                "host": "10.20.2.4",
+                "port": 8091,
+                "protocol": "https",
+                "method": "post",
+                "path": ""
+            }
+        },
+        "meta-data": {
+            "middleware": "ukulima",
+            "payload-format": "JSON",
+            "appName": "Ukulima Sacco",
+            "currency": "KES",
+            "country-code": "KE",
+            "channel": "USSD"
+        },
+        "permissions": {
+            "base64": false,
+            "encrypt": false,
+            "hash-pin": true,
+            "fetch-charges": false
+        },
+        "request-settings": {
+            "headers": {},
+            "template": {},
+            "endpoints": {
+                "login": {
+                    "request-path": "ussd/login",
+                    "request-group": {
+                        "enabled": true,
+                        "data": {
+                            "username": "__walletAccount",
+                            "deviceId": "__walletAccount",
+                            "pin": "__pin"
+                        },
+                        "group-to": "payload"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "mapper-function": "login_mapper",
+                        "save": true
+                    }
+                },
+                "first-login": {
+                    "request-path": "ussd/login",
+                    "request-group": {
+                        "enabled": true,
+                        "data": {
+                            "username": "__walletAccount",
+                            "deviceId": "__walletAccount",
+                            "pin": "__ftp"
+                        },
+                        "group-to": "payload"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "mapper-function": "login_mapper",
+                        "save": true
+                    }
+                },
+                "activate-mobile-banking": {
+                    "request-path": "ussd/activate-mobile-banking",
+                    "request-group": {
+                        "enabled": true,
+                        "data": {
+                            "phoneNumber": "__walletAccount",
+                            "email": "__email",
+                            "identification": "__id",
+                            "identificationType": "National Id",
+                            "language": "English",
+                            "nationalId": "__id",
+                            "name": "__fullname"
+                        },
+                        "group-to": "payload"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": true
+                    }
+                },
+                "request-txn-otp": {
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    },
+                    "path-suffix": "ussd/resend-otp",
+                    "request-path": "ussd/resend-otp",
+                    "request-group": {
+                        "enabled": false,
+                        "data": {
+                            "phoneNumber": "__walletAccount",
+                            "otpType": "COMMON_DEVICE_VERIFICATION"
+                        },
+                        "group-to": "payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "response.response"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "validate-txn-otp": {
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    },
+                    "path-suffix": "ussd/verify-otp",
+                    "request-path": "ussd/verify-otp",
+                    "request-group": {
+                        "enabled": false,
+                        "data": {
+                            "phoneNumber": "__walletAccount",
+                            "otpType": "COMMON_DEVICE_VERIFICATION",
+                            "otpValue": "__otpPin"
+                        },
+                        "group-to": "payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "change-pin": {
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    },
+                    "path-suffix": "ussd/reset-password",
+                    "request-path": "ussd/reset-password",
+                    "request-group": {
+                        "enabled": false,
+                        "data": {
+                            "oldPin": "__ftp",
+                            "newPin": "__newPin"
+                        },
+                        "group-to": "payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "response.response"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "pin-change": {
+                    "path-suffix": "api/customer/login",
+                    "request-path": "api/customer/login",
+                    "request-group": {
+                        "enabled": false,
+                        "data": {
+                            "account": "__walletAccount",
+                            "credentials": "__newPin",
+                            "old_password": "__oldPin",
+                            "account_type": "customer_account",
+                            "req_type": "change_password",
+                            "grant_type": "access_token",
+                            "transaction_type": "CUSTOMERS",
+                            "direction": "REQUEST"
+                        },
+                        "group-to": "data.payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "response.response_code",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "response.response"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "auth-change": {
+                    "path-suffix": "ussd/change-auth-type",
+                    "request-path": "ussd/change-auth-type",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    },
+                    "request-group": {
+                        "enabled": false,
+                        "data": {
+                            "authMode": "__otherAuthType"
+                        },
+                        "group-to": "payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "account-lookup-presentment": {
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    },
+                    "request-path": "api/ESBWebservice",
+                    "request-group": {
+                        "data": {
+                            "phone_number": "__walletAccount",
+                            "account_phone_number": "__billerRefAccount",
+                            "host_code": "MM",
+                            "account_type": "TA",
+                            "transaction_type": "PHONE_NUMBER_LOOKUP",
+                            "direction": "REQUEST",
+                            "transaction_code": "LOOKUP"
+                        },
+                        "group-to": "data.payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "data.response.response_code",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "data.response.response_message"
+                            }
+                        },
+                        "save": true
+                    }
+                },
+                "registration": {
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request-path": "api/customer/register",
+                    "request-group": {
+                        "data": {
+                            "document_type": "ID",
+                            "grant_type": "access_token",
+                            "gender": "m",
+                            "account_type": "customer",
+                            "req_type": "register_customer",
+                            "transaction_type": "CUSTOMERS",
+                            "email_address": "__email",
+                            "first_name": "__firstname",
+                            "middle_name": "__othername",
+                            "last_name": "__surname",
+                            "phone_number": "__walletAccount",
+                            "id_number": "__id",
+                            "dob": "__dob"
+                        },
+                        "group-to": "data.payload",
+                        "group-format": "JSON",
+                        "group-base64": false
+                    },
+                    "response": {
+                        "status": {
+                            "field": "response.response_code",
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "response.response"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "getCustChannels": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {},
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/get-user-channels",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "actionOnChannel": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "customerChannelId": "__selectedChannel",
+                            "action": "__channelStatus"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/activate-deactivate",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    }
+                },
+                "getChannels": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "page": "0",
+                            "size": "10"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/get-channels",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "addChannel": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "channelId": "__channelToAdd"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/add-customer-channel",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "getChannelDevices": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "customerChannelId": "__selectedChannel"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/get-customer-channel-devices",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "actionOnDevice": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "deviceId": "__deviceID",
+                            "action": "__deviceStatus"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/device/activate-deactivate",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "fetchLinkedAccounts": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "deviceId": "__deviceID",
+                            "phoneNumber": "__walletAccount",
+                            "nationalId": "",
+                            "username": "",
+                            "accountNumber": ""
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "ussd/linked-accounts",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "fetchUssdServices": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "page": 0,
+                            "size": 100
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/services/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "mySidianOptReq": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "phoneNumber": "__walletAccount"
+                        },
+                        "enabled": true,
+                        "group-to": "",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "api/v1/overdraft/optin",
+                    "custom-headers": {}
+                },
+                "bimm-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": 1
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-internal": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "WALLET",
+                            "creditAccount": "",
+                            "phoneNumber": "__destAcc",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "other-requests-funds": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "amount": "__ftAmt",
+                            "creditAccount": "__selectedAcc",
+                            "phoneNumber": "__destAcc"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/request-funds",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "other-requests-cheque": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "accountNo": "__selectedAcc",
+                            "chequeBookSize": "__chequeSize",
+                            "lastSeries": "__chequeSeries",
+                            "location": "__chequeLocation",
+                            "pickUpType": "__chequePickup",
+                            "currency": "KES",
+                            "trxPin": "__pin"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/cheque-book/request",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-internal-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "airtimetopup-saf": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "__accType",
+                            "recipient": "__destAcc",
+                            "creditAccount": "",
+                            "debitAccount": "__selectedAcc",
+                            "currency": "KES",
+                            "countryCode": "KE",
+                            "source": "BANK",
+                            "trxPin": "__pin"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "airtimetopup-saf-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "airtimetopup-airtel": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "__accType",
+                            "recipient": "__destAcc",
+                            "creditAccount": "",
+                            "debitAccount": "__selectedAcc",
+                            "countryCode": "KE",
+                            "currency": "KES",
+                            "source": "BANK",
+                            "trxPin": "__pin"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "airtimetopup-airtel-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "airtimetopup-telkom": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "__accType",
+                            "recipient": "__destAcc",
+                            "creditAccount": "",
+                            "debitAccount": "__selectedAcc",
+                            "countryCode": "KE",
+                            "currency": "KES",
+                            "source": "BANK",
+                            "trxPin": "__pin"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "airtimetopup-telkom-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-wa": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "WALLET",
+                            "creditAccount": "__destAcc",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-wa-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-own": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "CORE",
+                            "creditAccount": "__destAcc",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-own-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "balance-inquiry": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "BIMM",
+                            "amount": 0,
+                            "accountType": "__accType",
+                            "creditAccount": "",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "balance-inquiry-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "BIMM",
+                            "amount": 0
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "mini-statement": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": 0,
+                            "accountType": "__accType",
+                            "creditAccount": "",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "mini-statement-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": 0
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "full-statement": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "accountType": "__accType",
+                            "debitAccount": "__selectedAcc",
+                            "phoneNumber": "__walletAccount",
+                            "trxPin": "__pin",
+                            "start": "__endDate",
+                            "end": "__startDate",
+                            "email": "__email"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "full-statement-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": 0
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "bill-payment": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "__accType",
+                            "creditAccount": "",
+                            "billerRef": "__destAcc",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "bill-payment-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "acc-search": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "accountNumber": "__destAcc"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/search-account",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "phone-search": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "phoneNumber": "__destAcc"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/search-account-by-phonenumber",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-mpesa": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt",
+                            "accountType": "__accType",
+                            "creditAccount": "__destAcc",
+                            "phoneNumber": "",
+                            "debitAccount": "__selectedAcc",
+                            "trxPin": "__pin",
+                            "currency": "KES"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/process",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "ft-mpesa-charges": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request-group": {
+                        "data": {
+                            "serviceId": "__selectedService",
+                            "amount": "__ftAmt"
+                        },
+                        "enabled": true,
+                        "group-to": "payload",
+                        "group-format": "",
+                        "group-base64": ""
+                    },
+                    "path-suffix": "mbc/ussd/charge/get",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    }
+                },
+                "chk-loan-limit": {
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "error": {
+                                "message": "err"
+                            },
+                            "matches": [
+                                {
+                                    "code": 0,
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false
+                    },
+                    "request": {
+                        "express_no": "__my-sidian-account-no"
+                    },
+                    "path-suffix": "api/v3/loan_predict",
+                    "custom-headers": {}
+                },
+                "account-look-up": {
+                    "response": {
+                        "status": {
+                            "field": "data.optIn",
+                            "error": {
+                                "message": "message"
+                            },
+                            "matches": [
+                                {
+                                    "code": "00",
+                                    "status": "success"
+                                }
+                            ]
+                        },
+                        "save": false,
+                        "adapter": "get-profile"
+                    },
+                    "request-group": {
+                        "data": {
+                            "phoneNumber": "__walletAccount"
+                        },
+                        "enabled": true,
+                        "group-to": "",
+                        "group-format": null,
+                        "group-base64": null
+                    },
+                    "path-suffix": "api/v1/overdraft/lookup"
+                }
+            }
+        }
+    }
+}

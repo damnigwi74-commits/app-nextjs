@@ -1,0 +1,23 @@
+[
+    {
+        "type": "select",
+        "name": "loan-cash-out-provider",
+        "save-as": "loanProvider",
+        "save-as-label": "loanProvider",
+        "options": [
+            {
+				"label": "To Mobile Money",
+				"value" : "To Mobile Money",
+                "jump-to": "to-mobile-money-provider"
+            },
+            {
+				"label": "To Bank account",
+				"value" : "To Bank account",
+                "jump-to": "to-bank-account-account-type"
+            }
+        ],
+		"error": "loan-cash-out-provider-error",
+        "previous": "client-page"
+    }
+    
+]

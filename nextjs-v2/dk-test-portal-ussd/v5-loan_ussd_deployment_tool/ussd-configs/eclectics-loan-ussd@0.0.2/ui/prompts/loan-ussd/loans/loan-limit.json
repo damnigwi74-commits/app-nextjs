@@ -1,0 +1,96 @@
+[
+    {
+        "type": "skip",
+        "name": "fetch-employee-info-loan-limit",
+        "action": "update-parameters",
+        "external-fetch": {
+            "route": "fetch-loan-limit",
+            "success": "loan-limit-sucess",
+            "error": "loan-limit-error",
+            "cache": true,
+            "cache-path": "global-request-details",
+            "cache-parameters": [
+                {
+                    "path": "data.limit",
+                    "save-as": "limit",
+                    "default": "0"
+                }
+            ]
+        },
+        "on-cancel": "client-page",
+        "previous": "loans-page"
+    },
+
+    {
+        "type": "select",
+        "name": "loan-limit-sucess",
+        "save-as": "loanProvider",
+        "save-as-label": "loan-limit-sucess",
+        "options": [
+            {
+				"label": "yes-label",
+				"value": "1",
+                "jump-to": "client-page"
+			},
+			{
+				"label": "no-label",
+				"value": "2",
+                "jump-to": "logout"
+			}
+        ],
+        "next": "client-page",
+        "error": "loan-limit-sucess-error"
+      },
+    {
+        "type": "input",
+        "name": "loan-limit-amount",
+        "save-as": "borrowAmount",
+        "validation": [
+            {
+                "name": "isAmount",
+                "type": "joi",
+                "arguments": "min=100"
+            }
+        ],
+        "error": "loan-limit-amount-error",
+        "previous": "loan-limit-sucess",
+        "next": "loan-limit-apply-confirm"
+    },
+    {
+        "type": "select",
+        "name": "loan-limit-apply-confirm",
+        "options": "confirm-options",
+        "error": "loan-limit-apply-confirm-error",
+        "action": "transact",
+        "external-fetch": {
+            "route": "loan-application",
+            "success": "api-success",
+            "error": "api-error"
+        },
+        "on-cancel": "client-page",
+        "previous": "loans-amount"
+    },
+    {
+        "type": "select",
+        "name": "loan-limit-confirm",
+        "options": "confirm-options",
+        "previous": "client-page",
+        "action": "update-parameters",
+        "external-fetch": {
+            "route": "fetch-loan-limit",
+            "success": "loan-limit-sucess",
+            "error": "loan-limit-error",
+            "cache": true,
+            "cache-path": "global-request-details",
+            "cache-parameters": [
+                {
+                    "path": "data.limit",
+                    "save-as": "limit",
+                    "default": "0"
+                }
+            ]
+        },
+        "on-cancel": "client-page",
+        "error": "loan-limit-confirm-error"
+    }
+]

@@ -1,0 +1,292 @@
+{
+    "get-profile": {
+        "template": {
+            "account-details": {
+                "account-type": "client",
+                "all-accounts": "",
+                "is-imsi": true,
+                "loan-accounts": [],
+                "search-options": [],
+                "mwallet-account": "__msisdn"
+            },
+            "global-request-details": {},
+            "pin-trials-remaining": 3,
+            "transaction-pin-trials-remaining": 3,
+            "language": "english"
+        },
+        "response": {
+            "status": {
+                "field": "data.optIn",
+                "matches": [
+                    {
+                        "code": "00",
+                        "status": "registered"
+                    },
+                    {
+                        "code": "01",
+                        "status": "unregistered"
+                    },
+                    {
+                        "code": "02",
+                        "status": "not-activated"
+                    },
+                    {
+                        "code": "09",
+                        "status": "imsi-failed"
+                    }
+                ],
+                "error": {
+                    "message": "message"
+                }
+            },
+            "mappers": {
+                "registered": {
+                    "account-details": {
+                        "identification-id": "__id",
+                        "is-registered": "__isRegistered",
+                        "is-opted-in": "__isOptedIn",
+                        "is-imsi": "__imsiCheck",
+                        "is-blocked": "__isBlocked",
+                        "is-dormant": "__isDormant",
+                        "first-login": "__firstLogin",
+                        "firstname": "__firstname",
+                        "surname": "__lastname",
+                        "fullname": "__customername",
+                        "active": "__active",
+                        "pin": "__pin",
+                        "savings-accounts": "__accounts",
+                        "authTypePin": "USER_PIN",
+                        "mwallet-account": "__mwallet"
+                    },
+                    "email": "__emailaddress",
+                    "msisdn": "__phonenumber",
+                    "mwallet": "__walletmwallet",
+                    "imsi": "__imsi",
+                    "is-imsi": "__imsiCheck",
+                    "deviceChanged": "__deviceChanged",
+                    "otpExpired": "__otpExpired",
+                    "transaction-authenticated": false
+                },
+                "unregistered": {
+                    "account-details": {
+                        "is-registered": "__isRegistered",
+                        "is-opted-in": "__isOptedIn",
+                        "county": "__county",
+                        "is-blocked": false,
+                        "is-imsi": true,
+                        "first-login": false,
+                        "active": true,
+                        "firstname": "__firstname"
+                    },
+                    "msisdn": "__field2",
+                    "is-imsi": true
+                },
+                "imsi-failed": {
+                    "account-details": {
+                        "is-registered": true,
+                        "is-opted-in": "__isOptedIn",
+                        "is-blocked": false,
+                        "is-imsi": false,
+                        "first-login": false
+                    },
+                    "msisdn": "__field2",
+                    "is-imsi": false
+                },
+                "not-activated": {
+                    "account-details": {
+                        "is-registered": "__isRegistered",
+                        "is-opted-in": "__isOptedIn",
+                        "is-dormant": true,
+                        "is-dormant-msg": "__isDormantMsg",
+                        "is-imsi": "__imsiCheck",
+                        "first-login": false
+                    },
+                    "msisdn": "__field2",
+                    "is-imsi": "__imsiCheck"
+                },
+                "merge": [
+                    {
+                        "src": "account-details",
+                        "destination": "account-details"
+                    }
+                ]
+            },
+            "rules": [
+                {
+                    "name": "__id",
+                    "path": "data.ID_NO",
+                    "format-as": "universal-id",
+                    "default": ""
+                },
+                {
+                    "name": "__deviceChanged",
+                    "path": "deviceChanged",
+                    "default": "0"
+                },
+                {
+                    "name": "__otpExpired",
+                    "path": "otpExpired",
+                    "default": "0"
+                },
+                {
+                    "name": "__isRegistered",
+                    "path": "data.optIn",
+                    "matches": [
+                        {
+                            "code": "00",
+                            "status": true
+                        }
+                    ],
+                    "default": false
+                },
+                {
+                    "name": "__isOptedIn",
+                    "path": "data.optIn",
+                    "matches": [
+                        {
+                            "code": "00",
+                            "status": true
+                        },
+                        {
+                            "code": "01",
+                            "status": false
+                        }
+                    ],
+                    "default": false
+                },
+                {
+                    "name": "__imsiCheck",
+                    "path": "data.field39",
+                    "matches": [
+                        {
+                            "code": "02",
+                            "status": false
+                        }
+                    ],
+                    "default": true
+                },
+                {
+                    "name": "__isBlocked",
+                    "path": "isBlocked",
+                    "matches": [
+                        {
+                            "code": true,
+                            "status": true
+                        }
+                    ],
+                    "default": false
+                },
+                {
+                    "name": "__isDormantMsg",
+                    "path": "message",
+                    "default": "Your account is dormant"
+                },
+                {
+                    "name": "__isDormant",
+                    "path": "status",
+                    "matches": [
+                        {
+                            "code": "02",
+                            "status": true
+                        }
+                    ],
+                    "default": false
+                },
+                {
+                    "name": "__firstLogin",
+                    "path": "isExisting",
+                    "matches": [
+                        {
+                            "code": true,
+                            "status": true
+                        }
+                    ],
+                    "default": false
+                },
+                {
+                    "name": "__firstname",
+                    "path": "data.fullName",
+                    "format-as": "capitalize",
+                    "default": "user"
+                },
+                {
+                    "name": "__lastname",
+                    "path": "secondname",
+                    "format-as": "capitalize",
+                    "default": "customer"
+                },
+                {
+                    "name": "__customername",
+                    "path": "data.FIRST_NAME",
+                    "format-as": "capitalize",
+                    "default": ""
+                },
+                {
+                    "name": "__mwallet",
+                    "path": "data.MWALLET_ACCOUNT",
+                    "format-as": "walletAccount",
+                    "default": []
+                },
+                {
+                    "name": "__walletmwallet",
+                    "path": "data.MWALLET_ACCOUNT",
+                    "default": ""
+                },
+                {
+                    "name": "__lockSavingsAccount",
+                    "path": "data.LOCKSAVING_ACCOUNT",
+                    "default": ""
+                },
+                {
+                    "name": "__active",
+                    "path": "data.optIn",
+                    "matches": [
+                        {
+                            "code": "00",
+                            "status": true
+                        },
+                        {
+                            "code": "01",
+                            "status": true
+                        }
+                    ],
+                    "default": false
+                },
+                {
+                    "name": "__pin",
+                    "path": "data.PIN",
+                    "default": ""
+                },
+                {
+                    "name": "__emailaddress",
+                    "path": "data.EMAIL_ADDRESS",
+                    "default": ""
+                },
+                {
+                    "name": "__imsi",
+                    "path": "data.USSD_IMSI",
+                    "default": false
+                },
+                {
+                    "name": "__phonenumber",
+                    "path": "data.PHONE_NUMBER",
+                    "default": "__walletAccount"
+                },
+                {
+                    "name": "__field2",
+                    "path": "data.field2",
+                    "default": "__walletAccount"
+                },
+                {
+                    "name": "__accounts",
+                    "path": "data.LINKEDACCOUNTS",
+                    "format-as": "universal-coreAccount",
+                    "default": []
+                }
+            ],
+            "special": {
+                "account-details.all-accounts": "mwallet+account-details.savings-accounts"
+            }
+        }
+    }
+}

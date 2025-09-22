@@ -1,0 +1,192 @@
+{
+	"api-name": "ussd-api",
+	"api-environment": "development",
+	"api-user-profile-route": "profile",
+	"do-not-load-profile": false,
+	"app-name": "sidian-bank-loan-ussd",
+	"authenticate": true,
+	"authenticate-use-page": false,
+	"authenticate-transactions": false,
+	"internal-authentication": true,
+	"language": "english",
+	"blocked-account-check": "is-blocked",
+	"first-login-check": "first-login",
+	"page-switch-check": {
+		"name": "account-type",
+		"options": {
+			"client": {
+				"page": "client-page",
+				"enabled": true
+			}
+		},
+		"enabled": true
+	},
+	"pin-trials-max": 3,
+	"register": false,
+	"registration-check": "is-registered",
+	"imsi-check": "is-imsi",
+	"require-access-token": true,
+	"access-token-param": "access_token",
+	"ussd-response-format": "safaricom",
+	"meta-data": {
+		"app-contact-name": "Eclectics",
+		"app-client": "Eclectics Personal Loan Product",
+		"app-description": "Eclectics Personal Loan Product",
+		"app-contact-number": "+254  700 449050",
+		"app-email": "talktous@Eclectics.io",
+		"app-name": "sidian-bank-loan-ussd@0.0.2",
+		"app-shortcode": "*605*22#",
+		"app-terms-url": "https://Eclectics.io/our-team/",
+		"app-whatsapp": "+254  700 449050",
+		"app-twitter": "https://twitter.com/Eclectics",
+		"app-facebook": "https://www.facebook.com/Eclectics/",
+		"app-location": "Utumishi Co-op House,Mamlaka Road Nairobi, Kenya",
+		"app-currency-code": "Ksh",
+		"merchantName": "Juma Chukwa",
+		"creditAccName": "Raphel Wagoto"
+	},
+	"global-constants": {
+		"funds-transfer-minimum-KES": 100,
+		"funds-transfer-minimum-GBP": 1,
+		"funds-transfer-minimum-EUR": 1,
+		"funds-transfer-minimum-USD": 1,
+		"pesalink-limit": 100,
+		"lock-savings-minimum-amount": 100,
+		"school-fees-minimum-amount": 100,
+		"billpayment-amount-minimum": 100,
+		"minimum-billpayment-amount": 100,
+		"buy-airtime-minimum": 10,
+		"lock-savings-min-deposit-amount": 0,
+		"enter-amount-to-borrow": [
+			{
+				"label": "Enter new Amount",
+				"jump-to": "loan-limit-amount"
+			}
+		],
+		"language-options": [
+			{
+				"label": "english-label",
+				"value": "english"
+			},
+			{
+				"label": "swahili-label",
+				"value": "swahili"
+			}
+		],
+		"yes-no-options": [
+			{
+				"label": "yes-label",
+				"value": "1"
+			},
+			{
+				"label": "no-label",
+				"value": "2"
+			}
+		],
+		"confirm-options": [
+			{
+				"label": "confirm-label",
+				"value": "1"
+			},
+			{
+				"label": "cancel-label",
+				"value": "2"
+			}
+		],
+		"savings-accounts": [
+			{
+				"label": "000xxxxxxxx0045",
+				"value": "000375190000045"
+			},
+			{
+				"label": "0003xxxxxxx0048",
+				"value": "000374770000048"
+			},
+			{
+				"label": "0003xxxxxxx8328",
+				"value": "000320010038328"
+			}
+		],
+		"loans-accounts": [
+			{
+				"label": "LOAN0xxxxxxxx0045 (KES 31,427.20)",
+				"value": "LOAN0375190000045",
+				"meta": [
+					{
+					  "save-as": "balanceToRepay",
+					  "cache-path": "global-request-details",
+					  "value": "31427.20"
+					},
+					{
+					  "save-as": "repaymentAmount",
+					  "cache-path": "global-request-details",
+					  "value": "31427.20"
+					}
+				  ]
+			},
+			{
+				"label": "LOAN1xxxxxxx0048 (KES 10,200.75)",
+				"value": "LOAN174770000048",
+				"meta": [
+					{
+						"save-as": "balanceToRepay",
+						"cache-path": "global-request-details",
+						"value": "10200.75"
+					  },
+					  {
+						"save-as": "repaymentAmount",
+						"cache-path": "global-request-details",
+						"value": "10200.75"
+					  }
+				  ]
+			}
+		],
+		"pesalink-lookup-result": [],
+			"bank-options": [
+			  {
+				"label": "Kenya Commercial Bank (KCB)",
+				"value": "001"
+			  },
+			  {
+				"label": "Equity Bank",
+				"value": "068"
+			  },
+			  {
+				"label": "Co-operative Bank of Kenya",
+				"value": "011"
+			  },
+			  {
+				"label": "Absa Bank Kenya",
+				"value": "003"
+			  },
+			  {
+				"label": "Standard Chartered Bank Kenya",
+				"value": "02"
+			  },
+			  {
+				"label": "National Bank of Kenya",
+				"value": "007"
+			  },
+			  {
+				"label": "Diamond Trust Bank (DTB)",
+				"value": "063"
+			  },
+			  {
+				"label": "I&M Bank",
+				"value": "057"
+			  },
+			  {
+				"label": "Family Bank",
+				"value": "070"
+			  },
+			  {
+				"label": "NCBA Bank",
+				"value": "070"
+			  },
+			  {
+				"label": "Eclectics Bank",
+				"value": "066"
+			  }
+			]		  
+	}
+}

@@ -1,0 +1,9 @@
+{
+    "type": "select",
+    "name": "loan-limit-error",
+    "options": "yes-no-options",
+    "error": "loan-limit-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+}

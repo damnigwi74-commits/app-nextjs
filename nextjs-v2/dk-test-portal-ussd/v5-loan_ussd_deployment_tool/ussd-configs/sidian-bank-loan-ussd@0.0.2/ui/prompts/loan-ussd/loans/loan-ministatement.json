@@ -1,0 +1,11 @@
+[
+    {
+        "type"            : "select",
+        "name"            : "loan-ministatement-confirm",
+		"options"   : "yes-no-options",
+		"action"    : "navigate",
+		"on-accept" : "client-page",
+		"on-cancel" : "logout"    ,
+        "error"           : "loan-ministatement-confirm-error"
+	}
+]

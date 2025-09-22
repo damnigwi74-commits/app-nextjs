@@ -1,0 +1,12 @@
+[
+	{
+        "script": "./node_modules/moleculer/bin/moleculer-runner.js",
+		"args": "services",
+		"instances" : "1",
+		"watch": false,
+		"watch_options": {
+			"followSymlinks": false   
+		},
+		"name": "V7-USSD"
+	}
+]

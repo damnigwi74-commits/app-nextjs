@@ -1,0 +1,71 @@
+[
+    {
+        "type"           : "input",
+        "name"           : "electricity-prepaid-credit-account",
+        "save-as"        : "billPaymentCreditAccount",
+        "validation"     : [
+            {
+                "name"   : "isNumber",
+                "type"   : "joi"
+            }
+        ],
+        
+        "error"          : "electricity-prepaid-credit-account-error",
+        "previous"       : "bill-payment-page",
+        "next"           : "electricity-prepaid-debit-account"
+	},
+	{
+        "type"           : "select",
+        "name"           : "electricity-prepaid-debit-account",
+        "save-as"        : "billPaymentDebitAccount",
+		"options"        : "savings-accounts",		
+		"options-error"  : "electricity-prepaid-debit-account-options-error",
+        "error"          : "electricity-prepaid-debit-account-error",
+		"previous"       : "electricity-prepaid-credit-account",
+		"next"           : "electricity-prepaid-amount"
+    },
+    {
+        "type"           : "input",
+        "name"           : "electricity-prepaid-amount",
+        "save-as"        : "billPaymentAmount",
+        "validation"     : [
+            {
+                "name"   : "isAmount",
+				"type"   : "joi",
+				"arguments":"min=1"
+            }
+        ],
+        
+        "error"          : "electricity-prepaid-amount-error",
+        "previous"       : "electricity-prepaid-debit-account",
+        "next"           : "electricity-prepaid-confirm"
+    },    
+    {
+        "type"           : "select",
+        "name"           : "electricity-prepaid-confirm",
+		"options"        : "confirm-options",
+		"charges"         : false,
+        "error"          : "electricity-prepaid-confirm-error",
+        "action"           : "update-parameters",
+        "external-fetch" : {
+            "route"      : "kplc-pre-paid-bill-payment",
+            "success"    : "api-success",
+            "error"      : "api-success"
+        },
+        "on-cancel"      : "client-page",
+        "previous"       : "electricity-prepaid-amount"
+    },
+	
+
+
+	{
+		"type"      : "select",
+		"name"      : "electricity-prepaid-debit-account-options-error",
+		"options"   : "yes-no-options",
+		"error"     : "electricity-prepaid-debit-account-options-error-error",
+		"action"    : "navigate",
+		"on-accept" : "client-page",
+		"on-cancel" : "logout",
+		"previous"  : "electricity-prepaid-credit-account"
+	}
+]

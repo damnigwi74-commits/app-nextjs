@@ -1,0 +1,21 @@
+[
+    {
+      "type": "select",
+      "name": "mm-loan-repayment-provider",
+      "save-as": "repaymentMethod",
+      "options": [
+        {
+          "label": "MPESA",
+          "value": "Mpesa"
+        },
+        {
+          "label": "Airtel-Money",
+          "value": "Airtel-Money"
+        }
+      ],
+      "error": "mm-loan-repayment-provider-error",
+      "next": "mm-loan-repayment-amount-self",
+      "previous": "loan-repayment-accounts"
+    }
+  ]
+  

@@ -1,0 +1,9 @@
+{
+    "type"      : "select",
+    "name"      : "savings",
+    "options"   : "yes-no-options",
+    "error"     : "savings-error",
+    "action"    : "navigate",
+    "on-accept" : "client-page",
+    "on-cancel" : "logout"    
+}

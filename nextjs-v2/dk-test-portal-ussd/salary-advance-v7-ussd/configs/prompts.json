@@ -1,0 +1,2666 @@
+{
+    "star-times": [
+        {
+            "type": "input",
+            "name": "star-times-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "error": "star-times-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "star-times-amount"
+        },
+        {
+            "type": "input",
+            "name": "star-times-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "star-times-amount-error",
+            "previous": "star-times-credit-account",
+            "next": "star-times-confirm"
+        },
+        {
+            "type": "select",
+            "name": "star-times-confirm",
+            "options": "confirm-options",
+            "error": "star-times-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "accessKenyaPayment",
+                "success": "api-success",
+                "error": "api-error"
+            },
+            "on-cancel": "client-page",
+            "previous": "star-times-amount"
+        },
+        {
+            "type": "select",
+            "name": "star-times-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "star-times-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "star-times-credit-account"
+        }
+    ],
+    "wrong-login": {
+        "type": "input",
+        "name": "wrong-login",
+        "next": "client-page",
+        "save-as": "pin",
+        "save-to-account-details": "pin",
+        "validation": [
+            {
+                "name": "matchesLength",
+                "type": "joi",
+                "arguments": {
+                    "length": 4
+                }
+            },
+            {
+                "name": "isNumber",
+                "type": "joi"
+            },
+            {
+                "name": "is4DigitPin",
+                "type": "custom"
+            }
+        ],
+        "errors": [
+            "invalid-pin-error",
+            "wrong-login"
+        ],
+        "action": "update-parameters",
+        "external-fetch": {
+            "route": "login",
+            "success": "client-page",
+            "success-handler": {
+                "handler": "reset_pin_trials",
+                "argument": "pin-trials-remaining",
+                "save-as": "pin-trials-remaining"
+            },
+            "error": "wrong-login",
+            "error-handler": {
+                "handler": "decrement_pin_trials",
+                "argument": "pin-trials-remaining",
+                "save-as": "pin-trials-remaining",
+                "threshold": 0,
+                "redirect-on-threshold": "account-blocked",
+                "threshold-handler": "block-account"
+            },
+            "cache": true,
+            "cache-path": "account-details",
+            "cache-parameters": [
+                {
+                    "path": "access_token",
+                    "save-as": "access_token"
+                }
+            ]
+        },
+        "on-cancel": "logout"
+    },
+    "loan-repayment-success": {
+        "type": "select",
+        "name": "loan-repayment-success",
+        "options": "yes-no-options",
+        "error": "loan-repayment-success-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "first-login": [
+        {
+            "type": "input",
+            "name": "first-login",
+            "save-as": "oldPassword",
+            "next": "client-page",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                },
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {"length":4}
+                }
+            ],
+            "errors": [
+                "invalid-pin-error",
+                "invalid-pin-length-error",
+                "first-time-wrong-login"
+            ],
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "validate-first-time-login-pin",
+                "success": "first-login-new-pin",
+                "error": "first-time-wrong-login",
+                "success-handler": {
+                    "handler": "reset_pin_trials",
+                    "argument": "pin-trials-remaining",
+                    "save-as": "pin-trials-remaining"
+                },
+                "error-handler": {
+                    "handler": "decrement_pin_trials",
+                    "argument": "pin-trials-remaining",
+                    "save-as": "pin-trials-remaining"
+                },
+                "cache": true,
+                "cache-path": "account-details",
+                "cache-parameters": [
+                    {
+                        "path": "access_token",
+                        "save-as": "access_token"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "input",
+            "name": "first-login-new-pin",
+            "save-as": "newPin",
+            "validation": [
+                {
+                    "name": "isStrongPin",
+                    "type": "custom"
+                },
+                {
+                    "name": "isNotOldPin",
+                    "type": "custom"
+                }
+            ],
+            "error": "first-login-new-pin-error",
+            "next": "first-login-new-pin-reenter",
+            "previous": "first-login"
+        },
+        {
+            "type": "input",
+            "name": "first-login-new-pin-reenter",
+            "save-as": "newsPin",
+            "validation": [
+                {
+                    "name": "isEqualToLastEntry",
+                    "type": "custom",
+                    "arguments": {
+                        "path": "newPin"
+                    }
+                }
+            ],
+            "error": "first-login-new-pin-reenter-error",
+            "next": "first-login-confirm",
+            "previous": "first-login-new-pin"
+        },
+        {
+            "type": "select",
+            "name": "first-login-confirm",
+            "options": "confirm-options",
+            "error": "first-login-confirm-error",
+            "authenticate": false,
+            "action": "transact",
+            "external-fetch": {
+                "route": "first-pin-change",
+                "success": "pin-change-success",
+                "error": "pin-change-error"
+            },
+            "on-cancel": "logout",
+            "previous": "first-login-new-pin-reenter"
+        },
+        {
+            "type": "select",
+            "name": "terms-conditions",
+            "options": "yes-no-options",
+            "error": "terms-conditions-error",
+            "action": "navigate",
+            "on-accept": "first-login-system-pin",
+            "on-cancel": "logout"
+        }
+    ],
+    "imsi-check-failed": {
+        "type": "alert",
+        "name": "imsi-check-failed"
+    },
+    "registration-alert": {
+        "name": "registration-alert",
+        "type": "alert"
+    },
+    "login-pin-change": [
+        {
+            "type": "input",
+            "name": "login-pin-change-old-pin",
+            "save-as": "oldPin",
+            "format-as": "pin-hash",
+            "transform-function": "hash_pin",
+            "validation": [
+                {
+                    "name": "isCorrectPin",
+                    "type": "custom"
+                }
+            ],
+            "error": "login-pin-change-wrong-old-pin-error",
+            "previous": "login-page",
+            "next": "login-pin-change-new-pin"
+        },
+        {
+            "type": "input",
+            "name": "login-pin-change-new-pin",
+            "save-as": "newPin",
+            "transform-function": "hash_pin",
+            "validation": [
+                {
+                    "name": "isStrongPin",
+                    "type": "custom"
+                },
+                {
+                    "name": "isNotEqualToLastEntry",
+                    "type": "custom",
+                    "arguments": "path = oldPin"
+                }
+            ],
+            "errors": [
+                "login-pin-change-new-pin-error",
+                "login-pin-change-new-pin-not-last-entry-error"
+            ],
+            "previous": "login-pin-change-old-pin",
+            "next": "login-pin-change-new-pin-reenter"
+        },
+        {
+            "type": "input",
+            "name": "login-pin-change-new-pin-reenter",
+            "save-as": "newsPin",
+            "format-as": "pin-hash",
+            "validation": [
+                {
+                    "name": "isEqualToLastEntry",
+                    "type": "custom",
+                    "arguments": {
+                        "path": "newPin"
+                    }
+                }
+            ],
+            "error": "login-pin-change-new-pin-reenter-error",
+            "previous": "login-pin-change-new-pin",
+            "next": "login-pin-change-confirm"
+        },
+        {
+            "type": "select",
+            "name": "login-pin-change-confirm",
+            "options": "confirm-options",
+            "error": "login-pin-change-confirm-error",
+            "authenticate": false,
+            "action": "transact",
+            "external-fetch": {
+                "route": "pin-change",
+                "success": "pin-change-success",
+                "error": "pin-change-error"
+            },
+            "on-cancel": "login-page",
+            "previous": "login-pin-change-new-pin-reenter"
+        }
+    ],
+    "loan-application": [
+        {
+            "type": "skip",
+            "name": "fetch-loan-application-cycle",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "fetch-loan-limit",
+                "success": "loan-application-type-options",
+                "error": "api-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.cycleOpen",
+                        "save-as": "cycleOpen",
+                        "default": false
+                    },
+                    {
+                        "path": "data.limit",
+                        "save-as": "limit",
+                        "default": "0"
+                    },
+                    {
+                        "path": "data.limit",
+                        "save-as": "loan-amount-options",
+                        "format-as": "formatLoanLimitAccount"
+                    }
+                ],
+                "parameter-checks": {
+                    "cycleOpen": {
+                        "is-equal-to": false,
+                        "redirect-to": "loan-application-cycle-error"
+                    }
+                }
+            }
+        },
+        {
+            "type": "select",
+            "name": "loan-application-type-options",
+            "save-as": "borrowAmount",
+            "format-as": "formatLoanLimitMinimumAmount",
+            "options": "loan-amount-options",
+            "options-error": "loan-application-options-error",
+            "error": "loan-application-type-options-error",
+            "previous": "client-page",
+            "next": "loan-application-confirm",
+            "show-if": {
+                "param": "limit",
+                "is-not-equal-to": "fundsTransferCreditAccount",
+                "on-error": "ft-same-account-error"
+            }
+        },
+        {
+            "type": "input",
+            "name": "loan-application-amount",
+            "save-as": "borrowAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                    "arguments": {
+                        "min": "%@minimumLoanApplication"
+                    }
+                },
+                {
+                    "name": "isWithinLimit",
+                    "type": "custom",
+                    "arguments": {
+                        "min": "%@minimumLoanApplication",
+                        "max": "%@limit"
+                    }
+                }
+            ],
+            "error": "loan-application-amount-error",
+            "previous": "loan-application-type-options",
+            "next": "loan-application-confirm"
+        },
+        {
+            "type": "select",
+            "name": "loan-application-confirm",
+            "options": "confirm-options",
+            "error": "loan-application-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "loan-application",
+                "success": "api-success",
+                "error": "api-error"
+            },
+            "on-cancel": "client-page",
+            "previous": "loan-application-type-options"
+        },
+        {
+            "type": "select",
+            "name": "loan-application-error",
+            "options": "yes-no-options",
+            "error": "loan-application-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "loan-application-limit-zero-error",
+            "options": "yes-no-options",
+            "error": "loan-application-limit-zero-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "loan-application-options-error",
+            "options": "yes-no-options",
+            "error": "loan-application-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "loan-application-cycle-error",
+            "options": "yes-no-options",
+            "error": "loan-application-cycle-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "tell-a-friend": [
+        {
+            "type": "input",
+            "name": "tell-a-friend-number",
+            "save-as": "friendPhoneNumber",
+            "format-as": "international-mobile-number",
+            "validation": [
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                   "arguments": {
+                        "length": 10
+                    }
+                },
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "errors": [
+                "tell-a-friend-number-error",
+                "tell-a-friend-number-error"
+            ],
+            "previous": "settings-page",
+            "next": "tell-a-friend-confirm"
+        },
+        {
+            "type": "select",
+            "name": "tell-a-friend-confirm",
+            "options": "confirm-options",
+            "error": "tell-a-friend-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "tell-a-friend",
+                "success": "api-success",
+                "error": "api-error"
+            },
+            "on-cancel": "client-page",
+            "previous": "tell-a-friend-number"
+        }
+    ],
+    "electricity-postpaid": [
+        {
+            "type": "input",
+            "name": "electricity-postpaid-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "format-as": "",
+            "error": "electricity-postpaid-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "electricity-postpaid-amount"
+        },
+        {
+            "type": "input",
+            "name": "electricity-postpaid-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "format-as": "",
+            "error": "electricity-postpaid-amount-error",
+            "previous": "electricity-postpaid-credit-account",
+            "next": "electricity-postpaid-confirm"
+        },
+        {
+            "type": "select",
+            "name": "electricity-postpaid-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "electricity-postpaid-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "kplc-post-paid-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "electricity-postpaid-amount"
+        },
+        {
+            "type": "select",
+            "name": "electricity-postpaid-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "electricity-postpaid-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "electricity-postpaid-credit-account"
+        },
+        {
+            "type": "select",
+            "name": "electricity-postpaid-presentment-error",
+            "options": "yes-no-options",
+            "error": "electricity-postpaid-presentment-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "electricity-postpaid-presentment-amount-error",
+            "options": "yes-no-options",
+            "error": "electricity-postpaid-presentment-amount-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "electricity-postpaid-presentment-amount-error",
+            "options": "yes-no-options",
+            "error": "electricity-postpaid-presentment-amount-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "no-options-found-error": {
+        "type": "select",
+        "name": "no-options-found-error",
+        "options": "yes-no-options",
+        "error": "no-options-found-error-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "loan-limit-error": {
+        "type": "select",
+        "name": "loan-limit-error",
+        "options": "yes-no-options",
+        "error": "loan-limit-error-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "maintenance": {
+        "type": "alert",
+        "name": "maintenance"
+    },
+    "zuku-tv": [
+        {
+            "type": "select",
+            "name": "zuku-tv-debit-account",
+            "save-as": "billPaymentDebitAccount",
+            "options": "savings-accounts",
+            "options-error": "zuku-tv-debit-account-options-error",
+            "error": "zuku-tv-debit-account-error",
+            "previous": "bill-payment-page",
+            "next": "zuku-tv-credit-account"
+        },
+        {
+            "type": "input",
+            "name": "zuku-tv-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "error": "zuku-tv-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "zuku-tv-amount"
+        },
+        {
+            "type": "input",
+            "name": "zuku-tv-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 10
+                    }
+                }
+            ],
+            "error": "zuku-tv-amount-error",
+            "previous": "zuku-tv-credit-account",
+            "next": "zuku-tv-confirm"
+        },
+        {
+            "type": "select",
+            "name": "zuku-tv-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "zuku-tv-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "zuku-tv-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "zuku-tv-amount"
+        },
+        {
+            "type": "select",
+            "name": "zuku-tv-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "zuku-tv-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "zuku-tv-credit-account"
+        },
+        {
+            "type": "select",
+            "name": "zuku-tv-presentment-error",
+            "options": "yes-no-options",
+            "error": "zuku-tv-presentment-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "disabled": {
+        "type": "alert",
+        "name": "disabled"
+    },
+    "registration": [
+        {
+            "name": "not-registered",
+            "type": "alert"
+        },
+        {
+            "type": "input",
+            "name": "registration-surname",
+            "save-as": "surname",
+            "validation": [
+                {
+                    "name": "isText",
+                    "type": "custom"
+                }
+            ],
+            "format-as": "capitalize",
+            "error": "registration-surname-error",
+            "previous": "registration-page",
+            "next": "registration-firstname"
+        },
+        {
+            "type": "input",
+            "name": "registration-firstname",
+            "save-as": "firstname",
+            "format-as": "capitalize",
+            "validation": [
+                {
+                    "name": "isText",
+                    "type": "custom"
+                }
+            ],
+            "error": "registration-firstname-error",
+            "previous": "registration-surname",
+            "next": "registration-othername"
+        },
+        {
+            "type": "input",
+            "name": "registration-othername",
+            "save-as": "othername",
+            "validation": [
+                {
+                    "name": "isText",
+                    "type": "custom"
+                }
+            ],
+            "format-as": "capitalize",
+            "error": "registration-othername-error",
+            "previous": "registration-firstname",
+            "next": "registration-id"
+        },
+        {
+            "type": "input",
+            "name": "registration-id",
+            "save-as": "id",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "error": "registration-id-error",
+            "previous": "registration-othername",
+            "next": "registration-email"
+        },
+        {
+            "type": "select",
+            "name": "registration-has-core-account",
+            "save-as": "hasCoreAccount",
+            "options": [
+                {
+                    "label": "Yes",
+                    "value": 1,
+                    "jump-to": "registration-core-account"
+                },
+                {
+                    "label": "No",
+                    "value": 0,
+                    "jump-to": "registration-email"
+                }
+            ],
+            "error": "registration-has-core-account-error",
+            "previous": "registration-id"
+        },
+        {
+            "type": "input",
+            "name": "registration-core-account",
+            "save-as": "coreAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                },
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {
+                        "length": 13
+                    }
+                }
+            ],
+            "errors": [
+                "registration-core-account-error",
+                "registration-core-account-error"
+            ],
+            "previous": "registration-has-core-account",
+            "next": "registration-email"
+        },
+        {
+            "type": "input",
+            "name": "registration-email",
+            "save-as": "email",
+            "validation": [
+                {
+                    "name": "isEmail",
+                    "type": "custom"
+                }
+            ],
+            "error": "registration-email-error",
+            "previous": "registration-has-core-account",
+            "next": "registration-confirm"
+        },
+        {
+            "type": "select",
+            "name": "registration-confirm",
+            "options": "confirm-options",
+            "error": "registration-confirm-error",
+            "authenticate": false,
+            "action": "transact",
+            "external-fetch": {
+                "route": "registration",
+                "success": "registration-success",
+                "error": "registration-error"
+            },
+            "on-cancel": "registration-cancel",
+            "previous": "registration-email"
+        }
+    ],
+    "pin-change": [
+        {
+            "type": "input",
+            "name": "pin-change-old-pin",
+            "validation": [
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {"length":4}
+                }
+            ],
+            "save-as": "oldPassword",
+            "error": "pin-change-wrong-old-pin-error",
+            "previous": "settings-page",
+            "next": "pin-change-new-pin"
+        },
+        {
+            "type": "input",
+            "name": "pin-change-new-pin",
+            "save-as": "newPin",
+            "validation": [
+                {
+                    "name": "isStrongPin",
+                    "type": "custom"
+                },
+                {
+                    "name": "isNotOldPin",
+                    "type": "custom"
+                }
+            ],
+            "errors": [
+                "pin-change-new-pin-error",
+                "pin-change-new-pin-not-last-entry-error"
+            ],
+            "previous": "pin-change-old-pin",
+            "next": "pin-change-new-pin-reenter"
+        },
+        {
+            "type": "input",
+            "name": "pin-change-new-pin-reenter",
+            "save-as": "newsPin",
+            "validation": [
+                {
+                    "name": "isEqualToLastEntry",
+                    "type": "custom",
+                    "arguments": {
+                        "path": "newPin"
+                    }
+                }
+            ],
+            "error": "pin-change-new-pin-reenter-error",
+            "previous": "pin-change-new-pin",
+            "next": "pin-change-confirm"
+        },
+        {
+            "type": "select",
+            "name": "pin-change-confirm",
+            "options": "confirm-options",
+            "error": "pin-change-confirm-error",
+            "authenticate": false,
+            "action": "transact",
+            "external-fetch": {
+                "route": "pin-change",
+                "success": "pin-change-success",
+                "error": "api-error"
+            },
+            "on-cancel": "settings-page",
+            "previous": "pin-change-new-pin-reenter"
+        }
+    ],
+    "pin-change-success": {
+        "type": "alert",
+        "name": "pin-change-success"
+    },
+    "loan-limit": [
+        {
+            "type": "skip",
+            "name": "fetch-employee-info-loan-limit",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "fetch-loan-limit",
+                "success": "loan-limit-sucess",
+                "error": "loan-limit-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.limit",
+                        "save-as": "limit",
+                        "default": "0"
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "previous": "loans-page"
+        },
+        {
+            "type": "select",
+            "name": "loan-limit-sucess",
+            "save-as": "loanProvider",
+            "save-as-label": "loan-limit-sucess",
+            "options": [
+                {
+                    "label": "yes-label",
+                    "value": "1",
+                    "jump-to": "client-page"
+                },
+                {
+                    "label": "no-label",
+                    "value": "2",
+                    "jump-to": "logout"
+                }
+            ],
+            "next": "client-page",
+            "error": "loan-limit-sucess-error"
+        },
+        {
+            "type": "input",
+            "name": "loan-limit-amount",
+            "save-as": "borrowAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "loan-limit-amount-error",
+            "previous": "loan-limit-sucess",
+            "next": "loan-limit-apply-confirm"
+        },
+        {
+            "type": "select",
+            "name": "loan-limit-apply-confirm",
+            "options": "confirm-options",
+            "error": "loan-limit-apply-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "loan-application",
+                "success": "api-success",
+                "error": "api-error"
+            },
+            "on-cancel": "client-page",
+            "previous": "loans-amount"
+        },
+        {
+            "type": "select",
+            "name": "loan-limit-confirm",
+            "options": "confirm-options",
+            "previous": "client-page",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "fetch-loan-limit",
+                "success": "loan-limit-sucess",
+                "error": "loan-limit-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.limit",
+                        "save-as": "limit",
+                        "default": "0"
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "error": "loan-limit-confirm-error"
+        }
+    ],
+    "account-blocked": [
+        {
+            "type": "alert",
+            "name": "account-blocked"
+        },
+        {
+            "type": "select",
+            "name": "account-blocked-reset-pin",
+            "options": [
+                {
+                    "label": "Reset Account PIN",
+                    "value": "PIN"
+                }
+            ],
+            "error": "account-blocked-reset-pin-error",
+            "next": "account-blocked-pin"
+        },
+        {
+            "type": "input",
+            "name": "account-blocked-pin",
+            "save-as": "newid",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                },
+                {
+                    "name": "isValidId",
+                    "type": "custom"
+                }
+            ],
+            "format-as": "",
+            "error": "account-blocked-pin-error",
+            "next": "reset-change-new-pin"
+        },
+        {
+            "type": "input",
+            "name": "reset-change-new-pin",
+            "save-as": "newPin",
+            "validation": [
+                {
+                    "name": "isStrongPin",
+                    "type": "custom"
+                },
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "errors": [
+                "pin-change-new-pin-error",
+                "pin-change-new-pin-not-last-entry-error"
+            ],
+            "previous": "account-blocked-pin",
+            "next": "reset-change-new-pin-reenter"
+        },
+        {
+            "type": "input",
+            "name": "reset-change-new-pin-reenter",
+            "save-as": "newsPin",
+            "validation": [
+                {
+                    "name": "isEqualToLastEntry",
+                    "type": "custom",
+                    "arguments": {
+                        "path": "newPin"
+                    }
+                }
+            ],
+            "error": "reset-change-new-pin-reenter-error",
+            "previous": "reset-change-new-pin",
+            "next": "account-blocked-confirm"
+        },
+        {
+            "type": "select",
+            "name": "account-blocked-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "account-blocked-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "pin-change",
+                "success": "pin-change-success",
+                "error": "pin-change-error"
+            },
+            "on-cancel": "client-page",
+            "previous": "buy-airtime-amount"
+        }
+    ],
+    "to-mobile-money": [
+        {
+            "type": "select",
+            "name": "to-mobile-money-provider",
+            "save-as": "telcoProvider",
+            "options": [
+                {
+                    "label": "MPESA",
+                    "value": "Mpesa"
+                },
+                {
+                    "label": "Airtel-Money",
+                    "value": "Airtel-Money"
+                }
+            ],
+            "error": "to-mobile-money-provider-error",
+            "next": "to-mobile-money-account-type",
+            "previous": "loan-cash-out-provider"
+        },
+        {
+            "type": "select",
+            "name": "to-mobile-money-account-type",
+            "save-as": "mobileMoneyAccount",
+            "options": [
+                {
+                    "label": "My Phone",
+                    "value": "__walletAccount",
+                    "jump-to": "to-mobile-money-amount-self"
+                },
+                {
+                    "label": "Other Phone",
+                    "jump-to": "to-mobile-money-credit-account"
+                }
+            ],
+            "error": "to-mobile-money-account-type-error",
+            "previous": "client-page"
+        },
+        {
+            "type": "input",
+            "name": "to-mobile-money-credit-account",
+            "save-as": "mobileMoneyAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                },
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {
+                        "length": 10
+                    }
+                }
+            ],
+            "format-as": "mobile-number",
+            "error": "to-mobile-money-credit-account-error",
+            "previous": "to-mobile-money-account-type",
+            "next": "to-mobile-money-amount"
+        },
+        {
+            "type": "input",
+            "name": "to-mobile-money-amount",
+            "save-as": "loanAmount",
+            "validation": [
+                {
+                    "name": "isWithinLoanLimit",
+                    "type": "custom",
+                    "arguments": "min=%@minimumWithdrawLimit, max=%@balanceForWallet"
+                }
+            ],
+            "error": "to-mobile-money-amount-error",
+            "previous": "to-mobile-money-account-type",
+            "next": "to-mobile-money-confirm"
+        },
+        {
+            "type": "input",
+            "name": "to-mobile-money-amount-self",
+            "save-as": "loanAmount",
+            "validation": [
+                {
+                    "name": "isWithinLoanLimit",
+                    "type": "custom",
+                    "arguments": "min=%@minimumWithdrawLimit, max=%@balanceForWallet"
+                }
+            ],
+            "error": "to-mobile-money-amount-self-error",
+            "previous": "to-mobile-money-account-type",
+            "next": "to-mobile-money-confirm-self"
+        },
+        {
+            "type": "select",
+            "name": "to-mobile-money-confirm",
+            "options": "confirm-options",
+            "error": "to-mobile-money-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "to-mobile-money-loan-cash-out",
+                "success": "to-mobile-money-api-success",
+                "error": "api-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "message",
+                        "save-as": "cashOutSuccess"
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "previous": "to-mobile-money-amount"
+        },
+        {
+            "type": "select",
+            "name": "to-mobile-money-confirm-self",
+            "options": "confirm-options",
+            "error": "to-mobile-money-confirm-self-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "to-mobile-money-loan-cash-out-self",
+                "success": "to-mobile-money-api-success",
+                "error": "api-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "message",
+                        "save-as": "cashOutSuccess"
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "previous": "to-mobile-money-amount-self"
+        },
+        {
+            "type": "select",
+            "name": "to-mobile-money-api-success",
+            "options": "yes-no-options",
+            "error": "-to-mobile-money-api-success-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "merchant-payment": [
+        {
+            "type": "input",
+            "name": "merchant-payment-code",
+            "save-as": "merchantCode",
+            "validation": [
+                {
+                    "name": "isAlphaNumeric",
+                    "type": "custom"
+                }
+            ],
+            "error": "merchant-payment-code-error",
+            "previous": "client-page",
+            "next": "merchant-payment-amount",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "merchant-payment-lookup",
+                "success": "merchant-payment-amount",
+                "error": "merchant-payment-amount",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.transaction_details",
+                        "save-as": "lookupMerchant"
+                    },
+                    {
+                        "path": "data.transaction_details.debit_account",
+                        "save-as": "merchantAccount",
+                        "format-as": "walletAccount"
+                    },
+                    {
+                        "path": "data.transaction_details.branch_name",
+                        "save-as": "merchantName",
+                        "format-as": ""
+                    }
+                ]
+            }
+        },
+        {
+            "type": "select",
+            "name": "merchant-payment-accounts",
+            "save-as": "merchantPayDebitAcc",
+            "options": [
+                {
+                    "label": "My Accounts",
+                    "jump-to": "merchant-payment-debit-account"
+                },
+                {
+                    "label": "From MPESA",
+                    "value": "__walletAccount",
+                    "jump-to": "mpesa-merchant-amount"
+                }
+            ],
+            "error": "merchant-payment-accounts-error",
+            "next": "merchant-payment-debit-account",
+            "previous": "merchant-payment-code"
+        },
+        {
+            "type": "select",
+            "name": "merchant-payment-debit-account",
+            "save-as": "merchantPayDebitAcc",
+            "options": "customer-accounts",
+            "options-error": "merchant-payment-account-error",
+            "error": "merchant-payment-debit-account-error",
+            "previous": "merchant-payment-accounts",
+            "next": "merchant-payment-amount"
+        },
+        {
+            "type": "input",
+            "name": "merchant-payment-amount",
+            "save-as": "merchantAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "merchant-payment-amount-error",
+            "previous": "merchant-payment-accounts",
+            "next": "merchant-payment-confirm"
+        },
+        {
+            "type": "select",
+            "name": "merchant-payment-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "merchant-payment-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "merchant-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "merchant-payment-amount"
+        },
+        {
+            "type": "input",
+            "name": "mpesa-merchant-amount",
+            "save-as": "merchantAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "mpesa-merchant-amount-error",
+            "previous": "merchant-payment-accounts",
+            "next": "mpesa-merchant-confirm"
+        },
+        {
+            "type": "select",
+            "name": "mpesa-merchant-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "mpesa-merchant-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "mpesa-merchant-payment",
+                "success": "mpesa-merchant-payment-success",
+                "error": "mpesa-merchant-payment-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "mpesa-repayment-amount"
+        },
+        {
+            "type": "alert",
+            "name": "mpesa-merchant-payment-success"
+        },
+        {
+            "type": "select",
+            "name": "loan-repayment-success",
+            "options": "yes-no-options",
+            "error": "loan-repayment-success-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "loans-page"
+        },
+        {
+            "type": "select",
+            "name": "merchant-payment-account-error",
+            "options": "yes-no-options",
+            "error": "merchant-payment-account-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "merchant-payment-presentment-account-error",
+            "options": "yes-no-options",
+            "error": "merchant-payment-presentment-account-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "wallet-balance": [
+        {
+            "type": "skip",
+            "name": "fetch-wallet-balance",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "wallet-balance",
+                "success": "wallet-balance-sucess",
+                "error": "wallet-balance-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.availableBal",
+                        "save-as": "walletBalance",
+                        "format-as": "balance-timestamp",
+                        "default": ""
+                    },
+                    {
+                        "path": "data.accountNumber",
+                        "save-as": "accountNumber",
+                        "format-as": "balance-timestamp",
+                        "default": ""
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "previous": "loans-page"
+        },
+        {
+            "type": "select",
+            "name": "wallet-balance-sucess",
+            "options": "yes-no-options",
+            "error": "wallet-balance-sucess-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "pin-change-error": {
+        "type": "alert",
+        "name": "pin-change-error"
+    },
+    "to-bank-account": [
+        {
+            "type": "select",
+            "name": "to-bank-account-account-type",
+            "save-as": "bankAccount",
+            "options": [
+                {
+                    "label": "To my account",
+                    "value": "__walletAccount",
+                    "jump-to": "to-bank-account-amount"
+                },
+                {
+                    "label": "To other accounts",
+                    "jump-to": "to-bank-account-credit-account"
+                }
+            ],
+            "error": "to-bank-account-account-type-error",
+            "previous": "loan-cash-out-provider"
+        },
+        {
+            "type": "input",
+            "name": "to-bank-account-credit-account",
+            "save-as": "bankAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "error": "to-bank-account-credit-account-error",
+            "previous": "to-bank-account-account-type",
+            "next": "to-bank-account-amount"
+        },
+        {
+            "type": "input",
+            "name": "to-bank-account-amount",
+            "save-as": "loanAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                    "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "to-bank-account-amount-error",
+            "previous": "to-bank-account-account-type",
+            "next": "to-bank-account-confirm"
+        },
+        {
+            "type": "select",
+            "name": "to-bank-account-confirm",
+            "options": "confirm-options",
+            "error": "to-bank-account-confirm-error",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "loan-cash-out-to-bank",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "to-bank-account-amount"
+        }
+    ],
+    "transaction-login": {
+        "type": "input",
+        "name": "transaction-login",
+        "next": "client-page",
+        "validation": [
+            {
+                "name": "isCorrectPin",
+                "type": "custom"
+            }
+        ],
+        "error": "transaction-login",
+        "transform-function": "hash_pin",
+        "transaction-auth": {
+            "success": "client-page",
+            "success-handler": {
+                "handler": "reset_pin_trials",
+                "argument": "transaction-pin-trials-remaining",
+                "save-as": "transaction-pin-trials-remaining"
+            },
+            "error": "transaction-login",
+            "error-handler": {
+                "handler": "decrement_pin_trials",
+                "argument": "transaction-pin-trials-remaining",
+                "save-as": "transaction-pin-trials-remaining",
+                "threshold": 0,
+                "redirect-on-threshold": "account-blocked",
+                "threshold-handler": "block-account"
+            },
+            "cache": true
+        },
+        "on-cancel": "logout",
+        "previous": "login-page"
+    },
+    "language-change": [
+        {
+            "type": "select",
+            "name": "language-change",
+            "save-as": "selected_language",
+            "options": "language-options",
+            "error": "language-change-error",
+            "previous": "settings-page",
+            "next": "language-confirm"
+        },
+        {
+            "type": "select",
+            "name": "language-confirm",
+            "options": "confirm-options",
+            "error": "language-confirm-error",
+            "action": "update-local",
+            "local-path": "language=selected_language",
+            "next": "client-page",
+            "previous": "language-change"
+        }
+    ],
+    "ministatement": [
+        {
+            "type": "select",
+            "name": "ministatement-account",
+            "save-as": "ministatementDebitAccount",
+            "options": "savings-accounts",
+            "options-error": "ministatement-account-savings-options-error",
+            "error": "ministatement-account-savings-error",
+            "previous": "my-account-page",
+            "next": "ministatement-confirm"
+        },
+        {
+            "type": "select",
+            "name": "ministatement-confirm",
+            "options": "confirm-options",
+            "charges": true,
+            "previous": "ministatement-account",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "ministatement",
+                "success": "api-success",
+                "error": "api-error"
+            },
+            "on-cancel": "client-page",
+            "error": "ministatement-confirm-error"
+        },
+        {
+            "type": "select",
+            "name": "ministatement-account-savings-options-error",
+            "options": "yes-no-options",
+            "error": "ministatement-account-savings-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "ministatement-account"
+        }
+    ],
+    "ministatement-success": {
+        "type": "select",
+        "name": "ministatement-success",
+        "options": "yes-no-options",
+        "error": "ministatement-success-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "wallet-balance-is-zero-error": {
+        "type": "select",
+        "name": "wallet-balance-is-zero-error",
+        "options": "yes-no-options",
+        "error": "wallet-balance-is-zero-error-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "dstv": [
+        {
+            "type": "input",
+            "name": "dstv-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "format-as": "",
+            "error": "dstv-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "dstv-amount"
+        },
+        {
+            "type": "input",
+            "name": "dstv-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "format-as": "",
+            "error": "dstv-amount-error",
+            "previous": "dstv-debit-account",
+            "next": "dstv-confirm"
+        },
+        {
+            "type": "select",
+            "name": "dstv-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "dstv-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "dstv-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "dstv-credit-account"
+        },
+        {
+            "type": "select",
+            "name": "dstv-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "dstv-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "dstv-credit-account"
+        },
+        {
+            "type": "select",
+            "name": "dstv-presentment-error",
+            "options": "yes-no-options",
+            "error": "dstv-presentment-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "dstv-presentment-amount-error",
+            "options": "yes-no-options",
+            "error": "dstv-presentment-amount-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "api-error": {
+        "type": "select",
+        "name": "api-error",
+        "options": "yes-no-options",
+        "error": "api-error-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "otp-expired": {
+        "type": "alert",
+        "name": "otp-expired"
+    },
+    "contact-us": {
+        "type": "select",
+        "name": "contact-us",
+        "options": "yes-no-options",
+        "error": "contact-us-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "loan-repayment": [
+        {
+            "type": "skip",
+            "name": "fetch-loan-application-cycle",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "loan-balance",
+                "success": "loan-repayment-amount",
+                "error": "loan-limit-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.loan",
+                        "save-as": "balanceToRepay",
+                        "format-as": "balance-timestamp",
+                        "default": ""
+                    }
+                ],
+                "parameter-checks": {
+                    "balanceToRepay": {
+                        "is-equal-to": 0,
+                        "redirect-to": "loan-application-cycle-error"
+                    }
+                }
+            }
+        },
+        {
+            "type": "select",
+            "name": "loan-repayment-payment-method",
+            "save-as": "loanProvider",
+            "save-as-label": "loanProvider",
+            "options": [
+                {
+                    "label": "MPESA",
+                    "value": "MPESA"
+                }
+            ],
+            "next": "loan-repayment-amount",
+            "error": "loan-repayment-payment-method-error",
+            "previous": "client-page"
+        },
+        {
+            "type": "input",
+            "name": "loan-repayment-amount",
+            "save-as": "repaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                    "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "loan-repayment-amount-error",
+            "previous": "client-page",
+            "next": "loan-repayment-confirm"
+        },
+        {
+            "type": "select",
+            "name": "loan-repayment-confirm",
+            "options": "confirm-options",
+            "error": "loan-repayment-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "loan-repayment",
+                "success": "mpesa-loan-repayment-success",
+                "error": "api-error"
+            },
+            "on-cancel": "client-page",
+            "previous": "loan-repayment-amount"
+        },
+        {
+            "type": "select",
+            "name": "loan-repayment-account-options-error",
+            "options": "yes-no-options",
+            "error": "loan-repayment-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "terms": {
+        "type": "select",
+        "name": "terms",
+        "options": "yes-no-options",
+        "error": "terms-error",
+        "action": "navigate",
+        "on-accept": "registration-page",
+        "on-cancel": "registration-cancel"
+    },
+    "registration-success": {
+        "type": "alert",
+        "name": "registration-success"
+    },
+    "technical-error": {
+        "type": "alert",
+        "name": "technical-error"
+    },
+    "savings": {
+        "type": "select",
+        "name": "savings",
+        "options": "yes-no-options",
+        "error": "savings-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "mpesa-loan-repayment-success": {
+        "type": "alert",
+        "name": "mpesa-loan-repayment-success"
+    },
+    "loan-cash-out": [
+        {
+            "type": "skip",
+            "name": "fetch-wallet-balance",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "wallet-balance",
+                "success": "loan-cash-out-provider",
+                "error": "wallet-balance-is-zero-error",
+                "cache": true,
+                "cache-path": "account-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.availableBal",
+                        "save-as": "balanceForWallet",
+                        "format-as": "balance-timestamp",
+                        "default": ""
+                    }
+                ],
+                "parameter-checks": {
+                    "balanceForWallet": {
+                        "is-equal-to": 0,
+                        "redirect-to": "wallet-balance-is-zero-error"
+                    }
+                }
+            },
+            "on-cancel": "client-page"
+        },
+        {
+            "type": "select",
+            "name": "loan-cash-out-provider",
+            "save-as": "loanProvider",
+            "save-as-label": "loanProvider",
+            "options": [
+                {
+                    "label": "To Mobile Money",
+                    "value": "To Mobile Money",
+                    "jump-to": "to-mobile-money-provider"
+                },
+                {
+                    "label": "To Bank account",
+                    "value": "To Bank account",
+                    "jump-to": "to-bank-account-account-type"
+                }
+            ],
+            "error": "loan-cash-out-provider-error",
+            "previous": "client-page"
+        }
+    ],
+    "email-change": [
+        {
+            "type": "input",
+            "name": "email-change-current-email",
+            "validation": [
+                {
+                    "name": "isValidEmail",
+                    "type": "custom"
+                },
+                {
+                    "name": "isCurrentEmail",
+                    "type": "custom"
+                }
+            ],
+            "errors": [
+                "email-change-invalid-email-error",
+                "email-change-wrong-email-error"
+            ],
+            "previous": "settings-page"
+        },
+        {
+            "type": "input",
+            "name": "email-change-new-email",
+            "save-as": "new-email",
+            "validation": [
+                {
+                    "name": "isValidEmail",
+                    "type": "custom"
+                }
+            ],
+            "error": "email-change-invalid-new-email-error"
+        },
+        {
+            "type": "select",
+            "name": "email-change-confirm",
+            "options": "confirm-options",
+            "error": "email-change-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "api": "mock",
+                "route": "email-change",
+                "success": "email-change-success",
+                "error": "email-change-error"
+            },
+            "on-cancel": "settings-page"
+        }
+    ],
+    "loan-balance": [
+        {
+            "type": "skip",
+            "name": "loan-balance",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "loan-balance",
+                "success": "loan-balance-sucess",
+                "error": "loan-balance-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.loan",
+                        "save-as": "loanBalance",
+                        "format-as": "balance-timestamp",
+                        "default": ""
+                    },
+                    {
+                        "path": "data.loan",
+                        "save-as": "loanAmount",
+                        "format-as": "balance-timestamp",
+                        "default": "0"
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "previous": "loans-page"
+        },
+        {
+            "type": "select",
+            "name": "loan-balance-sucess",
+            "options": "yes-no-options",
+            "error": "loan-balance-sucess-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "loan-balance-error",
+            "options": "yes-no-options",
+            "error": "loan-balance-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "gotv": [
+        {
+            "type": "input",
+            "name": "gotv-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "error": "gotv-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "gotv-amount"
+        },
+        {
+            "type": "input",
+            "name": "gotv-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "format-as": "",
+            "error": "gotv-amount-error",
+            "previous": "gotv-debit-account",
+            "next": "gotv-confirm"
+        },
+        {
+            "type": "select",
+            "name": "gotv-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "gotv-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "gotv-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "gotv-credit-account"
+        },
+        {
+            "type": "select",
+            "name": "gotv-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "gotv-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "gotv-credit-account"
+        },
+        {
+            "type": "select",
+            "name": "gotv-presentment-error",
+            "options": "yes-no-options",
+            "error": "gotv-presentment-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        },
+        {
+            "type": "select",
+            "name": "gotv-presentment-amount-error",
+            "options": "yes-no-options",
+            "error": "gotv-presentment-amount-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "registration-cancel": {
+        "type": "alert",
+        "name": "registration-cancel"
+    },
+    "first-login-failed-error": {
+        "type": "alert",
+        "name": "first-login-failed-error"
+    },
+    "logout": {
+        "name": "logout",
+        "type": "alert"
+    },
+    "buy-airtime": [
+        {
+            "type": "select",
+            "name": "buy-airtime-provider",
+            "save-as": "airtimeProvider",
+            "options": [
+                {
+                    "label": "Safaricom",
+                    "value": "SAFARICOM"
+                },
+                {
+                    "label": "Airtel",
+                    "value": "AIRTEL"
+                },
+                {
+                    "label": "Telkom",
+                    "value": "TELKOM"
+                }
+            ],
+            "error": "buy-airtime-provider-error",
+            "next": "buy-airtime-account-type",
+            "previous": "client-page"
+        },
+        {
+            "type": "select",
+            "name": "buy-airtime-account-type",
+            "save-as": "airtimeCreditAccount",
+            "options": [
+                {
+                    "label": "My Phone",
+                    "value": "__walletAccount",
+                    "jump-to": "buy-airtime-debit-account"
+                },
+                {
+                    "label": "Other Phone",
+                    "jump-to": "buy-airtime-credit-account"
+                }
+            ],
+            "error": "buy-airtime-account-type-error",
+            "previous": "buy-airtime-provider"
+        },
+        {
+            "type": "input",
+            "name": "buy-airtime-credit-account",
+            "save-as": "airtimeCreditAccount",
+            "format-as": "international-mobile-number",
+            "validation": [
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {
+                        "length": 10
+                    }
+                },
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "errors": [
+                "buy-airtime-credit-account-error",
+                "buy-airtime-credit-account-error"
+            ],
+            "previous": "buy-airtime-account-type",
+            "next": "buy-airtime-debit-account"
+        },
+        {
+            "type": "select",
+            "name": "buy-airtime-debit-account",
+            "save-as": "airtimeDebitAccount",
+            "options": "savings-accounts",
+            "options-error": "buy-airtime-debit-account-options-error",
+            "error": "buy-airtime-debit-account-error",
+            "previous": "buy-airtime-provider",
+            "next": "buy-airtime-amount"
+        },
+        {
+            "type": "input",
+            "name": "buy-airtime-amount",
+            "save-as": "airtimeAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                    "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "format-as": "",
+            "error": "buy-airtime-amount-error",
+            "previous": "buy-airtime-debit-account",
+            "next": "buy-airtime-confirm"
+        },
+        {
+            "type": "select",
+            "name": "buy-airtime-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "buy-airtime-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "buy-airtime",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "buy-airtime-amount"
+        },
+        {
+            "type": "select",
+            "name": "buy-airtime-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "buy-airtime-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "balance-account"
+        }
+    ],
+    "pay-water": [
+        {
+            "type": "input",
+            "name": "pay-water-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isAlphaNumeric",
+                    "type": "custom"
+                }
+            ],
+            "error": "pay-water-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "pay-water-amount"
+        },
+        {
+            "type": "input",
+            "name": "pay-water-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                    "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "pay-water-amount-error",
+            "previous": "pay-water-credit-account",
+            "next": "pay-water-confirm"
+        },
+        {
+            "type": "select",
+            "name": "pay-water-confirm",
+            "options": "confirm-options",
+            "error": "pay-water-confirm-error",
+            "action": "transact",
+            "charges": false,
+            "authenticate": false,
+            "external-fetch": {
+                "route": "nairobi-water-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "pay-water-amount"
+        },
+        {
+            "type": "select",
+            "name": "pay-water-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "pay-water-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "pay-water-credit-account"
+        }
+    ],
+    "electricity-prepaid": [
+        {
+            "type": "input",
+            "name": "electricity-prepaid-credit-account",
+            "save-as": "billPaymentCreditAccount",
+            "validation": [
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "error": "electricity-prepaid-credit-account-error",
+            "previous": "bill-payment-page",
+            "next": "electricity-prepaid-amount"
+        },
+        {
+            "type": "input",
+            "name": "electricity-prepaid-amount",
+            "save-as": "billPaymentAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                    "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "electricity-prepaid-amount-error",
+            "previous": "electricity-prepaid-debit-account",
+            "next": "electricity-prepaid-confirm"
+        },
+        {
+            "type": "select",
+            "name": "electricity-prepaid-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "error": "electricity-prepaid-confirm-error",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "kplc-pre-paid-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "electricity-prepaid-amount"
+        },
+        {
+            "type": "select",
+            "name": "electricity-prepaid-debit-account-options-error",
+            "options": "yes-no-options",
+            "error": "electricity-prepaid-debit-account-options-error-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout",
+            "previous": "electricity-prepaid-credit-account"
+        }
+    ],
+    "api-success": {
+        "type": "select",
+        "name": "api-success",
+        "options": "yes-no-options",
+        "error": "api-success-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "first-time-wrong-login": [
+        {
+            "type": "input",
+            "name": "first-time-wrong-login",
+            "save-as": "oldPassword",
+            "validation": [
+                {
+                    "name": "is4DigitPin",
+                    "type": "custom"
+                },
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {
+                        "length": 4
+                    }
+                }
+            ],
+            "errors": [
+                "invalid-pin-error",
+                "invalid-pin-length-error",
+                "first-time-wrong-login"
+            ],
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "validate-first-time-login-pin",
+                "success": "first-login-new-pin",
+                "error": "first-time-wrong-login",
+                "success-handler": {
+                    "handler": "reset_pin_trials",
+                    "argument": "pin-trials-remaining",
+                    "save-as": "pin-trials-remaining"
+                },
+                "error-handler": {
+                    "handler": "decrement_pin_trials",
+                    "argument": "pin-trials-remaining",
+                    "save-as": "pin-trials-remaining",
+                    "threshold": 0,
+                    "redirect-on-threshold": "account-blocked",
+                    "threshold-handler": "block-account"
+                },
+                "cache": true,
+                "cache-path": "account-details",
+                "cache-parameters": [
+                    {
+                        "path": "access_token",
+                        "save-as": "access_token"
+                    }
+                ]
+            },
+            "on-cancel": "logout"
+        },
+        {
+            "type": "input",
+            "name": "first-login-new-pin",
+            "save-as": "newPin",
+            "validation": [
+                {
+                    "name": "isStrongPin",
+                    "type": "custom"
+                },
+                {
+                    "name": "isNotOldPin",
+                    "type": "custom"
+                }
+            ],
+            "error": "first-login-new-pin-error",
+            "next": "first-login-new-pin-reenter",
+            "previous": "first-login"
+        },
+        {
+            "type": "input",
+            "name": "first-login-new-pin-reenter",
+            "save-as": "newsPin",
+            "validation": [
+                {
+                    "name": "isEqualToLastEntry",
+                    "type": "custom",
+                    "arguments": {
+                        "path": "newPin"
+                    }
+                }
+            ],
+            "error": "first-login-new-pin-reenter-error",
+            "next": "first-login-confirm",
+            "previous": "first-login-new-pin"
+        },
+        {
+            "type": "select",
+            "name": "first-login-confirm",
+            "options": "confirm-options",
+            "error": "first-login-confirm-error",
+            "authenticate": false,
+            "action": "transact",
+            "external-fetch": {
+                "route": "first-pin-change",
+                "success": "pin-change-success",
+                "error": "pin-change-error"
+            },
+            "on-cancel": "logout",
+            "previous": "first-login-new-pin-reenter"
+        },
+        {
+            "type": "select",
+            "name": "terms-conditions",
+            "options": "yes-no-options",
+            "error": "terms-conditions-error",
+            "action": "navigate",
+            "on-accept": "first-login-system-pin",
+            "on-cancel": "logout"
+        }
+    ],
+    "school-fees": [
+        {
+            "type": "select",
+            "name": "school-fees-debit-account",
+            "save-as": "schoolFeesDebitAccount",
+            "options": "savings-accounts",
+            "error": "school-fees-debit-account-error",
+            "previous": "bill-payment-page",
+            "next": "school-fees-credit-account"
+        },
+        {
+            "type": "input",
+            "name": "school-fees-credit-account",
+            "save-as": "schoolFeesCreditAccount",
+            "validation": [
+                {
+                    "name": "isAlphaNumeric",
+                    "type": "custom"
+                }
+            ],
+            "error": "school-fees-credit-account-error",
+            "next": "school-fees-child-name",
+            "previous": "school-fees-debit-account"
+        },
+        {
+            "type": "input",
+            "name": "school-fees-child-name",
+            "save-as": "schoolFeesChildName",
+            "format-as": "createSpaces",
+            "validation": [
+                {
+                    "name": "isStatement",
+                    "type": "custom"
+                }
+            ],
+            "error": "school-fees-child-name-error",
+            "previous": "school-fees-credit-account",
+            "next": "school-fees-child-reg"
+        },
+        {
+            "type": "input",
+            "name": "school-fees-child-reg",
+            "save-as": "schoolFeesChildReg",
+            "validation": [
+                {
+                    "name": "isStudentId",
+                    "type": "custom"
+                }
+            ],
+            "error": "school-fees-child-reg-error",
+            "previous": "school-fees-child-name",
+            "next": "school-fees-amount"
+        },
+        {
+            "type": "input",
+            "name": "school-fees-amount",
+            "save-as": "schoolFeesAmount",
+            "validation": [
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "school-fees-amount-error",
+            "previous": "school-fees-child-reg",
+            "next": "school-fees-confirm"
+        },
+        {
+            "type": "select",
+            "name": "school-fees-confirm",
+            "options": "confirm-options",
+            "charges": false,
+            "authenticate": false,
+            "action": "transact",
+            "external-fetch": {
+                "route": "school-fees-bill-payment",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "error": "school-fees-confirm-error",
+            "on-cancel": "client-page",
+            "previous": "school-fees-amount"
+        }
+    ],
+    "coming-soon": {
+        "type": "alert",
+        "name": "coming-soon"
+    },
+    "wallet-balance-error": {
+        "type": "select",
+        "name": "wallet-balance-error",
+        "options": "yes-no-options",
+        "error": "wallet-balance-error-error",
+        "action": "navigate",
+        "on-accept": "client-page",
+        "on-cancel": "logout"
+    },
+    "channels-loan-cash-out": [
+        {
+            "type": "skip",
+            "name": "fetch-wallet-balance",
+            "action": "update-parameters",
+            "external-fetch": {
+                "route": "wallet-balance",
+                "success": "channels-loan-cash-out-provider",
+                "error": "wallet-balance-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "data.availableBal",
+                        "save-as": "walletBalance",
+                        "format-as": "balance-timestamp",
+                        "default": ""
+                    }
+                ]
+            },
+            "on-cancel": "client-page"
+        },
+        {
+            "type": "select",
+            "name": "channels-loan-cash-out-provider",
+            "save-as": "loanCashOut",
+            "save-as-label": "loanLabelCashOut",
+            "options": [
+                {
+                    "label": "MPESA",
+                    "value": "mpesa"
+                }
+            ],
+            "format-as": "formatLoanLimitMinimumAmount",
+            "error": "channels-loan-cash-out-provider-error",
+            "previous": "client-page",
+            "next": "channels-loan-cash-out-amount"
+        },
+        {
+            "type": "input",
+            "name": "channels-loan-cash-out-amount",
+            "save-as": "loanAmount",
+            "validation": [
+                {
+                    "name": "isWithinLoanLimit",
+                    "type": "custom",
+                    "arguments": {
+                        "min": "%@minLoanAmount",
+                        "max": "%@walletBalance"
+                    }
+                },
+                {
+                    "name": "isAmount",
+                    "type": "joi",
+                   "arguments": {
+                        "min": 100
+                    }
+                }
+            ],
+            "error": "channels-loan-cash-out-amount-error",
+            "previous": "channels-loan-cash-out-provider",
+            "next": "channels-loan-cash-out-confirm"
+        },
+        {
+            "type": "select",
+            "name": "channels-loan-cash-out-confirm",
+            "options": "confirm-options",
+            "error": "channels-loan-cash-out-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "loan-cash-out",
+                "success": "channels-loan-cash-out-api-success",
+                "error": "api-error",
+                "cache": true,
+                "cache-path": "global-request-details",
+                "cache-parameters": [
+                    {
+                        "path": "message",
+                        "save-as": "cashOutSuccess"
+                    }
+                ]
+            },
+            "on-cancel": "client-page",
+            "previous": "channels-loan-cash-out-amount"
+        },
+        {
+            "type": "select",
+            "name": "channels-loan-cash-out-api-success",
+            "options": "yes-no-options",
+            "error": "-channels-loan-cash-out-api-success-error",
+            "action": "navigate",
+            "on-accept": "client-page",
+            "on-cancel": "logout"
+        }
+    ],
+    "inapp-login": {
+        "type": "input",
+        "name": "inapp-login",
+        "validation": [
+            {
+                "name": "is4DigitPin",
+                "type": "custom"
+            },
+            {
+                "name": "isCorrectPin",
+                "type": "custom"
+            }
+        ],
+        "errors": [
+            "invalid-inapp-pin-error",
+            "wrong-inapp-pin-error"
+        ]
+    },
+    "registration-error": {
+        "type": "alert",
+        "name": "registration-error"
+    },
+    "login": {
+        "type": "input",
+        "name": "login",
+        "next": "client-page",
+        "save-as": "user-pin",
+        "save-to-account-details": "user-pin",
+        "authenticate": false,
+        "validation": [
+            {
+                "name": "matchesLength",
+                "type": "joi",
+                "arguments": {
+                    "length": 4
+                }
+            },
+            {
+                "name": "isNumber",
+                "type": "joi"
+            },
+            {
+                "name": "is4DigitPin",
+                "type": "custom"
+            }
+        ],
+        "errors": [
+            "invalid-pin-length-error",
+            "invalid-pin-error",
+            "wrong-login"
+        ],
+        "action": "update-parameters",
+        "external-fetch": {
+            "route": "login",
+            "success": "client-page",
+            "success-handler": {
+                "handler": "reset_pin_trials",
+                "argument": "pin-trials-remaining",
+                "save-as": "pin-trials-remaining"
+            },
+            "error": "wrong-login",
+            "error-handler": {
+                "handler": "decrement_pin_trials",
+                "argument": "pin-trials-remaining",
+                "save-as": "pin-trials-remaining"
+            },
+            "cache": true,
+            "cache-path": "account-details",
+            "cache-parameters": [
+                {
+                    "path": "access_token",
+                    "save-as": "access_token"
+                }
+            ]
+        }
+    }
+}

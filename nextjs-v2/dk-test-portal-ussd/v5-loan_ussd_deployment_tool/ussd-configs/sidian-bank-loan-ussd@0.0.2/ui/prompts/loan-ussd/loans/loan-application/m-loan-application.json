@@ -1,0 +1,55 @@
+[
+    {
+        "error": "m-loan-application-type-options-error",
+        "format-as": "formatLoanLimitMinimumAmount",
+        "name": "m-loan-application-type-options",
+        "next": "m-loan-application-duration-options",
+        "options": "loan-amount-options",
+        "options-error": "m-loan-application-options-error",
+        "previous": "m-loan-application-products-options",
+        "save-as": "borrowAmount",
+        "type": "select"
+    },
+    {
+        "error": "m-loan-application-amount-error",
+        "name": "m-loan-application-amount",
+        "next": "m-loan-application-duration-options",
+        "previous": "m-loan-application-type-options",
+        "save-as": "borrowAmount",
+        "type": "input",
+        "validation": [
+            {
+                "arguments": "min=%@minimumLoanApplication, max=%@limit",
+                "name": "isWithinLoanLimit",
+                "type": "custom"
+            }
+        ]
+    },
+    {
+        "error": "m-loan-application-duration-options-error",
+        "name": "m-loan-application-duration-options",
+        "next": "loan-application-confirm",
+        "options": [
+            {
+				"label": " 7 DAYS",
+				"value": " 7 DAYS"
+			},
+			{
+				"label": " 14 DAYS",
+				"value": " 14 DAYS"
+			},
+			{
+				"label": " 30 DAYS",
+				"value": " 30 DAYS"
+			},
+			{
+				"label": " 90 DAYS",
+				"value": " 90 DAYS"
+			}
+        ],
+        "options-error": "loan-application-options-error",
+        "previous": "m-loan-application-type-options",
+        "save-as": "loanProductDuration",
+        "type": "select"
+    }
+]

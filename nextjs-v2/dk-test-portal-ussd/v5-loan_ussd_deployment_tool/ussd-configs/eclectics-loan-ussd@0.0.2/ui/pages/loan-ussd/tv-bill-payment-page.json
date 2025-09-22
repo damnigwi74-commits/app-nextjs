@@ -1,0 +1,33 @@
+{
+    "type"                : "select",
+    "name"                : "tv-bill-payment-page",
+    "options"             : [
+
+        {
+            "name"        : "gotv",
+            "label"       : "gotv-label",
+            "enabled"     : true,
+            "authenticate": false
+        },
+        {
+            "name"        : "dstv",
+            "label"       : "dstv-label",
+            "enabled"     : true,
+            "authenticate": false
+        },
+        {
+            "name"        : "zuku-tv",
+            "label"       : "zuku-tv-label",
+            "enabled"     : true,
+            "authenticate": false
+        },
+        {
+            "name"        : "star-times",
+            "label"       : "star-times-label",
+            "enabled"     : true,
+            "authenticate": false
+        }
+    ],
+    "error"               : "tv-bill-payment-page-error",
+    "previous"            : "client-page"
+}

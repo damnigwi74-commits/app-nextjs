@@ -1,0 +1,260 @@
+{
+  "get-profile": {
+    "template": {
+      "account-details": {
+        "account-type": "client",
+        "all-accounts": [],
+        "loan-accounts": [],
+        "search-options": []
+      },
+      "global-request-details": {
+        "withdrawType": "OTHER_ACCOUNT"
+      },
+      "pin-trials-remaining": 3,
+      "transaction-pin-trials-remaining": 3,
+      "language": "english"
+    },
+    "response": {
+      "status": {
+        "field": "status",
+        "matches": [
+          {
+            "code": 200,
+            "status": "registered"
+          },
+          {
+            "code": 400,
+            "status": "unregistered"
+          },
+          {
+            "code": 402,
+            "status": "imsi-failed"
+          }
+        ],
+        "error": {
+          "message": "message"
+        }
+      },
+      "mappers": {
+        "registered": {
+          "account-details": {
+            "is-registered": "__isRegistered",
+            "is-imsi": true,
+            "is-blocked": "__isBlocked",
+            "first-login": "__firstLogin",
+            "firstname": "Customer",
+            "surname": "__lastname",
+            "othername": "__secondname",
+            "fullname": "__customername",
+            "app-corporate-description": "__corporatename",
+            "savings-accounts": "__accounts",
+            "mwallet-account": "__mwallet",
+            "maximumWithdrawLimit": "__maximumWithdrawLimit",
+            "minimumWithdrawLimit": "__minimumWithdrawLimit",
+            "minimumLoanApplication": "__minimumLoanApplication",
+            "withdrawFrozen": "__withdrawFrozen",
+            "loansFrozen": "__loansFrozen"
+          },
+          "msisdn": "__walletAccount",
+          "is-imsi": true,
+          "mwallet": "__walletmwallet",
+          "otpExpired": "__otpExpired",
+          "email": "__emailaddress"
+        },
+        "unregistered": {
+          "account-details": {
+            "is-registered": false,
+            "is-blocked": false,
+            "is-imsi": true,
+            "first-login": false,
+            "app-corporate-description": "Eclectics Advancys Solution"
+          },
+          "msisdn": "__walletAccount",
+          "is-imsi": true
+        },
+        "imsi-failed": {
+          "account-details": {
+            "is-registered": true,
+            "is-blocked": false,
+            "is-imsi": false,
+            "first-login": false
+          },
+          "msisdn": "__walletAccount",
+          "is-imsi": false
+        },
+        "merge": [
+          {
+            "src": "account-details",
+            "destination": "account-details"
+          }
+        ]
+      },
+      "rules": [
+        {
+          "name": "__walletmwallet",
+          "path": "phone_number",
+          "format-as": "walletAccount",
+          "default": []
+        },
+        {
+          "name": "__isRegistered",
+          "path": "status",
+          "matches": [
+            {
+              "code": 200,
+              "status": true
+            }
+          ],
+          "default": false
+        },
+        {
+          "name": "__withdrawFrozen",
+          "path": "data.withdrawFrozen",
+          "matches": [
+            {
+              "code": true,
+              "status": true
+            }
+          ],
+          "default": false
+        },
+        {
+          "name": "__loansFrozen",
+          "path": "data.loansFrozen",
+          "matches": [
+            {
+              "code": true,
+              "status": true
+            }
+          ],
+          "default": false
+        },
+        {
+          "name": "__isBlocked",
+          "path": "data.accountBlocked",
+          "matches": [
+            {
+              "code": true,
+              "status": true
+            }
+          ],
+          "default": false
+        },
+        {
+          "name": "__firstLogin",
+          "path": "data.firstTimeLogin",
+          "matches": [
+            {
+              "code": true,
+              "status": true
+            }
+          ],
+          "default": false
+        },
+        {
+          "name": "__maximumWithdrawLimit",
+          "path": "data.maximumWithdrawLimit",
+          "default": "100"
+        },
+        {
+          "name": "__minimumWithdrawLimit",
+          "path": "data.minimumWithdrawLimit",
+          "default": "100"
+        },
+
+        {
+          "name": "__minimumLoanApplication",
+          "path": "data.minimumLoanApplication",
+          "default": "100"
+        },
+        {
+          "name": "__otpExpired",
+          "path": "data.pinExpired",
+          "matches": [
+            {
+              "code": true,
+              "status": true
+            }
+          ],
+          "default": false
+        },
+        {
+          "name": "__firstname",
+          "path": "first_name",
+          "format-as": "capitalize",
+          "default": "Customer"
+        },
+        {
+          "name": "__corporatename",
+          "path": "data.corporate",
+          "format-as": "capitalize",
+          "default": "Eclectics Advancys Solution"
+        },
+        {
+          "name": "__lastname",
+          "path": "first_name",
+          "format-as": "capitalize",
+          "default": "Customer"
+        },
+        {
+          "name": "__secondname",
+          "path": "middle_name",
+          "format-as": "capitalize",
+          "default": "Customer"
+        },
+        {
+          "name": "__customername",
+          "path": "first_name",
+          "format-as": "capitalize",
+          "default": "Customer"
+        },
+        {
+          "name": "__mwallet",
+          "path": "phone_number",
+          "default": "__walletAccount",
+          "format-as": "walletAccount"
+        },
+        {
+          "name": "__accounts",
+          "path": "accounts[0]",
+          "group-delimiter": false,
+          "item-delimiter": "|",
+          "map": ["label", "value"],
+          "default": [
+            {
+              "label": "Account - 0141019000106",
+              "value": "0141019000106"
+            },
+            {
+              "label": "Account - 0076003000023",
+              "value": "0076003000023"
+            },
+            {
+              "label": "Account - 0061002000237",
+              "value": "0061002000237"
+            },
+            {
+              "label": "Account - 0166004000118",
+              "value": "0166004000118"
+            },
+            {
+              "label": "Account - 0026004000190",
+              "value": "0026004000190"
+            },
+            {
+              "label": "Account - 0026003000324",
+              "value": "0026003000324"
+            },
+            {
+              "label": "Account - 0026003000229",
+              "value": "0026003000229"
+            }
+          ]
+        }
+      ],
+      "special": {
+        "account-details.all-accounts": "mwallet+account-details.savings-accounts"
+      }
+    }
+  }
+}

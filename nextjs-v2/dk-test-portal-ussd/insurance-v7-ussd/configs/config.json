@@ -1,0 +1,981 @@
+{
+    "exciseDutyField": "data[0].EX_DUTY_AMT",
+    "internal-authentication": true,
+    "authenticate-use-page": false,
+    "do-not-load-profile": true,
+    "first-login-check": "first-login",
+    "chargesField": "data[0].CHARGE_AMT",
+    "page-switch-check": {
+        "name": "account-type",
+        "options": {
+            "client": {
+                "page": "client-page",
+                "enabled": true
+            }
+        },
+        "enabled": true
+    },
+    "authenticate": false,
+    "ussd-response-format": "safaricom",
+    "language": "english",
+    "authenticate-transactions": false,
+    "registration-check": "is-registered",
+    "pin-trials-max": 3,
+    "register": false,
+    "startup-menus": {
+        "registered-customer": "login-page",
+        "is-first-login": "first-login-system-pin",
+        "wrong-pin-entered": "wrong-login",
+        "unregistered-customer": "registration-page",
+        "registration-disabled": "registration-alert",
+        "account-blocked": "account-blocked",
+        "dormant-account": "account-dormant",
+        "no-security-questions": "registration-page",
+        "imsi-check-failed": "imsi-check-failed"
+    },
+    "imsi-check": "is-imsi",
+    "dormant-account-check": "is-dormant",
+    "pinHashSecret": "secret",
+    "meta-data": {
+        "app-contact-name": "254798997948",
+        "app-contact-number": "254798997948",
+        "app-description": "Insurance USSD",
+        "app-email": "talktous@eclectics.io",
+        "app-name": "",
+        "app-client": "",
+        "app-shortcode": "200",
+        "app-terms-url": "https://www.facebook.com/",
+        "app-whatsapp": "254798997948",
+        "app-twitter": "https://www.facebook.com/",
+        "app-facebook": "https://www.facebook.com/",
+        "app-location": "NAIROBI",
+        "app-currency-code": "KES",
+        "app-country-code": "254",
+        "currencyCode": "KES",
+        "agentName": "Agent",
+        "actual-balance": "20,000",
+        "available-balance": "20,000",
+        "ministatement": "06/05/25 - KES 24,500.00 to Dan, 05/05/25 - KES 102,075.00 to Joe, 04/05/25 - KES 5,999.00 to Kim, 03/05/25 - KES 30,210.00 to Moses, 01/05/25 - KES 8,550.00 to Karis",
+        "billPaymentDueAmount": "1,000.00",
+        "billPaymentAmount": "1,000.00",
+        "accountName": "Daniel Migwi",
+        "chargeAmt": "20",
+        "taxAmt": "20",
+        "creditAccName": "Daniel Migwi"
+    },
+    "blocked-account-check": "is-blocked",
+    "security-questions-check": "is-secure",
+    "enable-whitelist": false,
+    "enable-permissions": false,
+    "api-user-profile-route": "profile",
+    "global-constants": {
+        "funds-transfer-minimum-KES": 10,
+        "funds-transfer-minimum-GBP": 1,
+        "funds-transfer-minimum-EUR": 1,
+        "funds-transfer-minimum-USD": 1,
+        "pesalink-limit": 999999,
+        "lock-savings-minimum-amount": 5000,
+        "school-fees-minimum-amount": 100,
+        "billpayment-amount-minimum": 200,
+        "minimum-billpayment-amount": 200,
+        "buy-airtime-minimum": 10,
+        "lock-savings-min-deposit-amount": 10,
+        "language-options": [
+            {
+                "label": "english-label",
+                "value": "english"
+            },
+            {
+                "label": "swahili-label",
+                "value": "swahili"
+            }
+        ],
+        "yes-no-options": [
+            {
+                "label": "yes-label",
+                "value": "1"
+            },
+            {
+                "label": "no-label",
+                "value": "2"
+            }
+        ],
+        "confirm-options": [
+            {
+                "label": "confirm-label",
+                "value": "1"
+            },
+            {
+                "label": "cancel-label",
+                "value": "2"
+            }
+        ],
+        "pesalink-lookup-result": [],
+        "savings-accounts": [
+            {
+                "label": "000xxxxxxxx0045",
+                "value": "000375190000045"
+            },
+            {
+                "label": "0003xxxxxxx0048",
+                "value": "000374770000048"
+            },
+            {
+                "label": "0003xxxxxxx8328",
+                "value": "000320010038328"
+            }
+        ],
+        "loans-accounts": [
+            {
+                "label": "LOAN0xxxxxxxx0045 (KES 31,427.20)",
+                "value": "LOAN0375190000045",
+                "meta": [
+                    {
+                        "save-as": "balanceToRepay",
+                        "cache-path": "global-request-details",
+                        "value": "31427.20"
+                    },
+                    {
+                        "save-as": "repaymentAmount",
+                        "cache-path": "global-request-details",
+                        "value": "31427.20"
+                    }
+                ]
+            },
+            {
+                "label": "LOAN1xxxxxxx0048 (KES 10,200.75)",
+                "value": "LOAN174770000048",
+                "meta": [
+                    {
+                        "save-as": "balanceToRepay",
+                        "cache-path": "global-request-details",
+                        "value": "10200.75"
+                    },
+                    {
+                        "save-as": "repaymentAmount",
+                        "cache-path": "global-request-details",
+                        "value": "10200.75"
+                    }
+                ]
+            }
+        ],
+        "mobile-money-options": [
+            {
+                "label": "M-Pesa",
+                "value": "M-Pesa",
+                "meta": [
+                    {
+                        "save-as": "mobileMoneyCode",
+                        "value": "MP12345",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Airtel Money",
+                "value": "Airtel Money",
+                "meta": [
+                    {
+                        "save-as": "mobileMoneyCode",
+                        "value": "AM12345",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "T-Kash",
+                "value": "T-Kash",
+                "meta": [
+                    {
+                        "save-as": "mobileMoneyCode",
+                        "value": "TK12345",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ],
+        "school-options": [
+            {
+                "label": "Kenya High School",
+                "value": "Kenya High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "KH12345",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Alliance High School",
+                "value": "Alliance High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "AH11223",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Alliance Girls High School",
+                "value": "Alliance Girls High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "AG33445",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Starehe Boys Centre",
+                "value": "Starehe Boys Centre",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "SB55667",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Starehe Girls Centre",
+                "value": "Starehe Girls Centre",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "SG66778",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Lenana School",
+                "value": "Lenana School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "LS77889",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Nairobi School",
+                "value": "Nairobi School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "NS88990",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Moi Forces Academy",
+                "value": "Moi Forces Academy",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "MF99001",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Mang'u High School",
+                "value": "Mang'u High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "MH10101",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Maryhill Girls High School",
+                "value": "Maryhill Girls High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "MG20202",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Pangani Girls High School",
+                "value": "Pangani Girls High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "PG30303",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Kapsabet Boys High School",
+                "value": "Kapsabet Boys High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "KB40404",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Moi Girls High School Eldoret",
+                "value": "Moi Girls High School Eldoret",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "MG50505",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Maseno School",
+                "value": "Maseno School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "MS60606",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Maranda High School",
+                "value": "Maranda High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "MH70707",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Kisii High School",
+                "value": "Kisii High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "KS80808",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Nyeri High School",
+                "value": "Nyeri High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "NY90909",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Chavakali High School",
+                "value": "Chavakali High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "CH01010",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Friends School Kamusinga",
+                "value": "Friends School Kamusinga",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "FK11111",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Bunyore Girls High School",
+                "value": "Bunyore Girls High School",
+                "meta": [
+                    {
+                        "save-as": "schoolCode",
+                        "value": "BG21212",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ],
+        "list-of-branches": [
+            {
+                "label": "Nairobi CBD",
+                "value": "nairobi_cbd",
+                "meta": [
+                    {
+                        "save-as": "branchCode",
+                        "value": "NBI001",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Mombasa",
+                "value": "mombasa",
+                "meta": [
+                    {
+                        "save-as": "branchCode",
+                        "value": "MSA002",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Kisumu",
+                "value": "kisumu",
+                "meta": [
+                    {
+                        "save-as": "branchCode",
+                        "value": "KSM003",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Eldoret",
+                "value": "eldoret",
+                "meta": [
+                    {
+                        "save-as": "branchCode",
+                        "value": "ELD004",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Nakuru",
+                "value": "nakuru",
+                "meta": [
+                    {
+                        "save-as": "branchCode",
+                        "value": "NKR005",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ],
+        "list-of-awash-insurance-products": [
+            {
+                "label": "General Insurance",
+                "value": "General Insurance(001)",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "General",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amount",
+                        "value": "TZS 2,000,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "productDetails",
+                        "value": "Has Motor own damage,Burglary,Plate Glass,Fire and Lightning ",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Life and Health Insurance",
+                "value": "Life and Health Insurance(002)",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Life and Health",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amount",
+                        "value": "TZS 1,000,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "productDetails",
+                        "value": "Term Life Assurance,10 to 20 Years Endowment and Used for permanent protection",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Salaam Takaful",
+                "value": "Salaam Takaful(003)",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Takaful",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amount",
+                        "value": "TZS 750,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "productDetails",
+                        "value": "Policy holders in order to protect each other against any unexpected risk or misfortune in the future",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Travel Insurance",
+                "value": "Travel Insurance(004)",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Travel",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amount",
+                        "value": "TZS 500,000",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ],
+        "list-of-claims": [
+            {
+                "label": "Motor Accident Claim",
+                "value": "Claim-MOTOR-001",
+                "meta": [
+                    {
+                        "save-as": "incidentType",
+                        "value": "Accident",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimNumber",
+                        "value": "CLM-10011234",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "proof",
+                        "value": "Police report, garage invoice, photos of damage",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amountRequested",
+                        "value": "TZS 1,500,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "status",
+                        "value": "Pending",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2025-12-10",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Health Claim - Hospitalization",
+                "value": "Claim-HEALTH-002",
+                "meta": [
+                    {
+                        "save-as": "incidentType",
+                        "value": "Illness",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimNumber",
+                        "value": "CLM-20023456",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "proof",
+                        "value": "Hospital bill, doctor’s report, diagnosis certificate",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amountRequested",
+                        "value": "TZS 800,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "status",
+                        "value": "Approved",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2026-03-19",
+                        "cache-path": "user-policy-details"
+                    }
+                ]
+            },
+            {
+                "label": "Property Damage Claim",
+                "value": "Claim-PROPERTY-003",
+                "meta": [
+                    {
+                        "save-as": "incidentType",
+                        "value": "Fire",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimNumber",
+                        "value": "CLM-30034567",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "proof",
+                        "value": "Fire department report, photos, repair estimates",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amountRequested",
+                        "value": "TZS 2,700,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "status",
+                        "value": "Rejected",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2025-03-19",
+                        "cache-path": "user-policy-details"
+                    }
+                ]
+            },
+            {
+                "label": "Travel Insurance Claim - Lost Baggage",
+                "value": "Claim-TRAVEL-004",
+                "meta": [
+                    {
+                        "save-as": "incidentType",
+                        "value": "Lost Baggage",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimNumber",
+                        "value": "CLM-40045678",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "proof",
+                        "value": "Airport lost baggage report, baggage tags, itemized list",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "amountRequested",
+                        "value": "TZS 350,000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "status",
+                        "value": "Approved",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2026-03-19",
+                        "cache-path": "user-policy-details"
+                    }
+                ]
+            }
+        ],
+        "list-of-agent-quotations": [
+            {
+                "label": "Amanuel - Awash: ETB 15K",
+                "value": "quote-amanuel-awash",
+                "meta": [
+                    {
+                        "save-as": "premium",
+                        "value": "15000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "deductible",
+                        "value": "2000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validity",
+                        "value": "1 year",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Birtukan - Nile: ETB 13.8K",
+                "value": "quote-birtukan-nile",
+                "meta": [
+                    {
+                        "save-as": "premium",
+                        "value": "13800",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "deductible",
+                        "value": "1500",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validity",
+                        "value": "1 year",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Dawit - United: ETB 16.2K",
+                "value": "quote-dawit-united",
+                "meta": [
+                    {
+                        "save-as": "premium",
+                        "value": "16200",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "deductible",
+                        "value": "2500",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validity",
+                        "value": "1 year",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Selam - Global: ETB 14K",
+                "value": "quote-selam-global",
+                "meta": [
+                    {
+                        "save-as": "premium",
+                        "value": "14000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "deductible",
+                        "value": "2000",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validity",
+                        "value": "1 year",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ],
+        "list-of-insurance-policies": [
+            {
+                "label": "Motor Comprehensive Insurance",
+                "value": "Policy-MOTOR-001",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Motor",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "policyNumber",
+                        "value": "MOT-87654321",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validFrom",
+                        "value": "2024-01-15",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimStatus",
+                        "value": "Approved",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2025-01-14",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Family Health Insurance",
+                "value": "Policy-HEALTH-002",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Health",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "policyNumber",
+                        "value": "HLT-56473829",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validFrom",
+                        "value": "2024-06-01",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimStatus",
+                        "value": "Approved",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2025-05-31",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Travel Insurance - Europe Trip",
+                "value": "Policy-TRAVEL-003",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Travel",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "policyNumber",
+                        "value": "TRV-22334455",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validFrom",
+                        "value": "2025-07-10",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimStatus",
+                        "value": "Approved",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2025-08-10",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Term Life Insurance - 20 Years",
+                "value": "Policy-LIFE-004",
+                "meta": [
+                    {
+                        "save-as": "insuranceType",
+                        "value": "Life",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "policyNumber",
+                        "value": "LIF-99887766",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validFrom",
+                        "value": "2023-03-20",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "claimStatus",
+                        "value": "Approved",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "validTo",
+                        "value": "2043-03-19",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ],
+        "list-of-insurance-schemes": [
+            {
+                "label": "Eclectic Insurance Scheme",
+                "value": "Scheme-Eclectic-001",
+                "meta": [
+                    {
+                        "save-as": "schemeName",
+                        "value": "Eclectic Scheme",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "numberOfMembers",
+                        "value": "1250",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "expiryDate",
+                        "value": "2025-12-31",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Awash Group Scheme",
+                "value": "Scheme-Awash-002",
+                "meta": [
+                    {
+                        "save-as": "schemeName",
+                        "value": "Awash",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "numberOfMembers",
+                        "value": "2375",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "expiryDate",
+                        "value": "2025-09-15",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            },
+            {
+                "label": "Bree Enterprise Insurance Scheme",
+                "value": "Scheme-Bree-003",
+                "meta": [
+                    {
+                        "save-as": "schemeName",
+                        "value": "Bree",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "numberOfMembers",
+                        "value": "890",
+                        "cache-path": "global-request-details"
+                    },
+                    {
+                        "save-as": "expiryDate",
+                        "value": "2026-03-10",
+                        "cache-path": "global-request-details"
+                    }
+                ]
+            }
+        ]
+    }
+}

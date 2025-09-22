@@ -1,0 +1,33 @@
+[
+    {
+        "type"          : "skip",
+        "name"          : "fetch-wallet-balance",
+        "action"        : "update-parameters",
+        "external-fetch": {
+            "route"     : "wallet-balance",
+            "success"   : "wallet-balance-sucess",
+            "error"     : "wallet-balance-error",
+            "cache"           : true,
+            "cache-path"      : "global-request-details",
+            "cache-parameters": [
+                {
+                    "path"          : "data.actualBal",
+                    "save-as"       : "walletBalance",
+                    "format-as":"balance-timestamp",
+                    "default": ""
+                }
+            ]
+        },
+        "on-cancel"     : "client-page",
+        "previous"      : "loans-page"
+    },
+    {
+        "type"          : "select",
+        "name"          : "wallet-balance-sucess",
+        "options"  		: "yes-no-options",
+        "error"         : "wallet-balance-sucess-error",
+        "action"    	: "navigate",
+        "on-accept" 	: "client-page",
+        "on-cancel" 	: "logout"
+    }
+]

@@ -1,0 +1,32 @@
+{
+    "type": "select",
+    "name": "wallet-service-page",
+    "options": [
+        {
+            "name": "wallet-balance",
+            "label": "wallet-balance-label",
+            "enabled": true,
+            "authenticate": false
+      },
+        {
+            "name": "buy-airtime",
+            "label": "buy-airtime-label",
+            "enabled": true,
+            "authenticate": false
+        },
+        {
+            "name": "bill-payment-page",
+            "label": "bill-payment-page-label",
+            "enabled": true,
+            "authenticate": false
+        },
+        {
+            "name": "loan-cash-out",
+            "label": "loan-cash-out-label",
+            "enabled": true,
+            "authenticate": false
+        }
+    ],
+    "error": "wallet-service-page-error",
+    "previous": "client-page"
+}

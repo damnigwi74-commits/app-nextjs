@@ -1,0 +1,9 @@
+{
+    "type"      : "select",
+    "name"      : "wallet-balance-is-zero-error",
+    "options"   : "yes-no-options",
+    "error"     : "wallet-balance-is-zero-error-error",
+    "action"    : "navigate",
+    "on-accept" : "client-page",
+    "on-cancel" : "logout"
+}

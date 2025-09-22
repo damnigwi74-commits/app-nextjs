@@ -1,0 +1,284 @@
+{
+    "buy-databundles": [
+        {
+            "type": "select",
+            "name": "buy-databundles-provider",
+            "save-as": "databundlesMNO",
+            "options": [
+                {
+                    "label": "Safaricom",
+                    "value": "Safaricom"
+                },
+                {
+                    "label": "Airtel",
+                    "value": "Airtel"
+                },
+                {
+                    "label": "Telkom",
+                    "value": "Telkom"
+                }
+            ],
+            "error": "buy-databundles-provider-error",
+            "next": "buy-databundles-category",
+            "previous": "client-page"
+        },
+        {
+            "type": "select",
+            "name": "buy-databundles-category",
+            "options": [
+                {
+                    "label": "Daily Bundles",
+                    "jump-to": "daily-bundles"
+                },
+                {
+                    "label": "Weekly Bundles",
+                    "jump-to": "weekly-bundles"
+                },
+                {
+                    "label": "Monthly Bundles",
+                    "jump-to": "monthly-bundles"
+                },
+                {
+                    "label": "Unlimited Bundles",
+                    "jump-to": "unlimited-bundle-period"
+                }
+            ],
+            "error": "buy-databundles-category-error",
+            "previous": "buy-databundles-provider"
+        },
+        {
+            "type": "select",
+            "name": "daily-bundles",
+            "save-as": "databundlesPackage",
+            "options": [
+                {
+                    "label": "100MB @ KES 10",
+                    "value": "daily_100mb",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "100MB @ KES 10",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                },
+                {
+                    "label": "500MB @ KES 25",
+                    "value": "daily_500mb",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "500MB @ KES 25",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                }
+            ],
+            "error": "daily-bundles-error",
+            "next": "buy-databundles-account-type",
+            "previous": "buy-databundles-category"
+        },
+        {
+            "type": "select",
+            "name": "weekly-bundles",
+            "save-as": "databundlesPackage",
+            "options": [
+                {
+                    "label": "500MB @ KES 50",
+                    "value": "weekly_500mb",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "500MB @ KES 50",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                },
+                {
+                    "label": "1GB @ KES 90",
+                    "value": "weekly_1gb",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "1GB @ KES 90",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                }
+            ],
+            "error": "weekly-bundles-error",
+            "next": "buy-databundles-account-type",
+            "previous": "buy-databundles-category"
+        },
+        {
+            "type": "select",
+            "name": "monthly-bundles",
+            "save-as": "databundlesPackage",
+            "options": [
+                {
+                    "label": "2GB @ KES 200",
+                    "value": "monthly_2gb",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "2GB @ KES 200",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                },
+                {
+                    "label": "5GB @ KES 500",
+                    "value": "monthly_5gb",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "5GB @ KES 500",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                }
+            ],
+            "error": "monthly-bundles-error",
+            "next": "buy-databundles-account-type",
+            "previous": "buy-databundles-category"
+        },
+        {
+            "type": "select",
+            "name": "unlimited-bundle-period",
+            "options": [
+                {
+                    "label": "Daily Unlimited",
+                    "jump-to": "unlimited-daily"
+                },
+                {
+                    "label": "Weekly Unlimited",
+                    "jump-to": "unlimited-weekly"
+                },
+                {
+                    "label": "Monthly Unlimited",
+                    "jump-to": "unlimited-monthly"
+                }
+            ],
+            "error": "unlimited-bundle-period-error",
+            "previous": "buy-databundles-category"
+        },
+        {
+            "type": "select",
+            "name": "unlimited-daily",
+            "save-as": "databundlesPackage",
+            "options": [
+                {
+                    "label": "Unlimited 24Hrs @ KES 50",
+                    "value": "unlimited_daily",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "Unlimited 24Hrs @ KES 50",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                }
+            ],
+            "next": "buy-databundles-account-type",
+            "previous": "unlimited-bundle-period"
+        },
+        {
+            "type": "select",
+            "name": "unlimited-weekly",
+            "save-as": "databundlesPackage",
+            "options": [
+                {
+                    "label": "Unlimited 7 Days @ KES 300",
+                    "value": "unlimited_weekly",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "Unlimited 7 Days @ KES 300",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                }
+            ],
+            "next": "buy-databundles-account-type",
+            "previous": "unlimited-bundle-period"
+        },
+        {
+            "type": "select",
+            "name": "unlimited-monthly",
+            "save-as": "databundlesPackage",
+            "options": [
+                {
+                    "label": "Unlimited 30 Days @ KES 1000",
+                    "value": "unlimited_monthly",
+                    "meta": [
+                        {
+                            "save-as": "databundlesPackageDetails",
+                            "value": "Unlimited 30 Days @ KES 1000",
+                            "cache-path": "global-request-details"
+                        }
+                    ]
+                }
+            ],
+            "next": "buy-databundles-account-type",
+            "previous": "unlimited-bundle-period"
+        },
+        {
+            "type": "select",
+            "name": "buy-databundles-account-type",
+            "save-as": "databundlesCreditAccount",
+            "options": [
+                {
+                    "label": "My Phone",
+                    "value": "__walletAccount",
+                    "jump-to": "buy-databundles-confirm"
+                },
+                {
+                    "label": "Other Phone",
+                    "jump-to": "buy-databundles-credit-account"
+                }
+            ],
+            "error": "buy-databundles-account-type-error",
+            "previous": "buy-databundles-category"
+        },
+        {
+            "type": "input",
+            "name": "buy-databundles-credit-account",
+            "save-as": "databundlesCreditAccount",
+            "format-as": "international-mobile-number",
+            "validation": [
+                {
+                    "name": "matchesLength",
+                    "type": "joi",
+                    "arguments": {
+                        "length": "10"
+                    }
+                },
+                {
+                    "name": "isNumber",
+                    "type": "joi"
+                }
+            ],
+            "errors": [
+                "buy-databundles-credit-account-error",
+                "buy-databundles-credit-account-error"
+            ],
+            "previous": "buy-databundles-account-type",
+            "next": "buy-databundles-confirm"
+        },
+        {
+            "type": "select",
+            "name": "buy-databundles-confirm",
+            "options": "confirm-options",
+            "charges": true,
+            "error": "buy-databundles-confirm-error",
+            "action": "transact",
+            "external-fetch": {
+                "route": "buy-databundles",
+                "success": "api-success",
+                "error": "api-success"
+            },
+            "on-cancel": "client-page",
+            "previous": "buy-databundles-account-type"
+        }
+    ]
+}

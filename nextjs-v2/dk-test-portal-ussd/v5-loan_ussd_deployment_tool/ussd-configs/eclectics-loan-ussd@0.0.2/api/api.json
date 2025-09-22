@@ -1,0 +1,588 @@
+{
+    "ussd-api": {
+        "data-sources": {
+            "timeout": 25000,
+            "offline-timeout": 50,
+            "development": {
+                "host": "test-api.ekenya.co.ke/advancys",
+                "port": 0,
+                "protocol": "https",
+                "method": "post",
+                "path": "jisort/api/"
+            },
+            "loanapplication-lookup": {
+                "host": "10.20.2.23",
+                "port": 8080,
+                "protocol": "https",
+                "method": "post",
+                "path": "FinClientReg/finServlet"
+            },
+            "pesalink-lookup": {
+                "host": "192.168.7.138",
+                "port": 8080,
+                "protocol": "https",
+                "method": "post",
+                "path": "CBKonnectWalletApi/MobileWallet"
+            },
+            "mock": {
+                "host": "127.0.0.1",
+                "port": 3000,
+                "protocol": "https",
+                "method": "get",
+                "path": ""
+            },
+            "offsite": {
+                "host": "testgateway.ekenya.co.ke",
+                "port": 8443,
+                "protocol": "https",
+                "method": "post",
+                "path": "smeprouter/smep_ussd_router.php"
+            },
+            "home-dev": {
+                "host": "testgateway.ekenya.co.ke",
+                "port": 8443,
+                "protocol": "https",
+                "method": "post",
+                "path": "smeprouter/smep_ussd_router.php"
+            },
+            "eclectics-dev": {
+                "host": "10.20.2.6",
+                "port": 8443,
+                "protocol": "https",
+                "method": "post",
+                "path": "smeprouter/smep_ussd_router.php"
+            },
+            "loan-application-dev": {
+                "host": "test-api.ekenya.co.ke/advancys",
+                "port": 0,
+                "protocol": "https",
+                "method": "post",
+                "path": "jisort/api/"
+            }
+        },
+        "meta-data": {
+            "appName": "KENTAPAY",
+            "currency": "KES",
+            "country-code": "KE",
+            "channel": "USSD",
+            "payload-format": "JSON"
+        },
+        "permissions": {
+            "base64": false,
+            "encrypt": false,
+            "hash-pin": true,
+            "fetch-charges": true
+        },
+        "request-settings": {
+            "headers": false,
+            "template": {},
+            "endpoints": {
+                "profile": {
+                    "path-suffix": "api/v1/employee/lookup",
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "phoneNo": "__walletAccount",
+                        "imsi": "__imsi"
+                    },
+                    "response": {
+                        "adapter": "get-profile",
+                        "save": true
+                    }
+                },
+                "login": {
+                    "path-suffix": "api/v1/oauth/token",
+                    "custom-headers": {
+                        "Content-Type": "multipart/form-data",
+                        "username": "USSD",
+                        "password": ")@25C8!zxLYxWX9y"
+                    },
+                    "request": {
+                        "grant_type": "password",
+                        "username": "__walletAccount",
+                        "password": "__pin"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "block-account": {
+                    "path-suffix": "api/v1/employee/info",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {},
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "first-pin-change": {
+                    "path-suffix": "api/v1/employee/reset/pin",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {
+                        "password": "__newPin",
+                        "imsi": "__imsi",
+                        "oldPassword": "__oldPassword"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "pin-change": {
+                    "path-suffix": "api/v1/employee/reset/pin",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {
+                        "imsi": "__imsi",
+                        "oldPassword": "__oldPassword",
+                        "password": "__newPin"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "validate-first-time-login-pin": {
+                    "path-suffix": "api/v1/oauth/token",
+                    "custom-headers": {
+                        "Content-Type": "multipart/form-data",
+                        "username": "USSD",
+                        "password": ")@25C8!zxLYxWX9y"
+                    },
+                    "request": {
+                        "grant_type": "password",
+                        "username": "__walletAccount",
+                        "password": "__oldPassword"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "registration": {
+                    "path-suffix": "loan-channel",
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "request-name": "registration",
+                        "firstname": "__firstname",
+                        "othername": "__othername",
+                        "surname": "__surname",
+                        "phonenumber": "__walletAccount",
+                        "id": "__id",
+                        "email": "__email",
+                        "imsi": "__imsi",
+                        "channel": "USSD"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-products": {
+                    "path-suffix": "loan-channel",
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "transaction_type": "400401"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-schedule": {
+                    "path-suffix": "loan-channel",
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "request-name": "loan-schedule",
+                        "account": "__walletAccount",
+                        "pin": "__rawPin",
+                        "loan-type": "__productCode",
+                        "amount": "__borrowAmount"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "fetch-employee-info": {
+                    "path-suffix": "api/v1/employee/info",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {},
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "fetch-loan-limit": {
+                    "path-suffix": "api/v1/employee/loan/limit",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {},
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-application": {
+                    "template-enabled": true,
+                    "path-suffix": "api/v1/employee/loan/apply",
+                    "custom-headers": {
+                        "Authorization": "Bearer __access_token",
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "amount": "__borrowAmount"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-balance": {
+                    "path-suffix": "api/v1/employee/loan/balance",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {},
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "wallet-balance": {
+                    "path-suffix": "api/v1/employee/account/balance",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {},
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-repayment": {
+                    "path-suffix": "api/v1/employee/repay",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {
+                        "amount": "__repaymentAmount"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-cash-out": {
+                    "path-suffix": "api/v1/employee/withdraw",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {
+                        "amount": "__loanAmount",
+                        "channel": "__loanCashOut"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "to-mobile-money-loan-cash-out": {
+                    "path-suffix": "api/v1/employee/withdraw",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {
+                        "amount": "__loanAmount",
+                        "withdrawType":"OTHER_ACCOUNT",
+                        "phoneNo": "__mobileMoneyAccount"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "to-mobile-money-loan-cash-out-self": {
+                    "path-suffix": "api/v1/employee/withdraw",
+                    "custom-headers": {
+                        "Content-Type": "application/json",
+                        "Authorization": "Bearer __access_token"
+                    },
+                    "request": {
+                        "amount": "__loanAmount",
+                        "withdrawType":"MY_ACCOUNT"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-cash-out-to-bank": {
+                    "path-suffix": "loan-channel",
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "transaction_type": "400403",
+                        "phone_number": "__walletAccount",
+                        "amount": "__loanAmount",
+                        "to": "bank"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                },
+                "loan-application-balance": {
+                    "custom-headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "request": {
+                        "request-name": "loan-balance",
+                        "account": "__walletAccount",
+                        "pin": "__rawPin"
+                    },
+                    "response": {
+                        "status": {
+                            "field": "status",
+                            "matches": [
+                                {
+                                    "code": 200,
+                                    "status": "success"
+                                }
+                            ],
+                            "error": {
+                                "message": "message"
+                            }
+                        },
+                        "save": false
+                    }
+                }
+            }
+        }
+    }
+}

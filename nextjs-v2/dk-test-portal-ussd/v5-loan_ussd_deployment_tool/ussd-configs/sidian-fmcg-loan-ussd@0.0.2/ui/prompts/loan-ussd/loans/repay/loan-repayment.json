@@ -1,0 +1,126 @@
+[
+  {
+    "type": "skip",
+    "name": "fetch-loan-application-cycle",
+    "action": "update-parameters",
+    "external-fetch": {
+      "route": "loan-balance",
+      "success": "loan-repayment-payment-method",
+      "error": "error-for-option-error",
+      "cache": true,
+      "cache-path": "global-request-details",
+      "cache-parameters": [
+        {
+          "path": "data.loan",
+          "save-as": "balanceToRepay",
+          "format-as": "balance-timestamp",
+          "default": ""
+        }
+      ],
+      "parameter-checks": {
+        "balanceToRepay": {
+          "is-equal-to": 0,
+          "redirect-to": "loan-application-cycle-error"
+        }
+      }
+    }
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-payment-method",
+    "save-as": "repaymentAmount",
+    "options": [
+      {
+				"label": " Pay All",
+				"value": " Pay All",
+        "jump-to":"loan-repayment-accounts",
+        "meta": [
+            {
+                "save-as": "repaymentAmount",
+                "cache-path": "global-request-details",
+                "value": "30000"
+            }
+          ]
+			},
+			{
+				"label": " Pay Half amount",
+				"value": " Pay Half amount",
+        "jump-to":"loan-repayment-accounts",
+        "meta": [
+            {
+                "save-as": "repaymentAmount",
+                "cache-path": "global-request-details",
+                "value": "15000",
+                "format-as": "formatDivideByTwo"
+            }
+          ]
+			},
+			{
+				"label": " Enter Amount to Pay",
+				"value": " Enter Amount to Pay",
+        "jump-to":"loan-repayment-amount"
+      }
+		],
+    "next": "loan-repayment-accounts",
+    "error": "loan-repayment-payment-method-error",
+    "previous": "client-page"
+  },
+  {
+    "type": "input",
+    "name": "loan-repayment-amount",
+    "save-as": "repaymentAmount",
+    "validation": [
+      {
+        "name": "isAmount",
+        "type": "joi",
+        "arguments": "min=1"
+      }
+    ],
+    "error": "loan-repayment-amount-error",
+    "previous": "loan-repayment-accounts",
+    "next": "loan-repayment-accounts"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-accounts",
+    "save-as": "repaymentMethod",
+    "save-as-label": "repaymentMethod",
+    "options": [
+      {
+				"label": "Bank Account",
+				"value": "Mobile Money",
+        "jump-to":"bank-loan-repayment-account-type"
+			},
+			{
+				"label": "Mobile Money",
+				"value": "Mobile Money",
+        "jump-to":"mm-loan-repayment-provider"
+			}
+    ],
+    "next": "loan-repayment-amount",
+    "error": "loan-repayment-accounts-error",
+    "previous": "loan-repayment-payment-method"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-confirm",
+    "options": "confirm-options",
+    "error": "loan-repayment-confirm-error",
+    "action": "transact",
+    "external-fetch": {
+      "route": "loan-repayment",
+      "success": "api-success",
+      "error": "api-success"
+    },
+    "on-cancel": "client-page"
+  },
+  {
+    "type": "select",
+    "name": "loan-repayment-account-options-error",
+    "options": "yes-no-options",
+    "error": "loan-repayment-account-options-error-error",
+    "action": "navigate",
+    "on-accept": "client-page",
+    "on-cancel": "logout"
+  }
+]

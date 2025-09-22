@@ -1,0 +1,68 @@
+[
+  {
+    "type": "input",
+    "name": "pin-change-old-pin",
+    "validation": [
+      {
+        "name": "matchesLength",
+        "type": "joi",
+        "arguments": "length=4"
+      }
+    ],
+    "save-as": "oldPassword",
+    "error": "pin-change-wrong-old-pin-error",
+    "previous": "settings-page",
+    "next": "pin-change-new-pin"
+  },
+  {
+    "type": "input",
+    "name": "pin-change-new-pin",
+    "save-as": "newPin",
+    "validation": [
+      {
+        "name": "isStrongPin",
+        "type": "custom"
+      },
+      {
+        "name": "isNotOldPin",
+        "type": "custom"
+      }
+    ],
+    "errors": [
+      "pin-change-new-pin-error",
+      "pin-change-new-pin-not-last-entry-error"
+    ],
+    "previous": "pin-change-old-pin",
+    "next": "pin-change-new-pin-reenter"
+  },
+  {
+    "type": "input",
+    "name": "pin-change-new-pin-reenter",
+    "save-as": "newPin",
+    "validation": [
+      {
+        "name": "isEqualToLastEntry",
+        "type": "custom",
+        "arguments": "path=newPin"
+      }
+    ],
+    "error": "pin-change-new-pin-reenter-error",
+    "previous": "pin-change-new-pin",
+    "next": "pin-change-confirm"
+  },
+  {
+    "type": "select",
+    "name": "pin-change-confirm",
+    "options": "confirm-options",
+    "error": "pin-change-confirm-error",
+    "authenticate": false,
+    "action": "transact",
+    "external-fetch": {
+      "route": "pin-change",
+      "success": "pin-change-success",
+      "error": "api-error"
+    },
+    "on-cancel": "settings-page",
+    "previous": "pin-change-new-pin-reenter"
+  }
+]

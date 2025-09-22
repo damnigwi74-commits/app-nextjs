@@ -1,0 +1,65 @@
+[
+    {
+		"type"             : "skip",
+		"name"             : "check-loan-status",
+		"action"           : "update-parameters",
+		"external-fetch"   : { 
+			"route"           : "loan-balance",
+			"success"         : "loan-repayment-amount",	
+			"error"           : "loan-repayment-amount",
+			"cache"           : true,
+			"cache-path"      : "global-request-details",
+			"cache-parameters": [
+				{
+					"path"          : "amount",
+					"save-as"       : "loanBalance"
+				}
+				
+			],
+			"parameter-checks": {
+				"loanAmount"     : {
+					"is-less-than"  : "0",
+					"redirect-to"   : "loan-application-options-error"
+				}
+			}         
+		}
+    },
+    {
+		"type"		: "input",
+		"name"		: "loan-repayment-amount",
+		"save-as"	: "repaymentAmount",
+		"validation"       : [
+			{
+				"name"     : "isAmount",
+				"type"     : "joi",
+				"arguments": "min=1"
+			}
+		],
+		"error"		: "loan-repayment-amount-error",
+		"previous"	: "client-page",
+		"next"		: "loan-repayment-confirm"
+	},
+	{
+        "type"          : "select",
+        "name"          : "loan-repayment-confirm",
+        "options"       : "confirm-options",
+        "error"         : "loan-repayment-confirm-error",
+		"action"        : "transact",
+        "external-fetch": {
+			"route"     : "loan-repayment",
+            "success"   : "mpesa-loan-repayment-success",
+            "error"     : "api-success"
+        },
+        "on-cancel"     : "client-page",
+        "previous"      : "loan-repayment-amount"
+	},
+    {
+		"type"      : "select",
+		"name"      : "loan-repayment-account-options-error",
+		"options"   : "yes-no-options",
+		"error"     : "loan-repayment-account-options-error-error",
+		"action"    : "navigate",
+		"on-accept" : "client-page",
+		"on-cancel" : "logout"
+	}
+]

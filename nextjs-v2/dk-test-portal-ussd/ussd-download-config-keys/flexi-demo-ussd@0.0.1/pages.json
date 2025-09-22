@@ -1,0 +1,831 @@
+{
+    "cardless-withdraw-page": {
+        "type": "select",
+        "name": "cardless-withdraw-page",
+        "options": [
+            {
+                "name": "via-atm",
+                "label": "via-atm-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "via-agent",
+                "label": "via-agent-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "cardless-withdraw-page-error",
+        "previous": "client-page"
+    },
+    "login-page": {
+        "type": "select",
+        "name": "login-page",
+        "options": [
+            {
+                "name": "login",
+                "label": "login-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Login"
+            },
+            {
+                "name": "pin-change",
+                "label": "login-pin-change-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Change PIN"
+            },
+            {
+                "name": "registration",
+                "label": "registration-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "Self Register"
+            }
+        ],
+        "error": "login-page-error"
+    },
+    "wallet-page": {
+        "type": "select",
+        "name": "wallet-page",
+        "options": [
+            {
+                "name": "balance",
+                "label": "balance-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "ministatement",
+                "label": "ministatement-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "withdraw",
+                "label": "withdraw-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "agent-withdraw",
+                "label": "agent-withdraw-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "deposit",
+                "label": "deposit-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "bill-payment-page",
+                "label": "bill-payment-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "buy-airtime",
+                "label": "buy-airtime-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "wallet-page-error",
+        "previous": "client-page"
+    },
+    "channel-mngt-page": {
+        "type": "select",
+        "name": "channel-mngt-page",
+        "options": [
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "channel-mngt-view-edit",
+                "label": "channel-mngt-view-edit-label"
+            },
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "channel-mngt-add-new",
+                "label": "channel-mngt-add-new-label"
+            }
+        ],
+        "error": "channel-mngt-page-error",
+        "previous": "settings-page"
+    },
+    "customer-requests-page": {
+        "type": "select",
+        "name": "customer-requests-page",
+        "options": [
+            {
+                "name": "cheques-page",
+                "label": "cheques-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "atm-cards-page",
+                "label": "atm-cards-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "account-linking",
+                "label": "account-linking-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "account-requests-page",
+                "label": "account-requests-page-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "cardless-withdraw-page",
+                "label": "cardless-withdrawal-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "customer-requests-page-error",
+        "previous": "client-page"
+    },
+    "funds-transfer-other-accounts-page": {
+        "type": "select",
+        "name": "funds-transfer-other-accounts-page",
+        "options": [
+            {
+                "name": "funds-transfer-own-accounts",
+                "label": "funds-transfer-own-accounts-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-savings-to-savings",
+                "label": "funds-transfer-other-accounts-page-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "funds-transfer-other-accounts-page-error",
+        "previous": "funds-transfer-page"
+    },
+    "client-page": {
+        "type": "select",
+        "name": "client-page",
+        "options": [
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "my-sidian-opt-in",
+                "label": "my-sidian-opt-in-label",
+                "title": "NULL"
+            },
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "my-sidian-check-limit",
+                "label": "my-sidian-check-limit-label",
+                "title": "NULL"
+            },
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "my-sidian-balance",
+                "label": "my-sidian-balance-label",
+                "title": "NULL"
+            },
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "my-sidian-apply-overdraft",
+                "label": "my-sidian-apply-overdraft-label",
+                "title": "NULL"
+            },
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "my-sidian-repay-overdraft",
+                "label": "my-sidian-repay-overdraft-label",
+                "title": "NULL"
+            },
+            {
+                "name": "my-sidian-express",
+                "label": "my-sidian-express-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "NULL"
+            },
+            {
+                "name": "settings-page",
+                "label": "settings-page-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Settings"
+            },
+            {
+                "authenticate": false,
+                "enabled": true,
+                "name": "sid-exp-support",
+                "label": "sid-exp-support-label",
+                "title": "NULL"
+            },
+            {
+                "name": "logout",
+                "label": "logout-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Logout"
+            }
+        ],
+        "error": "client-page-error"
+    },
+    "withdraw-page": {
+        "type": "select",
+        "name": "withdraw-page",
+        "options": [
+            {
+                "name": "withdraw-from-wallet-to-mobile",
+                "label": "withdraw-from-wallet-to-mobile-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "withdraw",
+                "label": "withdraw-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            }
+        ],
+        "error": "withdraw-page-error",
+        "previous": "client-page"
+    },
+    "cheques-page": {
+        "type": "select",
+        "name": "cheques-page",
+        "options": [
+            {
+                "name": "request-cheque-book",
+                "label": "request-cheque-book-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "bankers-cheque-request",
+                "label": "bankers-cheque-request-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "stop-cheque",
+                "label": "stop-cheque-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "confirm-cheque",
+                "label": "confirm-cheque-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "cheques-page-error",
+        "previous": "customer-requests-page"
+    },
+    "create-standing-orders-page": {
+        "type": "select",
+        "name": "create-standing-orders-page",
+        "options": [
+            {
+                "name": "standing-orders-internal",
+                "label": "standing-orders-internal-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "standing-orders-external",
+                "label": "standing-orders-external-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "create-standing-orders-page-error",
+        "previous": "standing-orders-page"
+    },
+    "atm-cards-page": {
+        "type": "select",
+        "name": "atm-cards-page",
+        "options": [
+            {
+                "name": "request-atm",
+                "label": "request-atm-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "replace-atm",
+                "label": "replace-atm-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "block-atm",
+                "label": "block-atm-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "unblock-atm",
+                "label": "unblock-atm-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "set-atm-limits",
+                "label": "set-atm-limits-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "atm-cards-page-error",
+        "previous": "customer-requests-page"
+    },
+    "registration-page": {
+        "type": "select",
+        "name": "registration-page",
+        "options": [
+            {
+                "name": "terms",
+                "label": "terms-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "registration",
+                "label": "registration-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "registration-page-error"
+    },
+    "bill-payment-page": {
+        "type": "select",
+        "name": "bill-payment-page",
+        "options": [
+            {
+                "name": "pay-bill-water",
+                "label": "pay-bill-water-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "electricity-power-postpaid",
+                "label": "electricity-power-postpaid-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "electricity-power-prepaid",
+                "label": "electricity-power-prepaid-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "dstv",
+                "label": "dstv-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "school-fees",
+                "label": "school-fees-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "gotv",
+                "label": "gotv-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "nhif",
+                "label": "nhif-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "landrates",
+                "label": "landrates-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "bill-payment-page-error",
+        "previous": "client-page"
+    },
+    "account-enquiries-page": {
+        "type": "select",
+        "name": "account-enquiries-page",
+        "options": [
+            {
+                "name": "balance",
+                "label": "balance-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "ministatement",
+                "label": "ministatement-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "fullstatement",
+                "label": "fullstatement-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "card-balance",
+                "label": "card-balance-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "account-enquiries-page-error",
+        "previous": "client-page"
+    },
+    "settings-page": {
+        "type": "select",
+        "name": "settings-page",
+        "previous": "flexi-main-menu",
+        "options": [
+            {
+                "name": "language-change",
+                "label": "language-change-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Change Language"
+            },
+            {
+                "name": "pin-change",
+                "label": "pin-change-label",
+                "authenticate": false,
+                "enabled": true
+            }
+        ],
+        "error": "settings-page-error"
+    },
+    "savings-page": {
+        "type": "select",
+        "name": "savings-page",
+        "options": [
+            {
+                "name": "savings-open",
+                "label": "savings-open-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Open Savings Account"
+            },
+            {
+                "name": "savings-balance",
+                "label": "savings-balance-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Savings Balance"
+            },
+            {
+                "name": "savings-statement",
+                "label": "savings-statement-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Savings Statement"
+            },
+            {
+                "name": "savings-withdraw",
+                "label": "savings-withdraw-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Withdraw from Savings"
+            },
+            {
+                "name": "savings-deposit",
+                "label": "savings-deposit-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Deposit to Savings"
+            }
+        ],
+        "error": "savings-page-error",
+        "previous": "client-page"
+    },
+    "funds-transfer-page": {
+        "type": "select",
+        "name": "funds-transfer-page",
+        "options": [
+            {
+                "name": "funds-transfer-wallet-to-other-wallet",
+                "label": "funds-transfer-wallet-to-other-wallet-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "funds-transfer-to-other-banks",
+                "label": "funds-transfer-other-bank-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "funds-transfer-wallet-to-mobile-money",
+                "label": "funds-transfer-wallet-to-mobile-money-label",
+                "enabled": true,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "load-wallet",
+                "label": "load-wallet-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "funds-transfer-other-accounts-page",
+                "label": "funds-transfer-other-accounts-page-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "withdrawal-mpesa-b2c",
+                "label": "withdrawal-mpesa-b2c-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "withdrawal-airtel-b2c",
+                "label": "withdrawal-airtel-b2c-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "mpesa-c2b",
+                "label": "mpesa-c2b-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "rtgs",
+                "label": "rtgs-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-page",
+                "label": "pesalink-page-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "eft",
+                "label": "eft-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "topup-prepaid-card",
+                "label": "topup-prepaid-card-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "withdraw-from-wallet-to-mobile",
+                "label": "withdraw-from-wallet-to-mobile-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "withdraw",
+                "label": "withdraw-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "funds-transfer-own-accounts",
+                "label": "funds-transfer-own-accounts-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "funds-transfer-other-account",
+                "label": "funds-transfer-other-account-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "funds-transfer-other-bank",
+                "label": "funds-transfer-other-bank-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            },
+            {
+                "name": "withdraw",
+                "label": "withdraw-label",
+                "enabled": false,
+                "authenticate": false,
+                "logo": ""
+            }
+        ],
+        "error": "funds-transfer-page-error",
+        "previous": "client-page"
+    },
+    "loans-page": {
+        "type": "select",
+        "name": "loans-page",
+        "options": [
+            {
+                "name": "loan-limit",
+                "label": "loan-limit-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-application",
+                "label": "loan-application-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-balance",
+                "label": "loan-balance-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-repayment",
+                "label": "loan-repayment-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "loan-statement",
+                "label": "loan-statement-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "loans-page-error",
+        "previous": "client-page"
+    },
+    "pesalink-page": {
+        "type": "select",
+        "name": "pesalink-page",
+        "options": [
+            {
+                "name": "pesalink-to-phone",
+                "label": "pesalink-to-phone-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-to-bank",
+                "label": "pesalink-to-bank-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-to-card",
+                "label": "pesalink-to-card-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-to-ecitizen",
+                "label": "pesalink-to-ecitizen-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-link-account",
+                "label": "pesalink-link-account-label",
+                "enabled": false,
+                "authenticate": false
+            },
+            {
+                "name": "pesalink-link-primary",
+                "label": "pesalink-link-primary-label",
+                "enabled": false,
+                "authenticate": false
+            }
+        ],
+        "error": "pesalink-page-error",
+        "previous": "funds-transfer-page"
+    },
+    "standing-orders-page": {
+        "type": "select",
+        "name": "standing-orders-page",
+        "options": [
+            {
+                "name": "create-standing-orders-page",
+                "label": "create-standing-orders-page-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "standing-orders-amend",
+                "label": "standing-orders-amend-label",
+                "enabled": true,
+                "authenticate": false
+            },
+            {
+                "name": "standing-orders-cancel",
+                "label": "standing-orders-cancel-label",
+                "enabled": true,
+                "authenticate": false
+            }
+        ],
+        "error": "standing-orders-page-error",
+        "previous": "my-account-page"
+    },
+    "account-requests-page": {
+        "type": "select",
+        "name": "account-requests-page",
+        "options": [
+            {
+                "name": "account-mandates",
+                "label": "account-mandates-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "Account Mandates"
+            },
+            {
+                "name": "account-linking",
+                "label": "account-linking-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Link Account"
+            },
+            {
+                "name": "account-activation",
+                "label": "account-activation-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "Activate Dormant Account"
+            },
+            {
+                "name": "card-linking",
+                "label": "card-linking-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "Link Card"
+            },
+            {
+                "name": "sacco-linking",
+                "label": "sacco-linking-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "Link Sacco Account"
+            },
+            {
+                "name": "wallet-account-opening",
+                "label": "wallet-account-opening-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "Activate Wallet Account"
+            },
+            {
+                "name": "core-account-opening",
+                "label": "core-account-opening-label",
+                "enabled": false,
+                "authenticate": false,
+                "title": "Open a Bank Account"
+            },
+            {
+                "name": "view-accounts",
+                "label": "view-accounts-label",
+                "enabled": true,
+                "authenticate": false,
+                "title": "View My Accounts"
+            }
+        ],
+        "error": "account-requests-page-error",
+        "previous": "customer-requests-page"
+    }
+}
