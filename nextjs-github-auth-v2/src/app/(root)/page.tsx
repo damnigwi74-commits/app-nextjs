@@ -5,11 +5,11 @@ export default function HomePage() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-12">
       <section className="text-center mb-12">
-        <h1 className="text-5xl font-bold text-blue-600">Discover Your Next Adventure</h1>
+        <h1 className="heading">Discover Your Next Adventure</h1>
         <p className="mt-4 text-lg text-gray-600">Explore beautiful destinations with us.</p>
 
         <Link href="/">
-          <button className="bg-blue-600 text-white px-6 py-3 m-10 rounded-lg shadow-md hover:bg-blue-700">
+          <button className="bg-blue-400 text-white px-6 py-3 m-10 rounded-lg shadow-md hover:bg-blue-500">
             View Hotels
           </button>
         </Link>
