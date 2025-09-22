@@ -1,5 +1,4 @@
-import Card from "@/components/Card";
-import images from "@/data/images.json";
+
 import Link from "next/link";
 
 export default function HomePage() {
@@ -9,23 +8,15 @@ export default function HomePage() {
         <h1 className="text-5xl font-bold text-blue-600">Discover Your Next Adventure</h1>
         <p className="mt-4 text-lg text-gray-600">Explore beautiful destinations with us.</p>
 
-        <Link href="/hotels">
+        <Link href="/">
           <button className="bg-blue-600 text-white px-6 py-3 m-10 rounded-lg shadow-md hover:bg-blue-700">
             View Hotels
           </button>
         </Link>
-
       </section>
 
       <section className="grid md:grid-cols-3 gap-8">
-        {images.map((item) => (
-          <Card
-            key={item.id}
-            title={item.title}
-            description={item.description}
-            imageUrl={item.imageUrl}
-          />
-        ))}
+        
       </section>
     </div>
   );

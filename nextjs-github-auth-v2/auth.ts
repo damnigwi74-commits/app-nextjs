@@ -1,6 +1,7 @@
+// src/auth.ts
 import NextAuth from "next-auth"
-import Auth0 from "next-auth/providers/auth0"
- 
+import GitHub from "next-auth/providers/github"
+
 export const { handlers, auth, signIn, signOut } = NextAuth({
-  providers: [Auth0],
+  providers: [GitHub],
 })
