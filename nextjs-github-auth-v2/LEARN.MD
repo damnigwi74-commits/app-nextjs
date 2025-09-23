@@ -16,265 +16,62 @@ NEXTAUTH_URL="http://localhost:3000" # Replace with your application's URL
 DATABASE_URL="file:./dev.db" # Example for SQLite, replace with
 
 
-
-
-@import "tailwindcss";
-/*  
----break---
-*/
-@plugin "tailwindcss-animate";
-/*  
----break---
-*/
-@custom-variant dark (&:is(.dark *));
-
-/*  
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #221e1e;
-    --foreground: #ededed;
-  }
-}
-*/
-
-/*  
----break---
-*/
-
-@theme inline {
-
-  --radius-sm: calc(var(--radius) - 4px);
-
-  --radius-md: calc(var(--radius) - 2px);
-
-  --radius-lg: var(--radius);
-
-  --radius-xl: calc(var(--radius) + 4px);
-
-  --color-background: var(--background);
-
-  --color-foreground: var(--foreground);
-
-  --color-card: var(--card);
-
-  --color-card-foreground: var(--card-foreground);
-
-  --color-popover: var(--popover);
-
-  --color-popover-foreground: var(--popover-foreground);
-
-  --color-primary: var(--primary);
-
-  --color-primary-foreground: var(--primary-foreground);
-
-  --color-secondary: var(--secondary);
-
-  --color-secondary-foreground: var(--secondary-foreground);
-
-  --color-muted: var(--muted);
-
-  --color-muted-foreground: var(--muted-foreground);
-
-  --color-accent: var(--accent);
-
-  --color-accent-foreground: var(--accent-foreground);
-
-  --color-destructive: var(--destructive);
-
-  --color-border: var(--border);
-
-  --color-input: var(--input);
-
-  --color-ring: var(--ring);
-
-  --color-chart-1: var(--chart-1);
-
-  --color-chart-2: var(--chart-2);
-
-  --color-chart-3: var(--chart-3);
-
-  --color-chart-4: var(--chart-4);
-
-  --color-chart-5: var(--chart-5);
-
-  --color-sidebar: var(--sidebar);
-
-  --color-sidebar-foreground: var(--sidebar-foreground);
-
-  --color-sidebar-primary: var(--sidebar-primary);
-
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-
-  --color-sidebar-accent: var(--sidebar-accent);
-
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-
-  --color-sidebar-border: var(--sidebar-border);
-
-  --color-sidebar-ring: var(--sidebar-ring);
-}
-
-/*  
----break---
-*/
-
-:root {
-
-  --radius: 0.625rem;
-
-  --background: oklch(1 0 0);
-
-  --foreground: oklch(0.141 0.005 285.823);
-
-  --card: oklch(1 0 0);
-
-  --card-foreground: oklch(0.141 0.005 285.823);
-
-  --popover: oklch(1 0 0);
-
-  --popover-foreground: oklch(0.141 0.005 285.823);
-
-  --primary: oklch(0.21 0.006 285.885);
-
-  --primary-foreground: oklch(0.985 0 0);
-
-  --secondary: oklch(0.967 0.001 286.375);
-
-  --secondary-foreground: oklch(0.21 0.006 285.885);
-
-  --muted: oklch(0.967 0.001 286.375);
-
-  --muted-foreground: oklch(0.552 0.016 285.938);
-
-  --accent: oklch(0.967 0.001 286.375);
-
-  --accent-foreground: oklch(0.21 0.006 285.885);
-
-  --destructive: oklch(0.577 0.245 27.325);
-
-  --border: oklch(0.92 0.004 286.32);
-
-  --input: oklch(0.92 0.004 286.32);
-
-  --ring: oklch(0.705 0.015 286.067);
-
-  --chart-1: oklch(0.646 0.222 41.116);
-
-  --chart-2: oklch(0.6 0.118 184.704);
-
-  --chart-3: oklch(0.398 0.07 227.392);
-
-  --chart-4: oklch(0.828 0.189 84.429);
-
-  --chart-5: oklch(0.769 0.188 70.08);
-
-  --sidebar: oklch(0.985 0 0);
-
-  --sidebar-foreground: oklch(0.141 0.005 285.823);
-
-  --sidebar-primary: oklch(0.21 0.006 285.885);
-
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-
-  --sidebar-accent: oklch(0.967 0.001 286.375);
-
-  --sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-
-  --sidebar-border: oklch(0.92 0.004 286.32);
-
-  --sidebar-ring: oklch(0.705 0.015 286.067);
-}
-
-/*  
----break---
-*/
-
-.dark {
-
-  --background: oklch(0.141 0.005 285.823);
-
-  --foreground: oklch(0.985 0 0);
-
-  --card: oklch(0.21 0.006 285.885);
-
-  --card-foreground: oklch(0.985 0 0);
-
-  --popover: oklch(0.21 0.006 285.885);
-
-  --popover-foreground: oklch(0.985 0 0);
-
-  --primary: oklch(0.92 0.004 286.32);
-
-  --primary-foreground: oklch(0.21 0.006 285.885);
-
-  --secondary: oklch(0.274 0.006 286.033);
-
-  --secondary-foreground: oklch(0.985 0 0);
-
-  --muted: oklch(0.274 0.006 286.033);
-
-  --muted-foreground: oklch(0.705 0.015 286.067);
-
-  --accent: oklch(0.274 0.006 286.033);
-
-  --accent-foreground: oklch(0.985 0 0);
-
-  --destructive: oklch(0.704 0.191 22.216);
-
-  --border: oklch(1 0 0 / 10%);
-
-  --input: oklch(1 0 0 / 15%);
-
-  --ring: oklch(0.552 0.016 285.938);
-
-  --chart-1: oklch(0.488 0.243 264.376);
-
-  --chart-2: oklch(0.696 0.17 162.48);
-
-  --chart-3: oklch(0.769 0.188 70.08);
-
-  --chart-4: oklch(0.627 0.265 303.9);
-
-  --chart-5: oklch(0.645 0.246 16.439);
-
-  --sidebar: oklch(0.21 0.006 285.885);
-
-  --sidebar-foreground: oklch(0.985 0 0);
-
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-
-  --sidebar-accent: oklch(0.274 0.006 286.033);
-
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-
-  --sidebar-border: oklch(1 0 0 / 10%);
-
-  --sidebar-ring: oklch(0.552 0.016 285.938);
-}
-
-/*  
----break---
-*/
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  body {
-    @apply bg-background text-foreground;
-  }
-  
-  .heading {
-    @apply uppercase bg-black px-6 py-3 font-work-sans font-extrabold text-white sm:text-[54px] sm:leading-[64px] text-[36px] leading-[46px] max-w-5xl text-center my-5;
-  }
-}
+Dkjen Tours and Accommodation Company – Business Profile
+ 
+About Us
+ 
+Dkjen Touring and Accommodation Company is a premier provider of unforgettable travel experiences, offering a seamless blend of touring adventures and comfortable accommodation services. We specialize in connecting travelers with unique destinations, ensuring that every journey is both memorable and restful. Our focus is on quality, authenticity, and customer satisfaction, positioning us as a trusted partner in the tourism and hospitality industry.
+ 
+Our Journey
+ 
+Our story began with a simple passion: creating opportunities for travelers to explore the beauty of diverse destinations while enjoying the comfort of home away from home. Starting as a small team of travel enthusiasts, we identified the need for a service that not only guides visitors to breathtaking places but also ensures they have top-notch lodging experiences. Over the years, Dkjen has evolved into a comprehensive touring and accommodation company, trusted by local and international clients alike.
+ 
+Our Services
+ 
+Touring Packages: Guided tours tailored for individuals, families, and groups, featuring cultural explorations, nature adventures, and city experiences.
+ 
+Accommodation Solutions: Partnered with reputable hotels, lodges, and resorts to provide travelers with safe, comfortable, and affordable stays.
+ 
+Customized Travel Planning: Personalized itineraries crafted to meet the unique preferences of every traveler.
+ 
+Corporate and Group Travel: Specialized services for organizations, events, and retreats.
+ 
+ 
+Mission Statement
+ 
+To inspire and facilitate travel experiences that create lasting memories by providing exceptional touring and accommodation services with professionalism, integrity, and passion.
+ 
+Vision Statement
+ 
+To become a leading global brand in tourism and accommodation, recognized for delivering unmatched travel experiences and hospitality solutions.
+ 
+Core Values
+ 
+Excellence: Commitment to the highest standards in service delivery.
+ 
+Integrity: Building trust through honesty and reliability.
+ 
+Customer-Centricity: Putting travelers at the heart of everything we do.
+ 
+Innovation: Continuously enhancing our services through creativity and adaptability.
+ 
+Sustainability: Promoting eco-friendly travel and supporting local communities.
+ 
+ 
+Why Choose Us
+ 
+A one-stop solution for touring and accommodation needs.
+ 
+Strong partnerships with reputable hospitality providers.
+ 
+Professional and passionate team with deep knowledge of destinations.
+ 
+Personalized services tailored to each traveler’s needs.
+ 
+Proven track record of customer satisfaction.
+ 
+ 
+Contact Us
+ 
+
+ 
