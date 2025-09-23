@@ -1,6 +1,10 @@
 
 ## MY CONFIGS
 
+
+https://www.youtube.com/watch?v=Zq5fmkH0T78&t=4500s / https://github.com/adrianhajdin/yc_directory/blob/main/sanity/schemaTypes/index.ts
+
+
 https://authjs.dev/getting-started/installation
 
  "packageManager": "npm@10.8.2",
@@ -14,6 +18,73 @@ AUTH_GITHUB_ID="Ov23li7nXR0vdSXKQfev" # Replace with your GitHub OAuth App Clien
 AUTH_GITHUB_SECRET="dfc567d7a88a3f5b6db7d8e7f181546f8fc855c3" # Replace with your GitHub OAuth App Client Secret
 NEXTAUTH_URL="http://localhost:3000" # Replace with your application's URL
 DATABASE_URL="file:./dev.db" # Example for SQLite, replace with
+//
+NEXT_PUBLIC_SANITY_PROJECT_ID="en2f766q"
+NEXT_PUBLIC_SANITY_DATASET="production"
+
+
+npx shadcn@latest init
+npx shadcn@latest add button
+
+
+npm create sanity@latest -- --project en2f766q --dataset production --template clean --typescript 
+
+npm i next-sanity@canary
+
+npm i sanity-plugin-markdown
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 Dkjen Tours and Accommodation Company – Business Profile
