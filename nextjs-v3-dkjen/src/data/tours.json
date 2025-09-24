@@ -1,0 +1,227 @@
+[
+  {
+    "id": "1",
+    "title": "Sunny Beach",
+    "description": "Relax on the beautiful sandy beaches.",
+    "coverImage": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg",
+    "imageGallay": [
+      "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg",
+      "https://images.pexels.com/photos/261102/pexels-photo-261102.jpeg",
+      "https://images.pexels.com/photos/457882/pexels-photo-457882.jpeg"
+    ],
+    "price": "299",
+    "duration": "5 days",
+    "itinerary": [
+      "Day 1: Arrival and Beach Relaxation",
+      "Day 2: Water Sports and Beach Activities",
+      "Day 3: Local Sightseeing",
+      "Day 4: Island Hopping Tour",
+      "Day 5: Departure"
+    ],
+    "reviews": [
+      {
+        "name": "Alice Johnson",
+        "rating": 5,
+        "comment": "An unforgettable beach vacation! The tour was well-organized and the beaches were stunning."
+      },
+      {
+        "name": "Mark Wilson",
+        "rating": 4,
+        "comment": "Great experience overall. Loved the water sports activities!"
+      }
+    ],
+    "availability": true,
+    "location": "Maldives",
+    "category": "Beach",
+    "tags": ["beach", "relaxation", "water sports", "island"],
+    "contactEmail": "migwi@gmail.com",
+    "contactPhone": "+1234567890",
+    "createdAt": "2023-10-01T10:00:00Z",
+    "updatedAt": "2023-10-15T12:00:00Z",
+    "guide": {
+      "name": "John Doe",
+      "experience": "10 years",
+      "language": "English, Spanish",
+      "bio": "Experienced tour guide with a passion for beach destinations."
+    },
+    "whatsapplink": "https://wa.me/254798997948"
+  },
+  {
+    "id": "2",
+    "title": "Masai Mara Safari",
+    "description": "Experience the thrill of African wildlife on a safari adventure.",
+    "coverImage": "https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg",
+    "imageGallay": [
+      "https://images.pexels.com/photos/247431/pexels-photo-247431.jpeg",
+      "https://images.pexels.com/photos/145939/pexels-photo-145939.jpeg",
+      "https://images.pexels.com/photos/158732/pexels-photo-158732.jpeg"
+    ],
+    "price": "899",
+    "duration": "3 days",
+    "itinerary": [
+      "Day 1: Departure from Nairobi & Afternoon Game Drive",
+      "Day 2: Full Day Game Drive in Masai Mara",
+      "Day 3: Morning Game Drive & Return to Nairobi"
+    ],
+    "reviews": [
+      {
+        "name": "Sarah Kimani",
+        "rating": 5,
+        "comment": "Seeing the Big Five up close was breathtaking! A must-do safari."
+      },
+      {
+        "name": "David Brown",
+        "rating": 4,
+        "comment": "The guide was very knowledgeable, and the camp was comfortable."
+      }
+    ],
+    "availability": true,
+    "location": "Kenya",
+    "category": "Safari",
+    "tags": ["wildlife", "safari", "adventure", "nature"],
+    "contactEmail": "info@africanjungles.co.ke",
+    "contactPhone": "+254712345678",
+    "createdAt": "2023-11-01T08:30:00Z",
+    "updatedAt": "2023-11-10T14:20:00Z",
+    "guide": {
+      "name": "James Njoroge",
+      "experience": "12 years",
+      "language": "English, Swahili",
+      "bio": "Safari expert with a deep knowledge of African wildlife."
+    },
+    "whatsapplink": "https://wa.me/254700123456"
+  },
+  {
+    "id": "3",
+    "title": "Mount Kilimanjaro Trek",
+    "description": "Conquer Africa’s highest peak with this guided trek.",
+    "coverImage": "https://images.pexels.com/photos/127753/pexels-photo-127753.jpeg",
+    "imageGallay": [
+      "https://images.pexels.com/photos/127753/pexels-photo-127753.jpeg",
+      "https://images.pexels.com/photos/129105/pexels-photo-129105.jpeg",
+      "https://images.pexels.com/photos/2438/mountains-nature-sky-sunset.jpg"
+    ],
+    "price": "1899",
+    "duration": "7 days",
+    "itinerary": [
+      "Day 1: Arrival in Moshi",
+      "Day 2: Trek to Machame Camp",
+      "Day 3: Shira Plateau",
+      "Day 4: Barranco Wall",
+      "Day 5: Karanga Valley",
+      "Day 6: Summit Night & Uhuru Peak",
+      "Day 7: Descent to Mweka Gate & Departure"
+    ],
+    "reviews": [
+      {
+        "name": "Emily Roberts",
+        "rating": 5,
+        "comment": "The most challenging and rewarding experience of my life!"
+      }
+    ],
+    "availability": true,
+    "location": "Tanzania",
+    "category": "Mountain",
+    "tags": ["hiking", "mountain", "trekking", "adventure"],
+    "contactEmail": "trekking@kiliexpeditions.com",
+    "contactPhone": "+255765432100",
+    "createdAt": "2023-12-05T09:00:00Z",
+    "updatedAt": "2023-12-18T11:30:00Z",
+    "guide": {
+      "name": "Peter Mwangi",
+      "experience": "15 years",
+      "language": "English, German",
+      "bio": "Certified mountain guide who has led over 200 successful Kilimanjaro summits."
+    },
+    "whatsapplink": "https://wa.me/255700987654"
+  },
+  {
+    "id": "4",
+    "title": "Paris City Lights",
+    "description": "Explore the romance and culture of Paris.",
+    "coverImage": "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg",
+    "imageGallay": [
+      "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg",
+      "https://images.pexels.com/photos/338515/pexels-photo-338515.jpeg",
+      "https://images.pexels.com/photos/161853/paris-france-eiffel-tower-lights-161853.jpeg"
+    ],
+    "price": "1499",
+    "duration": "4 days",
+    "itinerary": [
+      "Day 1: Arrival and Seine River Cruise",
+      "Day 2: Eiffel Tower & Louvre Museum",
+      "Day 3: Versailles Palace & Montmartre",
+      "Day 4: Shopping & Departure"
+    ],
+    "reviews": [
+      {
+        "name": "Anna Lee",
+        "rating": 5,
+        "comment": "Paris was magical, especially the Eiffel Tower at night!"
+      }
+    ],
+    "availability": true,
+    "location": "France",
+    "category": "City",
+    "tags": ["city", "romance", "culture", "art"],
+    "contactEmail": "travel@parisexplore.com",
+    "contactPhone": "+33123456789",
+    "createdAt": "2023-09-01T12:00:00Z",
+    "updatedAt": "2023-09-20T15:30:00Z",
+    "guide": {
+      "name": "Claire Dupont",
+      "experience": "8 years",
+      "language": "French, English",
+      "bio": "Parisian guide with expertise in art, culture, and history."
+    },
+    "whatsapplink": "https://wa.me/330612345678"
+  },
+  {
+    "id": "5",
+    "title": "Japanese Cultural Tour",
+    "description": "Discover the traditions and modern wonders of Japan.",
+    "coverImage": "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg",
+    "imageGallay": [
+      "https://images.pexels.com/photos/462118/pexels-photo-462118.jpeg",
+      "https://images.pexels.com/photos/161216/pexels-photo-161216.jpeg",
+      "https://images.pexels.com/photos/161216/pexels-photo-161216.jpeg"
+    ],
+    "price": "2099",
+    "duration": "6 days",
+    "itinerary": [
+      "Day 1: Arrival in Tokyo & Shinjuku Tour",
+      "Day 2: Mt. Fuji Excursion",
+      "Day 3: Kyoto Temples & Tea Ceremony",
+      "Day 4: Nara Deer Park & Cultural Experience",
+      "Day 5: Hiroshima Peace Memorial",
+      "Day 6: Departure"
+    ],
+    "reviews": [
+      {
+        "name": "Michael Chan",
+        "rating": 5,
+        "comment": "An eye-opening journey into Japan’s culture and history!"
+      },
+      {
+        "name": "Sophia Nguyen",
+        "rating": 4,
+        "comment": "Loved Kyoto and Mt. Fuji, but wish we had more time in Tokyo."
+      }
+    ],
+    "availability": true,
+    "location": "Japan",
+    "category": "Cultural",
+    "tags": ["culture", "history", "temples", "modern"],
+    "contactEmail": "info@japanculturetours.jp",
+    "contactPhone": "+81123456789",
+    "createdAt": "2023-08-10T07:00:00Z",
+    "updatedAt": "2023-08-25T10:15:00Z",
+    "guide": {
+      "name": "Hiroshi Tanaka",
+      "experience": "20 years",
+      "language": "Japanese, English",
+      "bio": "Expert cultural guide with deep knowledge of Japan’s traditions and modern lifestyle."
+    },
+    "whatsapplink": "https://wa.me/810901234567"
+  }
+]
