@@ -6,7 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
+ // output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -19,5 +19,14 @@ model Post {
   id        Int      @id @default(autoincrement())
   title     String
   content   String
+  createdAt DateTime @default(now())
+}
+
+model Contact {
+  id        Int      @id @default(autoincrement())
+  fullName  String
+  email     String
+  subject   String
+  message   String
   createdAt DateTime @default(now())
 }
