@@ -13,6 +13,8 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
+import { SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedOut } from "@clerk/clerk-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,7 +25,7 @@ export default function Navbar() {
     <header className="w-full fixed top-0 z-50 shadow-md">
       {/* Top Green Bar */}
       <div className="bg-green-900 text-white px-4 py-2">
-        <div className="flex items-center justify-between pt-2 ml-5">
+        <div className="flex items-center justify-between pt-2 mx-4 ">
           {/* Logo (image + text) */}
           <Link href="/" className="flex items-center gap-2">
              <Image src="/logo.svg" alt="Logo" width={50} height={50} />
@@ -58,6 +60,19 @@ export default function Navbar() {
           <span className="flex items-center justify-center md:justify-start gap-1">
             <Mail size={14} /> info@africanjungles.co.ke
           </span>
+
+          <span className="flex items-center justify-center md:justify-start gap-1">
+            <SignedIn>
+              <UserButton/>
+            </SignedIn>
+
+            <SignedOut>
+              <Link href="/sign-in" className="hover:underline">
+                Sign In
+              </Link>
+            </SignedOut>
+          </span>
+
         </div>
       </div>
 

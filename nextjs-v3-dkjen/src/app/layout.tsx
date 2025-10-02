@@ -2,6 +2,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import LoadingBar from "@/components/LoadingBar";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Touring Company",
@@ -14,6 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
+    <ClerkProvider>
       <html lang="en">
       <body className="pt-40">
         {/* Navbar placeholder */}
@@ -25,6 +27,7 @@ export default function RootLayout({
         <main className="pt-6">{children}</main>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
 /*
