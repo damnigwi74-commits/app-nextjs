@@ -49,6 +49,7 @@ export default function Navbar() {
             >
               {isOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
+            
           </div>
         </div>
 
