@@ -14,14 +14,18 @@
     "react-dom": "$react"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.33.1",
     "@prisma/client": "^6.16.2",
     "@radix-ui/react-separator": "^1.1.7",
     "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.21",
+    "gridfs-stream": "^1.1.1",
     "keen-slider": "^6.8.6",
     "lucide-react": "^0.544.0",
+    "mongoose": "^8.18.3",
+    "multer": "^2.0.2",
     "next": "15.5.3",
     "next-auth": "^5.0.0-beta.29",
     "nodemailer": "^6.10.1",
@@ -34,6 +38,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
+    "@types/multer": "^2.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

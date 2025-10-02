@@ -90,6 +90,10 @@ export default function Navbar() {
               About Us
             </Link>
 
+            <Link href="/learning" className="hover:text-green-700">
+              Learning
+            </Link>
+
           </div>
         </div>
       </nav>
