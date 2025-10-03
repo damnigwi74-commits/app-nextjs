@@ -25,6 +25,9 @@ export default function RootLayout({
         <LoadingBar />
 
         <main className="pt-6">{children}</main>
+
+          {/* Global Loading Bar */}
+          <Footer />
       </body>
     </html>
     </ClerkProvider>

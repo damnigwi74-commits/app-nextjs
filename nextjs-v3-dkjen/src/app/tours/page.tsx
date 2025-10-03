@@ -1,6 +1,6 @@
 import React from 'react'
 import hotels from "@/data/hotel.json"
-import TourCard from "@/components/TourCard";
+import TourCard from "@/components/TourCardItem";
 
 const Tours = () => {
   return (
