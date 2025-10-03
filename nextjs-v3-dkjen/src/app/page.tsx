@@ -10,6 +10,7 @@ import BookingForm from "@/components/BookWithUs"
 import TourCard from "@/components/TourCard";
 import TestimonialSection from "@/components/TestimonialSection";
 import WhyTravel from "@/components/WhyTravel";
+import AfricaWildlifeHero from "@/components/AfricaWildlifeHero";
 
 export default function HomePage() {
   const slides = [
@@ -151,7 +152,7 @@ export default function HomePage() {
 
 
       <section className="mx-5">
-     <TourCard/>
+        <TourCard />
       </section>
 
       <section className="mx-5">
@@ -168,9 +169,10 @@ export default function HomePage() {
 
       </section>
 
-<section className="mx-5">
-<WhyTravel/>
-</section>
+      <section className="mx-5">
+        <WhyTravel />
+      </section>
+      <section className="mx-5"><AfricaWildlifeHero /></section>
 
 
     </div>
