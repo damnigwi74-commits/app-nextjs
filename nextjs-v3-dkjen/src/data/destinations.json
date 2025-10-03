@@ -1,0 +1,76 @@
+{
+  "destinations": [
+    {
+      "id": 1,
+      "title": "Maasai Mara",
+      "description": "Experience the great wildebeest migration and hot air balloon safaris.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 2,
+      "title": "Amboseli",
+      "description": "Witness majestic elephants with Mount Kilimanjaro backdrop.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 3,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 4,
+      "title": "Maasai Mara",
+      "description": "Experience the great wildebeest migration and hot air balloon safaris.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 5,
+      "title": "Amboseli",
+      "description": "Witness majestic elephants with Mount Kilimanjaro backdrop.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 6,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 7,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 8,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 9,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 10,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 11,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    },
+    {
+      "id": 12,
+      "title": "Samburu",
+      "description": "Discover unique wildlife species in Kenya's northern frontier.",
+      "imageUrl": "https://images.pexels.com/photos/210243/pexels-photo-210243.jpeg"
+    }
+  ]
+}
