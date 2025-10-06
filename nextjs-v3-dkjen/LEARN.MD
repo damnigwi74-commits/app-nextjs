@@ -15,7 +15,7 @@ AUTH_GITHUB_ID="" # Replace with your GitHub OAuth App Client ID
 AUTH_GITHUB_SECRET="" # Replace with your GitHub OAuth App Client Secret
 NEXTAUTH_URL="http://localhost:3000" # Replace with your application's URL
 
-DATABASE_URL2="""
+##
 DATABASE_URL = ""
 
 MONGODB_URI = ""
@@ -24,7 +24,7 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
 NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
 NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
-SIGNING_SECRET=
+SIGNING_SECRET=å
 
 
 ### 🔹 PRISMA
@@ -410,3 +410,403 @@ When answering questions about Clerk + Next.js integration, your response **MUST
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_dXNlZnVsLXZ1bHR1cmUtNzcuY2xlcmsuYWNjb3VudHMuZGV2JA
 CLERK_SECRET_KEY=sk_test_FEj3AYjCQ0xITcOIRQ3q540OA5fybWkuNSw0ftwrYw
 ---
+
+
+
+
+
+
+"use client";
+
+import { useState } from "react";
+
+type Room = {
+  type: string;
+  bed_type: string;
+  max_occupancy: number;
+  sample_rate_usd_per_night: number;
+  notes: string;
+};
+
+export default function NewHotelPage() {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [previewUrls, setPreviewUrls] = useState<string[]>([]);
+  const [facilities, setFacilities] = useState<string[]>([""]);
+  const [dining, setDining] = useState<string[]>([""]);
+  const [rooms, setRooms] = useState<Room[]>([
+    {
+      type: "",
+      bed_type: "",
+      max_occupancy: 1,
+      sample_rate_usd_per_night: 0,
+      notes: "",
+    },
+  ]);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+    const urls = Array.from(files).map((file) => URL.createObjectURL(file));
+    setPreviewUrls(urls);
+  };
+
+  const handleAddField = (setter: any, values: any[], newValue: any) => {
+    setter([...values, newValue]);
+  };
+
+  const handleRemoveField = (setter: any, values: any[], index: number) => {
+    setter(values.filter((_, i) => i !== index));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
+    setMessage("");
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    // Append dynamic lists
+    formData.append("facilities", JSON.stringify(facilities.filter(Boolean)));
+    formData.append("dining", JSON.stringify(dining.filter(Boolean)));
+    formData.append("rooms", JSON.stringify(rooms));
+
+    try {
+      const res = await fetch("/api/hotels/create", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) throw new Error("Upload failed");
+
+      setMessage("✅ Hotel created successfully!");
+      form.reset();
+      setPreviewUrls([]);
+      setFacilities([""]);
+      setDining([""]);
+      setRooms([
+        {
+          type: "",
+          bed_type: "",
+          max_occupancy: 1,
+          sample_rate_usd_per_night: 0,
+          notes: "",
+        },
+      ]);
+    } catch (err) {
+      console.error(err);
+      setMessage("❌ Failed to create hotel");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-4xl mx-auto p-6 mt-20">
+      <h1 className="text-2xl font-bold mb-6">🏨 Add New Hotel</h1>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* BASIC INFO */}
+        <div>
+          <label className="block font-medium mb-1">Hotel Name</label>
+          <input
+            type="text"
+            name="name"
+            className="border p-2 w-full rounded"
+            placeholder="Enter hotel name"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium mb-1">Description</label>
+          <textarea
+            name="description"
+            className="border p-2 w-full rounded"
+            rows={3}
+            placeholder="Brief hotel description"
+            required
+          />
+        </div>
+
+        {/* LOCATION */}
+        <h3 className="font-semibold text-lg mt-6">📍 Location</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="city"
+            placeholder="City"
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="address"
+            placeholder="Address"
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="number"
+            step="any"
+            name="latitude"
+            placeholder="Latitude"
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="number"
+            step="any"
+            name="longitude"
+            placeholder="Longitude"
+            className="border p-2 rounded"
+            required
+          />
+        </div>
+
+        {/* POLICIES */}
+        <h3 className="font-semibold text-lg mt-6">📋 Policies</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="check_in"
+            placeholder="Check-in (e.g. 14:00)"
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="text"
+            name="check_out"
+            placeholder="Check-out (e.g. 11:00)"
+            className="border p-2 rounded"
+            required
+          />
+        </div>
+        <label className="flex items-center space-x-2">
+          <input type="checkbox" name="pets" value="true" />
+          <span>Pets allowed?</span>
+        </label>
+
+        {/* CONTACT */}
+        <h3 className="font-semibold text-lg mt-6">☎️ Contact</h3>
+        <div className="grid grid-cols-2 gap-4">
+          <input
+            type="text"
+            name="phone"
+            placeholder="Phone"
+            className="border p-2 rounded"
+            required
+          />
+          <input
+            type="url"
+            name="website"
+            placeholder="Website URL"
+            className="border p-2 rounded"
+            required
+          />
+        </div>
+
+        {/* FACILITIES */}
+        <h3 className="font-semibold text-lg mt-6">🏋️ Facilities</h3>
+        {facilities.map((f, i) => (
+          <div key={i} className="flex items-center gap-2 mb-2">
+            <input
+              type="text"
+              value={f}
+              onChange={(e) => {
+                const updated = [...facilities];
+                updated[i] = e.target.value;
+                setFacilities(updated);
+              }}
+              className="border p-2 flex-1 rounded"
+              placeholder="Facility (e.g. Gym)"
+            />
+            {i > 0 && (
+              <button
+                type="button"
+                onClick={() => handleRemoveField(setFacilities, facilities, i)}
+                className="text-red-600 text-sm"
+              >
+                ✖
+              </button>
+            )}
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddField(setFacilities, facilities, "")}
+          className="text-blue-600 text-sm"
+        >
+          ➕ Add facility
+        </button>
+
+        {/* DINING */}
+        <h3 className="font-semibold text-lg mt-6">🍽️ Dining Options</h3>
+        {dining.map((d, i) => (
+          <div key={i} className="flex items-center gap-2 mb-2">
+            <input
+              type="text"
+              value={d}
+              onChange={(e) => {
+                const updated = [...dining];
+                updated[i] = e.target.value;
+                setDining(updated);
+              }}
+              className="border p-2 flex-1 rounded"
+              placeholder="Dining (e.g. Restaurant)"
+            />
+            {i > 0 && (
+              <button
+                type="button"
+                onClick={() => handleRemoveField(setDining, dining, i)}
+                className="text-red-600 text-sm"
+              >
+                ✖
+              </button>
+            )}
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() => handleAddField(setDining, dining, "")}
+          className="text-blue-600 text-sm"
+        >
+          ➕ Add dining
+        </button>
+
+        {/* ROOMS */}
+        <h3 className="font-semibold text-lg mt-6">🛏️ Rooms</h3>
+        {rooms.map((r, i) => (
+          <div
+            key={i}
+            className="border p-4 rounded mb-4 grid grid-cols-2 gap-3 relative"
+          >
+            {i > 0 && (
+              <button
+                type="button"
+                onClick={() => handleRemoveField(setRooms, rooms, i)}
+                className="absolute top-2 right-2 text-red-500"
+              >
+                ✖
+              </button>
+            )}
+            <input
+              type="text"
+              value={r.type}
+              onChange={(e) => {
+                const updated = [...rooms];
+                updated[i].type = e.target.value;
+                setRooms(updated);
+              }}
+              placeholder="Room Type (e.g. Deluxe)"
+              className="border p-2 rounded"
+            />
+            <input
+              type="text"
+              value={r.bed_type}
+              onChange={(e) => {
+                const updated = [...rooms];
+                updated[i].bed_type = e.target.value;
+                setRooms(updated);
+              }}
+              placeholder="Bed Type (e.g. King)"
+              className="border p-2 rounded"
+            />
+            <input
+              type="number"
+              value={r.max_occupancy}
+              onChange={(e) => {
+                const updated = [...rooms];
+                updated[i].max_occupancy = Number(e.target.value);
+                setRooms(updated);
+              }}
+              placeholder="Max Occupancy"
+              className="border p-2 rounded"
+            />
+            <input
+              type="number"
+              value={r.sample_rate_usd_per_night}
+              onChange={(e) => {
+                const updated = [...rooms];
+                updated[i].sample_rate_usd_per_night = Number(e.target.value);
+                setRooms(updated);
+              }}
+              placeholder="Rate per night (USD)"
+              className="border p-2 rounded"
+            />
+            <textarea
+              value={r.notes}
+              onChange={(e) => {
+                const updated = [...rooms];
+                updated[i].notes = e.target.value;
+                setRooms(updated);
+              }}
+              placeholder="Notes"
+              className="border p-2 rounded col-span-2"
+            />
+          </div>
+        ))}
+        <button
+          type="button"
+          onClick={() =>
+            handleAddField(setRooms, rooms, {
+              type: "",
+              bed_type: "",
+              max_occupancy: 1,
+              sample_rate_usd_per_night: 0,
+              notes: "",
+            })
+          }
+          className="text-blue-600 text-sm"
+        >
+          ➕ Add room
+        </button>
+        
+
+        {/* IMAGES */}
+        <h3 className="font-semibold text-lg mt-6">🖼️ Upload Images</h3>
+        <input
+          type="file"
+          name="images"
+          accept="image/*"
+          multiple
+          className="border p-2 w-full rounded"
+          onChange={handleFileChange}
+          required
+        />
+
+        {previewUrls.length > 0 && (
+          <div className="flex flex-wrap gap-3 mt-3">
+            {previewUrls.map((url, i) => (
+              <img
+                key={i}
+                src={url}
+                alt="preview"
+                className="w-24 h-24 object-cover rounded shadow"
+              />
+            ))}
+          </div>
+        )}
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+        >
+          {loading ? "Uploading..." : "Create Hotel"}
+        </button>
+      </form>
+
+      {message && (
+        <p
+          className={`mt-4 text-sm font-semibold ${
+            message.startsWith("✅") ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          {message}
+        </p>
+      )}
+    </div>
+  );
+}

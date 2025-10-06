@@ -30,3 +30,34 @@ model Contact {
   message   String
   createdAt DateTime @default(now())
 }
+
+
+model Hotel {
+  id              Int      @id @default(autoincrement())
+  hotel_id        String   @unique
+  name            String
+  coverImageUrl   String
+  description     String
+
+  // 🕒 Check-in / Check-out
+  check_in        String
+  check_out       String
+
+  // 🏙️ Optional location breakdown
+  city            String
+  address         String
+  latitude        Float?
+  longitude       Float?
+
+  // 🧳 Complex JSON fields
+  location        Json?      // Full location object { city, address, latitude, longitude }
+  images          Json?      // Array of image objects
+  rooms           Json?      // Array of room objects
+  facilities      Json?      // Array of facilities
+  dining          Json?      // Array of dining options
+  policies        Json?      // Object with pet/smoking/loudmusic/alcohol booleans
+  contact         Json?      // Object with phone, website, etc.
+
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+}

@@ -17,14 +17,14 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-      <body className="pt-40">
+      <body className="pt-20 pb-20">
         {/* Navbar placeholder */}
         <Navbar />
 
         {/* Global Loading Bar */}
         <LoadingBar />
 
-        <main className="pt-6">{children}</main>
+        <main className="pt-15">{children}</main>
 
           {/* Global Loading Bar */}
           <Footer />
