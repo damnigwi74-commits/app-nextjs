@@ -8,7 +8,7 @@ import path from "path";
 const uploadDir = path.join(process.cwd(), "public", "uploads");
 if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
-export async function POST(req: Request) {
+export async function POST1(req: Request) {
   try {
     const formData = await req.formData();
 
@@ -74,5 +74,81 @@ export async function POST(req: Request) {
   } catch (err: any) {
     console.error("❌ Hotel creation error:", err);
     return NextResponse.json({ success: false, error: err.message }, { status: 500 });
+  }
+}
+
+
+
+
+
+export async function POST(req: Request) {
+  const form = await req.formData();
+
+  const name = form.get("name") as string;
+  const description = form.get("description") as string;
+  const city = form.get("city") as string;
+  const address = form.get("address") as string;
+  const hotel_id = form.get("hotel_id") as string;
+  const check_in = form.get("check_in") as string;
+  const check_out = form.get("check_out") as string;
+  const latitude = form.get("latitude") ? parseFloat(form.get("latitude") as string) : null;
+  const longitude = form.get("longitude") ? parseFloat(form.get("longitude") as string) : null;
+
+  const facilities = form.get("facilities");
+  const dining = form.get("dining");
+  const policies = form.get("policies");
+  const contact = form.get("contact");
+
+  const coverImage = form.get("coverImage") as File | null;
+  const images = form.getAll("images") as File[];
+
+  let coverImageUrl = "";
+  const uploadDir = path.join(process.cwd(), "public/uploads");
+
+  // Save cover image locally
+  if (coverImage) {
+    const bytes = await coverImage.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const filePath = path.join(uploadDir, coverImage.name);
+    //await writeFile(filePath, buffer);
+    fs.writeFileSync(filePath, buffer);
+    coverImageUrl = `/uploads/${coverImage.name}`;
+  }
+
+  const imageUrls: string[] = [];
+  for (const file of images) {
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const filePath = path.join(uploadDir, file.name);
+    //await writeFile(filePath, buffer);
+    fs.writeFileSync(filePath, buffer);
+    imageUrls.push(`/uploads/${file.name}`);
+  }
+
+  try {
+    const hotel = await prisma.hotel.create({
+      data: {
+        hotel_id,
+        name,
+        description,
+        city,
+        address,
+        check_in,
+        check_out,
+        latitude: latitude ?? undefined,
+        longitude: longitude ?? undefined,
+        coverImageUrl,
+        images: imageUrls.length ? imageUrls : undefined,
+        facilities: facilities ? JSON.parse(facilities as string) : undefined,
+        dining: dining ? JSON.parse(dining as string) : undefined,
+        policies: policies ? JSON.parse(policies as string) : undefined,
+        contact: contact ? JSON.parse(contact as string) : undefined,
+      },
+    });
+
+    return NextResponse.json({ success: true, hotel });
+  } catch (error: any) {
+    console.error("❌ Hotel creation error:", error);
+    return NextResponse.json({ success: false, error: error.message });
   }
 }
