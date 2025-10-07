@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useMemo } from "react";
 import ImageCard from "@/components/ImageCard";
-import fallbackHotels from "@/data/hotel.json";
 import Link from "next/link";
 
 export default function HotelsPage() {
@@ -20,7 +19,7 @@ export default function HotelsPage() {
         setHotels(data.hotels || data?.hotels || []);
       } catch (err) {
         console.error("❌ API fetch failed, using local JSON:", err);
-        setHotels(fallbackHotels.hotels);
+        setHotels([]);
       } finally {
         setLoading(false);
       }

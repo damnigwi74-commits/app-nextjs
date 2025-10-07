@@ -3,7 +3,7 @@ import hotels from "@/data/hotel.json"
 import Image from "next/image";
 
 type Props = {
-  params: { id: string };
+  params: { id: number };
 };
 
 export default function TourDetails({ params }: Props) {

@@ -28,8 +28,19 @@ export default function Navbar() {
         <div className="flex items-center justify-between pt-2 mx-4 ">
           {/* Logo (image + text) */}
           <Link href="/" className="flex items-center gap-2">
-             <Image src="/logo-white-bg.jpg" alt="Logo" width={50} height={50} />
-             <span className="text-lg font-bold">Aljen Touring and Accomodation LTD</span>
+            {/* Always show logo */}
+            <Image
+              src="/logo-white-bg.jpg"
+              alt="Logo"
+              width={45}
+              height={45}
+              className="rounded-full"
+            />
+
+            {/* Hide text on small screens, show on md+ */}
+            <span className="hidden md:inline text-lg font-bold">
+              Aljen Touring and Accommodation LTD
+            </span>
           </Link>
 
           {/* Right side */}
@@ -49,7 +60,7 @@ export default function Navbar() {
             >
               {isOpen ? <X size={26} /> : <Menu size={26} />}
             </button>
-            
+
           </div>
         </div>
 
@@ -64,7 +75,7 @@ export default function Navbar() {
 
           <span className="flex items-center justify-center md:justify-start gap-1">
             <SignedIn>
-              <UserButton/>
+              <UserButton />
             </SignedIn>
 
             <SignedOut>
